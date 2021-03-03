@@ -20,9 +20,15 @@ namespace TourPlaner
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string Content { get; set; } = "Here is phish";
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

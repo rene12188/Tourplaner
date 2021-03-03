@@ -6,18 +6,29 @@
         xmlns:local="clr-namespace:TourPlaner"
         mc:Ignorable="d"
         Title="MainWindow" Height="573" Width="974">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
     <Grid Margin="50">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="46* "/>
-            <ColumnDefinition Width="77*"/>
-            <ColumnDefinition Width="227*"/>
+            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="612*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="74*"/>
-            <RowDefinition Height="83*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
             <RowDefinition Height="226*"/>
         </Grid.RowDefinitions>
-        <Label FontSize="26"  HorizontalContentAlignment="Center"  Grid.ColumnSpan="3"  Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center">RUNAWAY Tour Planer</Label>
+        <Label FontSize="26"  HorizontalContentAlignment="Center"  Grid.ColumnSpan="4" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center">RUNAWAY Tour Planer</Label>
+        <Button  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick">Files</Button>
+        <Button  Grid.Row="1"  Grid.Column="1">Edit</Button>
+        <Button  Grid.Row="1" Grid.Column="2">Options</Button>
+        <Button  Grid.Row="1" Grid.Column="3" >Help</Button>
+        <TextBox Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="3"/>
+        <Button  Grid.Row="2" Grid.Column="2" >Help</Button>
+        <TextBox Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="3" Text="{Binding Input}"/>
     </Grid>
 </Window>
