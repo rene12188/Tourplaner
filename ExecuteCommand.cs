@@ -33,6 +33,7 @@ namespace TourPlaner
         public void Execute(object? parameter)
         {
             System.Windows.MessageBox.Show("This is the property: " + _mainViewModel.Input);
+            Database.SimpleQuery("SELECT * from Tour;", "");
         }
 
         public event EventHandler? CanExecuteChanged;

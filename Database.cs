@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Security.Cryptography;
+using System.Windows.Shapes;
 
 
 
-namespace Monster_Trading_Card_Game
+namespace TourPlaner
 {
 
 
@@ -14,24 +15,27 @@ namespace Monster_Trading_Card_Game
     {
         private class Connectionhander
         {
-            private static NpgsqlConnection conn = new NpgsqlConnection("Host = localhost;Username=postgres;Password=a;Database=tourplaner");
+            private static NpgsqlConnection conn = new NpgsqlConnection(LoadCFG());
 
             public static NpgsqlConnection returnConnection()
             {
                 return conn;
             }
+
+            private static string LoadCFG()
+            {
+
+                string[] lines = System.IO.File.ReadAllLines(@"E:\Programming\C#\SWE2\TourPlaner\config.txt");
+
+                /*"Host = localhost;Username=postgres;Password=a;Database=tourplaner";*/
+                string connectionstring =
+                    string.Format("Host = localhost;Username= {0};Password={1};Database=tourplaner;", lines[0],
+                        lines[1]);
+                Console.WriteLine(connectionstring);
+                return connectionstring;
+            }
         }
      
-        private NpgsqlConnection ConnecttoDatabase()
-        {
-
-            string mySQLConnectionString = "Host=localhost;Username=postgres;Password=a;Database=tourplaner";
-            NpgsqlConnection conn = new NpgsqlConnection(mySQLConnectionString);
-            return conn;
-
-            //MySqlConnection databaseConnection = new MySqlConnection(mySQLConnectionString);
-            //return databaseConnection;
-        }
 
         public static async void SimpleQuery(string queryToRun, string payload)
         {

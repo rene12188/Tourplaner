@@ -1,0 +1,4 @@
+CREATE TABLE Tour (
+    TID serial PRIMARY KEY ,
+    Name varchar(255)
+);

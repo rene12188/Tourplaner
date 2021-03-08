@@ -30,5 +30,6 @@
         <TextBox Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="3" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}"/>
         <Button  Grid.Row="2" Grid.Column="2" Command="{Binding Command}">Command</Button>
         <TextBox Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="3" Text="{Binding Output,Mode=OneWay}"/>
+        <DataGrid Grid.Row="4" Name="dgSimple"></DataGrid>
     </Grid>
 </Window>
