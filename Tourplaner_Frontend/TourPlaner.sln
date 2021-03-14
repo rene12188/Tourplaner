@@ -9,9 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourplaner_Frontend", "Tour
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourplaner_Buisness", "..\Tourplaner_Buisness\Tourplaner_Buisness.csproj", "{00CE0F32-FD0A-4644-B1BF-9A177AA4B802}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C6D2887-E90A-4C85-9771-700E5B465C0C} = {5C6D2887-E90A-4C85-9771-700E5B465C0C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourplaner_Tests", "..\TourpLaner_Tests\Tourplaner_Tests.csproj", "{9FA54688-EA9D-4ED8-914F-8CEB7B8DF2DC}"
 	ProjectSection(ProjectDependencies) = postProject
+		{00CE0F32-FD0A-4644-B1BF-9A177AA4B802} = {00CE0F32-FD0A-4644-B1BF-9A177AA4B802}
+		{5C6D2887-E90A-4C85-9771-700E5B465C0C} = {5C6D2887-E90A-4C85-9771-700E5B465C0C}
 		{D2F01E9F-8EA0-4BAE-BA4E-9B1B1295ACA9} = {D2F01E9F-8EA0-4BAE-BA4E-9B1B1295ACA9}
 	EndProjectSection
 EndProject

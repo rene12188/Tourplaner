@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Windows.Input;
+using Tourplaner_Data;
 
-namespace TourPlaner
+namespace Tourplaner_Frontend
 {
     public class ExecuteCommand : ICommand
     {
@@ -33,7 +34,6 @@ namespace TourPlaner
         public void Execute(object? parameter)
         {
             System.Windows.MessageBox.Show("This is the property: " + _mainViewModel.Input);
-            Database.SimpleQuery("SELECT * from Tour;", "");
         }
 
         public event EventHandler? CanExecuteChanged;

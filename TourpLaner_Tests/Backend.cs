@@ -1,8 +1,7 @@
-
 using NUnit.Framework;
-using TourPlaner;
+using Tourplaner_Data;
 
-namespace TourPLanerTests
+namespace Tourplaner_Tests
 {
     public class Tests
     {

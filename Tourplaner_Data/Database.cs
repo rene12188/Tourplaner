@@ -1,19 +1,14 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Security.Cryptography;
-using System.Windows.Shapes;
 
-
-
-namespace TourPlaner
+namespace Tourplaner_Data
 {
 
 
     public class Database
     {
-        private class Connectionhander
+        private class Connectionhander //Singelton
         {
             private static NpgsqlConnection conn = new NpgsqlConnection(LoadCFG());
 
@@ -25,7 +20,7 @@ namespace TourPlaner
             private static string LoadCFG()
             {
 
-                string[] lines = System.IO.File.ReadAllLines(@"E:\Programming\C#\SWE2\TourPlaner\config.txt");
+                string[] lines = System.IO.File.ReadAllLines(@"E:\Programming\C#\SWE2\config.txt");
 
                 /*"Host = localhost;Username=postgres;Password=a;Database=tourplaner";*/
                 string connectionstring =
