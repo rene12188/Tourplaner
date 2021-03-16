@@ -47,13 +47,18 @@ namespace Tourplaner_Frontend
             Debug.Print("ctor MainViewModel");
             this.Command = new ExecuteCommand(this);
 
-            #region Simpler Solution
+            // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
+            // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
+        }
+        public MainViewModel()
+        {
+            Debug.Print("ctor MainViewModel");
+            this.Command = new ExecuteCommand(this);
 
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
-
-            #endregion
         }
+
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

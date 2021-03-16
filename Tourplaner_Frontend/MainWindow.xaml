@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TourPlaner"
+        xmlns:local="clr-namespace:Tourplaner_Frontend"
         mc:Ignorable="d"
         Title="MainWindow" Height="573" Width="974">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
-    <Grid Margin="50">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="89*"/>
             <ColumnDefinition Width="89*"/>
@@ -17,19 +17,26 @@
             <ColumnDefinition Width="612*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="226*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="409*"/>
         </Grid.RowDefinitions>
-        <Label FontSize="26"  HorizontalContentAlignment="Center"  Grid.ColumnSpan="4" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center">RUNAWAY Tour Planer</Label>
-        <Button  Grid.Row="1" Grid.Column="0">Files</Button>
+        <DockPanel Grid.ColumnSpan="4">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                </MenuItem>
+                <MenuItem Header="Help"  Command="{Binding Command}"></MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+        <Button  Grid.Row="1" Grid.Column="0" >Files</Button>
         <Button  Grid.Row="1"  Grid.Column="1">Edit</Button>
-        <Button  Grid.Row="1" Grid.Column="2">Options</Button>
-        <Button  Grid.Row="1" Grid.Column="3">Help</Button>
-        <TextBox Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="3" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button  Grid.Row="2" Grid.Column="2" Command="{Binding Command}">Command</Button>
-        <TextBox Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="3" Text="{Binding Output,Mode=OneWay}"/>
-        <DataGrid Grid.Row="4" Name="dgSimple"></DataGrid>
+        <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" />
+        <Button  Grid.Row="1" Grid.Column="2">Search</Button>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Output,Mode=OneWay}" />
+        <DataGrid Grid.Row="3" Name="dgSimple"/>
     </Grid>
 </Window>
