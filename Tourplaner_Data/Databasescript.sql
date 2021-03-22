@@ -62,9 +62,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 SELECT insert_tours('Kurze Runde', 47.7614800, 16.8002400,47.74429, 16.8301373);
-SELECT copy_tour('aasdasda');
+SELECT copy_tour('Kurze Runde_copy');
 select *  from Tour;
 Select concat(NAme, '_copy'), Start_lat , Start_long,Finish_lat  ,Finish_long from Tour Where TID = 1;
 
-Select * from Tour;
+Select * from Tour WHERE Name Like '%%';
+
+Delete FROM Tour Where Name = 'Kurze Runde_copy_copy';
 COMMIT;

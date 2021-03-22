@@ -10,15 +10,15 @@ namespace Tourplaner_Data
 
     public class Database
     {
-        private class Connectionhander //Singelton
+        private abstract class Connectionhander //Singelton
         {
-            private static NpgsqlConnection conn = new NpgsqlConnection(LoadCFG());
+            private static string CFGstring = LoadCFG();
 
             public static NpgsqlConnection returnConnection()
             {
                 try
                 {
-                    return conn;
+                   return  new NpgsqlConnection(CFGstring);
                 }
                 catch (Exception e)
                 {
@@ -30,12 +30,6 @@ namespace Tourplaner_Data
 
             private static string LoadCFG()
             {
-
-              //  string[] lines = System.IO.File.ReadAllLines(@"E:\Programming\C#\SWE2\config.txt");
-
-                /*"Host = localhost;Username=postgres;Password=a;Database=tourplaner";*/
-               /* string connectionstring =
-                    Console.WriteLine(connectionstring);*/
                 return "Host=localhost;Username=postgres; Password=a;Database=tourplaner";
             }
         }
@@ -77,36 +71,31 @@ namespace Tourplaner_Data
             }
         }
 
-        public static List<Tour> SearchTours(string Searchterm ="")
+        public static List<Tour> SearchTours(string Searchterm = "" )
         {
-            
             List<Tour> returnval = new List<Tour>();
             using NpgsqlConnection conn = Connectionhander.returnConnection();
-
-
+            Searchterm = '%' + Searchterm + '%';
+            conn.Open();
             try
             {
-                conn.Open();
-                var cmd = new NpgsqlCommand($"Select * from Tour", conn);
-                //databaseConnection.Open();
-                // MySqlDataReader myReader = commandDatabase.ExecuteReader();
+                var cmd = new NpgsqlCommand($"Select * from Tour  WHERE Name Like @payload;", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm));
 
-
-               // cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm)
-               NpgsqlDataReader myReader = cmd.ExecuteReader();
+                NpgsqlDataReader myReader = cmd.ExecuteReader();
                 if (myReader.HasRows)
                 {
                     Console.WriteLine("Query Generated result:");
 
-                    if (myReader.Read())
+                    while (myReader.Read())
                     {
-                        returnval.Add(new Tour(myReader.GetInt16(0), myReader.GetString(1), myReader.GetDouble(2), myReader.GetDouble(3), myReader.GetDouble(4), myReader.GetDouble(5)));
+                        returnval.Add(new Tour(myReader.GetInt16(0), myReader.GetString(1), myReader.GetDouble(2),
+                            myReader.GetDouble(3), myReader.GetDouble(4), myReader.GetDouble(5)));
                     }
-                    conn.Close();
-                    return returnval;
+
+                   
                 }
-                conn.Close();
-                return null;
+
 
             }
             catch (Exception e)
@@ -115,8 +104,12 @@ namespace Tourplaner_Data
                 throw;
 
             }
+            finally
+            {
+               conn.Close();
+            }
+            return returnval;
         }
-
 
     }
 
