@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlaner"
+        xmlns:tourplanerFrontend="clr-namespace:Tourplaner_Frontend"
         mc:Ignorable="d"
         Title="MainWindow" Height="573" Width="974">
     <Window.DataContext>
-        <local:MainViewModel/>
+        <tourplanerFrontend:MainViewModel/>
     </Window.DataContext>
     <Grid Margin="50">
         <Grid.ColumnDefinitions>

@@ -1,6 +1,8 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using Tourplaner_Utility;
 
 namespace Tourplaner_Data
 {
@@ -14,20 +16,27 @@ namespace Tourplaner_Data
 
             public static NpgsqlConnection returnConnection()
             {
-                return conn;
+                try
+                {
+                    return conn;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("SQ :Query Error: " + e.Message);
+                    throw e;
+                }
+                
             }
 
             private static string LoadCFG()
             {
 
-                string[] lines = System.IO.File.ReadAllLines(@"E:\Programming\C#\SWE2\config.txt");
+              //  string[] lines = System.IO.File.ReadAllLines(@"E:\Programming\C#\SWE2\config.txt");
 
                 /*"Host = localhost;Username=postgres;Password=a;Database=tourplaner";*/
-                string connectionstring =
-                    string.Format("Host = localhost;Username= {0};Password={1};Database=tourplaner;", lines[0],
-                        lines[1]);
-                Console.WriteLine(connectionstring);
-                return connectionstring;
+               /* string connectionstring =
+                    Console.WriteLine(connectionstring);*/
+                return "Host=localhost;Username=postgres; Password=a;Database=tourplaner";
             }
         }
      
@@ -50,7 +59,7 @@ namespace Tourplaner_Data
 
                 NpgsqlDataReader ndr = await cmd.ExecuteReaderAsync();
 
-                if (!ndr.HasRows)
+                if (ndr.HasRows)
                 {
                     Console.WriteLine("Query Successfully executed!");
                 }
@@ -68,40 +77,42 @@ namespace Tourplaner_Data
             }
         }
 
-        public static void GetTours(string Searchterm)
+        public static List<Tour> SearchTours(string Searchterm ="")
         {
-
+            
+            List<Tour> returnval = new List<Tour>();
             using NpgsqlConnection conn = Connectionhander.returnConnection();
-            conn.Open();
+
 
             try
             {
-
-                var cmd = new NpgsqlCommand("Select * from Tour where Name = @payload;", conn);
+                conn.Open();
+                var cmd = new NpgsqlCommand($"Select * from Tour", conn);
                 //databaseConnection.Open();
                 // MySqlDataReader myReader = commandDatabase.ExecuteReader();
 
 
-                cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm));
-
-                NpgsqlDataReader myReader = cmd.ExecuteReader();
+               // cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm)
+               NpgsqlDataReader myReader = cmd.ExecuteReader();
                 if (myReader.HasRows)
                 {
                     Console.WriteLine("Query Generated result:");
 
                     if (myReader.Read())
                     {
-                       
-                        card_tmp = new Tour(myReader.GetString(0), myReader.GetInt16(1), myReader.GetInt16(2), tmp_special, myReader.GetInt32(4));
+                        returnval.Add(new Tour(myReader.GetInt16(0), myReader.GetString(1), myReader.GetDouble(2), myReader.GetDouble(3), myReader.GetDouble(4), myReader.GetDouble(5)));
                     }
-                    return card_tmp;
+                    conn.Close();
+                    return returnval;
                 }
+                conn.Close();
+                return null;
 
             }
             catch (Exception e)
             {
                 Console.WriteLine("SQ :Query Error: " + e.Message);
-                throw e;
+                throw;
 
             }
         }

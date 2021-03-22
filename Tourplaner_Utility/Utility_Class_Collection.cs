@@ -6,8 +6,8 @@ namespace Tourplaner_Utility
 {
     public class Tour
     {
-        int ID;
-         string Name;
+         int ID;
+        public string Name;
          double Start_long;
          double Start_lat;
          double Finish_long;

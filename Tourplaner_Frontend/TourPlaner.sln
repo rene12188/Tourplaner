@@ -17,10 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourplaner_Tests", "..\Tour
 	ProjectSection(ProjectDependencies) = postProject
 		{00CE0F32-FD0A-4644-B1BF-9A177AA4B802} = {00CE0F32-FD0A-4644-B1BF-9A177AA4B802}
 		{5C6D2887-E90A-4C85-9771-700E5B465C0C} = {5C6D2887-E90A-4C85-9771-700E5B465C0C}
-		{D2F01E9F-8EA0-4BAE-BA4E-9B1B1295ACA9} = {D2F01E9F-8EA0-4BAE-BA4E-9B1B1295ACA9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourplaner_Data", "..\Tourplaner_Data\Tourplaner_Data.csproj", "{5C6D2887-E90A-4C85-9771-700E5B465C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourplaner_Data", "..\Tourplaner_Data\Tourplaner_Data.csproj", "{5C6D2887-E90A-4C85-9771-700E5B465C0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourplaner_Utility", "..\Tourplaner_Utility\Tourplaner_Utility.csproj", "{70BA1FE8-F5CA-4CFA-B4A6-E315FEEF4F5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +45,10 @@ Global
 		{5C6D2887-E90A-4C85-9771-700E5B465C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C6D2887-E90A-4C85-9771-700E5B465C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C6D2887-E90A-4C85-9771-700E5B465C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70BA1FE8-F5CA-4CFA-B4A6-E315FEEF4F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70BA1FE8-F5CA-4CFA-B4A6-E315FEEF4F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70BA1FE8-F5CA-4CFA-B4A6-E315FEEF4F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70BA1FE8-F5CA-4CFA-B4A6-E315FEEF4F5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
