@@ -11,7 +11,7 @@
     </Window.DataContext>
     <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="120*"/>
             <ColumnDefinition Width="89*"/>
             <ColumnDefinition Width="89*"/>
             <ColumnDefinition Width="612*"/>
@@ -19,24 +19,29 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="29*"/>
-            <RowDefinition Height="94*"/>
-            <RowDefinition Height="409*"/>
+            <RowDefinition Height="204*"/>
+            <RowDefinition Height="309*"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.ColumnSpan="4">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save" />
+                    <MenuItem Header="_Import" />
+                    <MenuItem Header="_Export" />
                 </MenuItem>
                 <MenuItem Header="Help"  Command="{Binding Command}"></MenuItem>
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>
-        <Button  Grid.Row="1" Grid.Column="0" >Files</Button>
+        <Button  Grid.Row="1" Grid.Column="0" >Add</Button>
         <Button  Grid.Row="1"  Grid.Column="1">Edit</Button>
-        <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" />
         <Button  Grid.Row="1" Grid.Column="2">Search</Button>
-        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Output,Mode=OneWay}" />
-        <DataGrid Grid.Row="3" Name="dgSimple"/>
+        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="3"></Image>
+        <DataGrid x:Name="Tourloglist" Grid.Row="3" Grid.Column="3" />
+        <ListBox x:Name="Tourlist" Grid.RowSpan="2" Grid.Row="2" Grid.Column="0">
+            <ListBoxItem>ListBox Item #1</ListBoxItem>
+            <ListBoxItem>ListBox Item #2</ListBoxItem>
+            <ListBoxItem>ListBox Item #3</ListBoxItem>
+        </ListBox>
     </Grid>
 </Window>
