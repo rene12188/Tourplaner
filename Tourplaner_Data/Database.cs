@@ -68,7 +68,45 @@ namespace Tourplaner_Data
             }
         }
 
-       
+        public static void GetTours(string Searchterm)
+        {
+
+            using NpgsqlConnection conn = Connectionhander.returnConnection();
+            conn.Open();
+
+            try
+            {
+
+                var cmd = new NpgsqlCommand("Select * from Tour where Name = @payload;", conn);
+                //databaseConnection.Open();
+                // MySqlDataReader myReader = commandDatabase.ExecuteReader();
+
+
+                cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm));
+
+                NpgsqlDataReader myReader = cmd.ExecuteReader();
+                if (myReader.HasRows)
+                {
+                    Console.WriteLine("Query Generated result:");
+
+                    if (myReader.Read())
+                    {
+                       
+                        card_tmp = new Tour(myReader.GetString(0), myReader.GetInt16(1), myReader.GetInt16(2), tmp_special, myReader.GetInt32(4));
+                    }
+                    return card_tmp;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("SQ :Query Error: " + e.Message);
+                throw e;
+
+            }
+        }
+
+
     }
 
 }
