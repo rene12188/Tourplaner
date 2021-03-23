@@ -20,12 +20,21 @@ namespace Tourplaner_Tests
         }
 
         [Test]
-        public void Database_GetTours()
+        public void Database_GetTours_SerachTerm()
+        {
+            List<Tour> tmp = new List<Tour>();
+            tmp = Database.SearchTours("Kurze Runde");
+
+            Assert.AreEqual(tmp[0].Name, "Kurze Runde");
+        }
+
+        [Test]
+        public void Database_GetTours_NOSearchterm()
         {
             List<Tour> tmp = new List<Tour>();
             tmp = Database.SearchTours();
 
-            Assert.AreEqual(tmp[0].Name, "Kurze Runde");
+            Assert.AreEqual(2, tmp.Count);
         }
     }
 }
