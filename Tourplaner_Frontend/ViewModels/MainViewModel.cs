@@ -14,8 +14,7 @@ namespace Tourplaner_Frontend
     {
       
 
-        public ObservableCollection<Tour> __tourlist = new ObservableCollection<Tour>();
-
+        private ObservableCollection<Tour> __tourlist = new ObservableCollection<Tour>();
         public ObservableCollection<Tour> Tourlist
         {
             get
@@ -53,17 +52,40 @@ namespace Tourplaner_Frontend
             }
         }
 
-        public ICommand Command
+        public ICommand ExecuteCommand
         {
             get;
             set;
         }
 
+        public ICommand AddTour
+        {
+            get;
+            set;
+        }
+
+        private Tour __selectedTour = null;
+
+        public Tour SelectedTour
+        {
+            get
+            {
+                Debug.Write(__selectedTour.getName());
+                return this.__selectedTour;
+            }
+            set
+            {
+
+            }
+        }
+
         public MainViewModel()
         {
             __tourlist.Add(new Tour(1, "Asd", 0.1,0.1,0.1,0.1));
+            __selectedTour = __tourlist[0];
             Debug.Print("ctor MainViewModel");
-            this.Command = new ExecuteCommand(this);
+            this.ExecuteCommand = new ExecuteCommand(this);
+            this.AddTour = new AddTours(this);
 
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");

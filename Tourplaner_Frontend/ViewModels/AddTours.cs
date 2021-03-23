@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Windows.Input;
+using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
 {
-    class SearchTours : ICommand
+    class AddTours : ICommand
     {
         private readonly MainViewModel _mainViewModel;
 
-        public SearchTours(MainViewModel mainViewModel)
+        public AddTours(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
         }
@@ -27,7 +28,8 @@ namespace Tourplaner_Frontend
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _mainViewModel.Tourlist.Add(new Tour(2,"asd",2,2,2,2));
+            Debug.Print("Help");
         }
     }
 }
