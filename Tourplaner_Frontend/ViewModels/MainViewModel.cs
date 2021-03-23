@@ -1,37 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
+using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public string _output = "HI!";
-        public string _input = "THIS IS INPUT";
+      
+
+        public ObservableCollection<Tour> __tourlist = new ObservableCollection<Tour>();
+
+        public ObservableCollection<Tour> Tourlist
+        {
+            get
+            {
+                return __tourlist;
+            }
+            set
+            {
+
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 
+        public string __output = "HI!";
         public string Output
         {
             get
             {
-                return "asd" + _input;
+                return "asd" + __input;
             }
         }
-
+        private string __input = "THIS IS INPUT";
         public string Input
         {
             get
             {
-                return _input;
+                return __input;
             }
             set
             {
-                _input = value;
+                __input = value;
                 OnPropertyChanged("Output");
             }
         }
@@ -44,6 +61,7 @@ namespace Tourplaner_Frontend
 
         public MainViewModel()
         {
+            __tourlist.Add(new Tour(1, "Asd", 0.1,0.1,0.1,0.1));
             Debug.Print("ctor MainViewModel");
             this.Command = new ExecuteCommand(this);
 

@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Threading.Tasks;
 
 namespace Tourplaner_Utility
 {
@@ -22,7 +23,19 @@ namespace Tourplaner_Utility
             this.Finish_long = finishLong;
             this.Finish_lat = finishLat;
         }
+
+
+        public string getName()
+        {
+            return this.Name;
+        }
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
+
+}
 
     public class Tourlog
     {
@@ -42,6 +55,6 @@ namespace Tourplaner_Utility
             this.Rating = rating;
             this.Report = report;
 
-        }
+
     }
 }
