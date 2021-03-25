@@ -15,6 +15,7 @@ namespace Tourplaner_Frontend
     {
         private int count = 0;
         private readonly MainViewModel _mainViewModel;
+        TouradderWindow Newwindow = null;
 
         public OpenTourWindow(MainViewModel mainViewModel)
         {
@@ -25,13 +26,18 @@ namespace Tourplaner_Frontend
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (Newwindow == null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void Execute(object parameter)
         {
            Debug.Write("AddTour Window Opened");
-           var Newwindow = new TouradderWindow();
+           this.Newwindow = new TouradderWindow();
            Newwindow.Show();
         }
     }
