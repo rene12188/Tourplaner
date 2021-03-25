@@ -27,7 +27,7 @@ namespace Tourplaner_Frontend
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
 
 
         public string __output = "HI!";
@@ -91,6 +91,8 @@ namespace Tourplaner_Frontend
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             Debug.Print($"propertyChanged \"{propertyName}\"");
