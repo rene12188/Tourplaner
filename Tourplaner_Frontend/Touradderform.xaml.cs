@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Tourplaner_Frontend
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for TouradderWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class TouradderWindow : Window
     {
-        public Window1()
+        public TouradderWindow()
         {
             InitializeComponent();
         }

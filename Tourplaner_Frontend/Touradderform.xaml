@@ -1,11 +1,11 @@
-﻿<Window x:Class="Tourplaner_Frontend.Window1"
+﻿<Window x:Class="Tourplaner_Frontend.TouradderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tourplaner_Frontend"
         mc:Ignorable="d"
-        Title="Window1" Height="320" Width="374">
+        Title="TouraddingForm" Height="210" Width="374">
     <Window.DataContext>
         <local:AddTourViewModel/>
     </Window.DataContext>
@@ -16,7 +16,8 @@
             <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
@@ -24,16 +25,17 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <Label >Add Tour</Label>
-        <Label Grid.Column="0" Margin="0,101,0,40" Grid.RowSpan="3">Tour Name</Label>
-        <Label Grid.Row="2" Grid.Column="0">Start Longitude</Label>
-        <Label Grid.Row="2" Grid.Column="0" Margin="0,40,0,41" Grid.RowSpan="3"  >Start Lattitude</Label>
+        <Label Grid.Column="0" Grid.Row="1">Tour Name</Label>
+        <Label Grid.Row="3" Grid.Column="0">Start Longitude</Label>
+        <Label Grid.Row="2" Grid.Column="0"  >Start Lattitude</Label>
 
-        <Label Grid.Row="4" Grid.Column="0" Margin="0,0,0,40" Grid.RowSpan="2" >Finish Lattitude</Label>
+        <Label Grid.Row="4" Grid.Column="0"  >Finish Lattitude</Label>
         <Label Grid.Row="5" Grid.Column="0" >Finish Longitude</Label>
-        <TextBox  Grid.Row="1" Grid.Column="1" />
-        <TextBox Grid.Row="2" Grid.Column="1" ></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" ></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" ></TextBox>
-        <TextBox Grid.Row="5" Grid.Column="1"></TextBox>
+        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding .Tourname, Mode=OneWay}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding .Start_lattitude, Mode=OneWay}"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding .Start_longitude, Mode=OneWay}"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding .Finish_lattitude, Mode=OneWay}"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding .Finish_longitude, Mode=OneWay}"></TextBox>
+        <Button  Grid.Row="6" Grid.Column="1"> Submit</Button>
     </Grid>
 </Window>

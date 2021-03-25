@@ -85,7 +85,7 @@ namespace Tourplaner_Frontend
             __selectedTour = __tourlist[0];
             Debug.Print("ctor MainViewModel");
             this.ExecuteCommand = new ExecuteCommand(this);
-            this.AddTour = new AddTours(this);
+            this.AddTour = new OpenTourWindow(this);
 
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
