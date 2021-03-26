@@ -31,11 +31,11 @@
 
         <Label Grid.Row="4" Grid.Column="0"  >Finish Lattitude</Label>
         <Label Grid.Row="5" Grid.Column="0" >Finish Longitude</Label>
-        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding .Tourname, Mode=OneWay}"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding .Start_lattitude, Mode=OneWay}"></TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding .Start_longitude, Mode=OneWay}"></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding .Finish_lattitude, Mode=OneWay}"></TextBox>
-        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding .Finish_longitude, Mode=OneWay}"></TextBox>
+        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding .Tourname}" Name="TName" ></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding .Start_lattitude}"  Name="SLatt"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding .Start_longitude}"  Name="SLong"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding .Finish_lattitude}"  Name="FLatt"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding .Finish_longitude}"  Name="FLong"></TextBox>
         <Button  Grid.Row="6" Grid.Column="1"> Submit</Button>
     </Grid>
 </Window>

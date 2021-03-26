@@ -6,12 +6,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Tourplaner_Frontend.Commands;
 
 namespace Tourplaner_Frontend
 {
 
     class AddTourViewModel : INotifyPropertyChanged
     {
+        ICommand __submittour = null;
+
+        public AddTourViewModel()
+        {
+            __submittour = new SubmitTour(this);
+        }
 
         private string __tourname;
 
@@ -24,8 +32,8 @@ namespace Tourplaner_Frontend
             }
             set
             {
+                Debug.Write("Tourname Changed");
                 __tourname = value;
-                OnPropertyChanged("Output");
             }
         }
 
@@ -40,7 +48,6 @@ namespace Tourplaner_Frontend
             set
             {
                 __start_longitude = value;
-                OnPropertyChanged("Output");
             }
         }
 
@@ -55,7 +62,6 @@ namespace Tourplaner_Frontend
             set
             {
                 __start_lattitude = value;
-                OnPropertyChanged("Output");
             }
         }
 
@@ -71,7 +77,6 @@ namespace Tourplaner_Frontend
             set
             {
                 __finish_longitude = value;
-                OnPropertyChanged("Output");
             }
         }
 
@@ -87,7 +92,6 @@ namespace Tourplaner_Frontend
             set
             {
                 __finish_lattitude = value;
-                OnPropertyChanged("Output");
             }
         }
 

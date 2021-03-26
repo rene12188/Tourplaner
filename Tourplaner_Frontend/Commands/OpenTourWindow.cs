@@ -19,7 +19,17 @@ namespace Tourplaner_Frontend
 
         public OpenTourWindow(MainViewModel mainViewModel)
         {
-            _mainViewModel = mainViewModel;
+            this._mainViewModel = mainViewModel;
+
+            _mainViewModel.PropertyChanged += (sender, args) =>
+            {
+                Debug.Print("command: reveived prop changed");
+                if (args.PropertyName == "Input")
+                {
+                    Debug.Print("command: reveived prop changed of Input");
+                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                }
+            };
         }
 
         public event EventHandler CanExecuteChanged;
@@ -37,7 +47,7 @@ namespace Tourplaner_Frontend
         public void Execute(object parameter)
         {
            Debug.Write("AddTour Window Opened");
-           this.Newwindow = new TouradderWindow();
+           Newwindow = new TouradderWindow();
            Newwindow.Show();
         }
     }

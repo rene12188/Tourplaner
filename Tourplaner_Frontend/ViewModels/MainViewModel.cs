@@ -81,7 +81,7 @@ namespace Tourplaner_Frontend
 
         public MainViewModel()
         {
-            __tourlist.Add(new Tour(1, "Asd", 0.1,0.1,0.1,0.1));
+            __tourlist.Add(new Tour( "Asd", 0.1,0.1,0.1,0.1));
             __selectedTour = __tourlist[0];
             Debug.Print("ctor MainViewModel");
             this.ExecuteCommand = new ExecuteCommand(this);

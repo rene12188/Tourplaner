@@ -14,9 +14,8 @@ namespace Tourplaner_Utility
          double Finish_long;
          double Finish_lat;
 
-        public Tour(int id ,string name ,double startLong, double startLat, double finishLong, double finishLat )
+        public Tour(string name ,double startLong, double startLat, double finishLong, double finishLat )
         {
-            this.ID = id;
             this.Name = name;
             this.Start_long = startLong;
             this.Start_lat = startLat;
