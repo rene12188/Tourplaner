@@ -5,10 +5,8 @@ Drop Table Tour_Log CASCADE;
 CREATE TABLE Tour (
     TID serial PRIMARY KEY ,
     Name varchar(255) unique,
-    Start_long double precision,
-    Start_lat  double precision,
-    Finish_long double precision,
-    Finish_lat double precision
+    source varchar(255),
+    dest  varchar(255)
 );
 
 CREATE TABLE Tour_Log (
@@ -35,11 +33,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_tours(s_Name varchar(255), D_Start_lat  double precision ,D_Start_long double precision ,D_Finish_lat  double precision,D_Finish_long double precision) RETURNS int AS $$
+CREATE OR REPLACE FUNCTION insert_tours(s_Name varchar(255), s_source varchar(255), s_dest varchar(255)) RETURNS int AS $$
 DECLARE
 BEGIN
 
-    Insert Into Tour( Name,Start_lat, Start_long  ,Finish_lat,Finish_long  ) VALUES (s_Name ,D_Start_lat , D_Start_long,D_Finish_lat  ,D_Finish_long );
+    Insert Into Tour( Name,source, dest ) VALUES (s_Name ,s_source , s_dest);
     return 0;
 END;
 $$ LANGUAGE plpgsql;
@@ -61,10 +59,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insert_tours('Kurze Runde', 47.7614800, 16.8002400,47.74429, 16.8301373);
+SELECT insert_tours('Kurze Runde', 'Illmitz', 'Apetlon');
 SELECT copy_tour('Kurze Runde_copy');
 select *  from Tour;
-Select concat(NAme, '_copy'), Start_lat , Start_long,Finish_lat  ,Finish_long from Tour Where TID = 1;
 
 Select * from Tour WHERE Name Like '%%';
 

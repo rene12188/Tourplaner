@@ -7,21 +7,19 @@ namespace Tourplaner_Utility
     public class Tour
     {
          int ID;
-        public string Name;
-         double Start_long;
-         double Start_lat;
-         double Finish_long;
-         double Finish_lat;
+         public string Name;
+         private string source;
+         private string dest;
 
-        public Tour(int id ,string name ,double startLong, double startLat, double finishLong, double finishLat )
-        {
+
+         public Tour(int id ,string name ,string source, string dest )
+         { 
             this.ID = id;
             this.Name = name;
-            this.Start_long = startLong;
-            this.Start_lat = startLat;
-            this.Finish_long = finishLong;
-            this.Finish_lat = finishLat;
-        }
+            this.source = source;
+            this.dest = dest;
+
+         }
     }
 
     public class Tourlog
