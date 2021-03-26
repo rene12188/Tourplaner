@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tourplaner_Buisness\Tourplaner_Buisness.csproj" />
+    <ProjectReference Include="..\Tourplaner_Utility\Tourplaner_Utility.csproj" />
   </ItemGroup>
 
 </Project>

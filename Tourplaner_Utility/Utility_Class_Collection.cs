@@ -7,6 +7,7 @@ namespace Tourplaner_Utility
 {
     public class Tour
     {
+<<<<<<< HEAD
         int ID;
          string Name;
          double Start_long;
@@ -32,6 +33,22 @@ namespace Tourplaner_Utility
         {
             return this.Name;
         }
+=======
+         int ID;
+         public string Name;
+         private string source;
+         private string dest;
+
+
+         public Tour(int id ,string name ,string source, string dest )
+         { 
+            this.ID = id;
+            this.Name = name;
+            this.source = source;
+            this.dest = dest;
+
+         }
+>>>>>>> DB
     }
 
 }
