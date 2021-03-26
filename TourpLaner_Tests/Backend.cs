@@ -25,7 +25,7 @@ namespace Tourplaner_Tests
             List<Tour> tmp = new List<Tour>();
             tmp = Database.SearchTours("Kurze Runde");
 
-            Assert.AreEqual(tmp[0].Name, "Kurze Runde");
+            Assert.AreEqual(tmp[0].getName(), "Kurze Runde");
         }
 
         [Test]
@@ -34,7 +34,16 @@ namespace Tourplaner_Tests
             List<Tour> tmp = new List<Tour>();
             tmp = Database.SearchTours();
 
-            Assert.AreEqual(2, tmp.Count);
+            Assert.AreEqual(1, tmp.Count);
+        }
+
+        [Test]
+        public void Database_Inserttours()
+        {
+            Tour tmp = new Tour("Weite Runde", "Illmitz", "Podersdorf");
+            int returncode = Database.InsertTour(tmp);
+
+            Assert.AreEqual(0, returncode);
         }
     }
 }

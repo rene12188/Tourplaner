@@ -79,7 +79,7 @@ namespace Tourplaner_Data
             conn.Open();
             try
             {
-                var cmd = new NpgsqlCommand($"Select * from Tour  WHERE Name Like @payload;", conn);
+                var cmd = new NpgsqlCommand($"Select Name, Source, destination from Tour  WHERE Name Like @payload;", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm));
 
                 NpgsqlDataReader myReader = cmd.ExecuteReader();
@@ -108,6 +108,47 @@ namespace Tourplaner_Data
                conn.Close();
             }
             return returnval;
+        }
+
+        public static int InsertTour(Tour tmo)
+        {
+            int returnval = -3;
+            using NpgsqlConnection conn = Connectionhander.returnConnection();
+
+            conn.Open();
+            try
+            {
+                var cmd = new NpgsqlCommand($"SELECT insert_tours(@Name, @SRC, @DSC);", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("Name", tmo.getName()));
+                cmd.Parameters.Add(new NpgsqlParameter("SRC", tmo.getSource()));
+                cmd.Parameters.Add(new NpgsqlParameter("DSC", tmo.getDestination()));
+
+                NpgsqlDataReader myReader = cmd.ExecuteReader();
+                if (myReader.HasRows)
+                {
+                    Console.WriteLine("Query Generated result:");
+
+                    while (myReader.Read())
+                    {
+                        returnval = myReader.GetInt16(0);
+                    }
+
+
+                }
+
+                return returnval;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("SQ :Query Error: " + e.Message);
+                throw;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
     }

@@ -27,7 +27,18 @@ namespace Tourplaner_Utility
          {
              return this.Name;
          }
-         public override string ToString()
+
+         public string getSource()
+         {
+             return source;
+         }
+
+
+         public string getDestination()
+         {
+             return dest;
+         }
+        public override string ToString()
          {
              return this.Name;
          }
