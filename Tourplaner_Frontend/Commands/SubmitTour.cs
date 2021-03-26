@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
@@ -14,7 +15,6 @@ namespace Tourplaner_Frontend.Commands
     class SubmitTour : ICommand
     {
         private readonly AddTourViewModel __addtourviewmodel = null;
-
         public SubmitTour(AddTourViewModel tmp)
         {
             this.__addtourviewmodel = tmp;
@@ -23,20 +23,43 @@ namespace Tourplaner_Frontend.Commands
 
         public bool CanExecute(object? parameter)
         {
-            if (string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname))
+        /*    if (!string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Source) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Destination))
             {
-                Debug.Write("Valid Send \n");
                 return true;
             }
 
-            Debug.Write("invalid Send \n");
-            return false;
+            return false;*/
+        return true;
         }
 
         public void Execute(object? parameter)
         {
-            Debug.Write("Creating TOur \n");
-            Tour tmp = new Tour(__addtourviewmodel.Tourname, __addtourviewmodel.Start_longitude, __addtourviewmodel.Start_lattitude, __addtourviewmodel.Finish_longitude, __addtourviewmodel.Finish_lattitude);
+            if (string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname))
+            {
+                System.Windows.MessageBox.Show("Please Enter a Tour Name ");
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(__addtourviewmodel.Source))
+            {
+                System.Windows.MessageBox.Show("Please Enter a Source ");
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(__addtourviewmodel.Destination))
+            {
+                System.Windows.MessageBox.Show("Please Enter a Destination ");
+                return;
+            }
+
+            try
+            {
+                Debug.Write("Creating TOur \n");
+                Tour tmp = new Tour(__addtourviewmodel.Tourname, __addtourviewmodel.Source,
+                    __addtourviewmodel.Destination);
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e);
+            }
         }
 
         public event EventHandler? CanExecuteChanged;

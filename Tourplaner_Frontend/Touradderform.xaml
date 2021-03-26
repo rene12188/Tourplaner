@@ -21,21 +21,15 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="20*"/>
+
         </Grid.RowDefinitions>
         <Label >Add Tour</Label>
         <Label Grid.Column="0" Grid.Row="1">Tour Name</Label>
-        <Label Grid.Row="3" Grid.Column="0">Start Longitude</Label>
-        <Label Grid.Row="2" Grid.Column="0"  >Start Lattitude</Label>
-
-        <Label Grid.Row="4" Grid.Column="0"  >Finish Lattitude</Label>
-        <Label Grid.Row="5" Grid.Column="0" >Finish Longitude</Label>
-        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding .Tourname}" Name="TName" ></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding .Start_lattitude}"  Name="SLatt"></TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding .Start_longitude}"  Name="SLong"></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding .Finish_lattitude}"  Name="FLatt"></TextBox>
-        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding .Finish_longitude}"  Name="FLong"></TextBox>
-        <Button  Grid.Row="6" Grid.Column="1"> Submit</Button>
+        <Label Grid.Row="3" Grid.Column="0">Source</Label>
+        <Label Grid.Row="2" Grid.Column="0"  >Destination</Label>
+        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Tourname,  UpdateSourceTrigger=PropertyChanged}" Name="TName" ></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Source, UpdateSourceTrigger=PropertyChanged}"  Name="Source"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"  Name="Dest"></TextBox>
+        <Button  Grid.Row="4" Grid.Column="1" Command="{Binding Submittour}" IsEnabled="{Binding }"> Submit</Button>
     </Grid>
 </Window>

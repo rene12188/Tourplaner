@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,11 +15,15 @@ namespace Tourplaner_Frontend
 
     class AddTourViewModel : INotifyPropertyChanged
     {
-        ICommand __submittour = null;
-
-        public AddTourViewModel()
+        public ICommand Submittour
         {
-            __submittour = new SubmitTour(this);
+            get;
+            set;
+        }
+
+    public AddTourViewModel()
+        {
+            Submittour = new SubmitTour(this);
         }
 
         private string __tourname;
@@ -37,67 +42,43 @@ namespace Tourplaner_Frontend
             }
         }
 
-        private double __start_longitude;
-        public double Start_longitude
+        private string __source;
+        public string Source
         {
 
             get
             {
-                return __start_longitude;
+                return __source;
             }
             set
             {
-                __start_longitude = value;
+                __source = value;
             }
         }
 
-        private double __start_lattitude;
-        public double Start_lattitude
+        private string __destination;
+        public string Destination
         {
 
             get
             {
-                return __start_lattitude;
+                return __destination;
             }
             set
             {
-                __start_lattitude = value;
+                __destination = value;
             }
         }
 
-
-        private double __finish_longitude;
-        public double Finish_longitude
+        public bool checkIfEnabeld()
         {
+            if (!string.IsNullOrWhiteSpace(__tourname) && !string.IsNullOrWhiteSpace(__source) && !string.IsNullOrWhiteSpace(__destination))
+            {
+                return true;
+            }
 
-            get
-            {
-                return __finish_longitude;
-            }
-            set
-            {
-                __finish_longitude = value;
-            }
+            return false;
         }
-
-        private double __finish_lattitude;
-
-        public double Finish_lattitude
-        {
-
-            get
-            {
-                return __finish_lattitude;
-            }
-            set
-            {
-                __finish_lattitude = value;
-            }
-        }
-
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -89,8 +89,7 @@ namespace Tourplaner_Data
 
                     while (myReader.Read())
                     {
-                        returnval.Add(new Tour(myReader.GetInt16(0), myReader.GetString(1), myReader.GetDouble(2),
-                            myReader.GetDouble(3), myReader.GetDouble(4), myReader.GetDouble(5)));
+                        returnval.Add(new Tour(myReader.GetString(0), myReader.GetString(1), myReader.GetString(2)));
                     }
 
                    
