@@ -150,6 +150,47 @@ namespace Tourplaner_Data
                 conn.Close();
             }
         }
+        public static int DeleteTour(string name)
+        {
+            int returnval = -3;
+            using NpgsqlConnection conn = Connectionhander.returnConnection();
+
+            conn.Open();
+            try
+            {
+                var cmd = new NpgsqlCommand($"Delete FROM Tour Where Name = @name; ", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("name", name));
+
+
+                NpgsqlDataReader myReader = cmd.ExecuteReader();
+                if (myReader.HasRows)
+                {
+                    Console.WriteLine("Query Generated result:");
+
+                    while (myReader.Read())
+                    {
+                        returnval = myReader.GetInt16(0);
+                    }
+
+
+                }
+
+                return returnval;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("SQ :Query Error: " + e.Message);
+                throw;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
 
     }
 
