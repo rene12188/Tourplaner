@@ -70,16 +70,6 @@ namespace Tourplaner_Frontend
             }
         }
 
-        public bool checkIfEnabeld()
-        {
-            if (!string.IsNullOrWhiteSpace(__tourname) && !string.IsNullOrWhiteSpace(__source) && !string.IsNullOrWhiteSpace(__destination))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

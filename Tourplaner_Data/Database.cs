@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using Tourplaner_Utility;
 
@@ -71,9 +72,9 @@ namespace Tourplaner_Data
             }
         }
 
-        public static List<Tour> SearchTours(string Searchterm = "" )
+        public static ObservableCollection<Tour> SearchTours(string Searchterm = "" )
         {
-            List<Tour> returnval = new List<Tour>();
+            ObservableCollection<Tour> returnval = new ObservableCollection<Tour>();
             using NpgsqlConnection conn = Connectionhander.returnConnection();
             Searchterm = '%' + Searchterm + '%';
             conn.Open();

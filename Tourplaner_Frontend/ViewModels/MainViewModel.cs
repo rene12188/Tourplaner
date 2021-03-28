@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
+using Tourplaner_Data;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
@@ -81,7 +82,7 @@ namespace Tourplaner_Frontend
 
         public MainViewModel()
         {
-            __tourlist.Add(new Tour( "Asd","here","there"));
+            __tourlist = Database.SearchTours();
             __selectedTour = __tourlist[0];
             Debug.Print("ctor MainViewModel");
             this.ExecuteCommand = new ExecuteCommand(this);
