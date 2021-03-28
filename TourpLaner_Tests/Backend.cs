@@ -45,5 +45,13 @@ namespace Tourplaner_Tests
 
             Assert.AreEqual(0, returncode);
         }
+
+        [Test]
+        public void Database_Deletetours()
+        {
+            int returncode = Database.DeleteTour("Weite Runde");
+
+            Assert.AreEqual(-3, returncode);
+        }
     }
 }
