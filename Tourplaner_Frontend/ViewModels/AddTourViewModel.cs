@@ -7,14 +7,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Tourplaner_Frontend.Commands;
+using System.Windows.Controls;
 
 namespace Tourplaner_Frontend
 {
 
     class AddTourViewModel : INotifyPropertyChanged
     {
+      
         public ICommand Submittour
         {
             get;
@@ -70,11 +73,18 @@ namespace Tourplaner_Frontend
             }
         }
 
+        public void Closwindow()
+        {
+
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             Debug.Print($"propertyChanged \"{propertyName}\"");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
         }
     }
 }

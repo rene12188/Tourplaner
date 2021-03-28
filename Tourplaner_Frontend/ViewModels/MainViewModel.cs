@@ -1,55 +1,47 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Input;
+using Tourplaner_Buisness;
 using Tourplaner_Data;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged, INotifyCollectionChanged
     {
       
 
-        private ObservableCollection<Tour> __tourlist = new ObservableCollection<Tour>();
+        private ObservableCollection<Tour> _tourlist = new ObservableCollection<Tour>();
         public ObservableCollection<Tour> Tourlist
         {
             get
             {
-                return __tourlist;
+                return this._tourlist;
             }
             set
             {
-
+                this._tourlist = value;
             }
         }
 
-
-
-
-        public string __output = "HI!";
-        public string Output
+        private ObservableCollection<Tour> _displaytourlist = new ObservableCollection<Tour>();
+        public ObservableCollection<Tour> DisplayTourlist
         {
             get
             {
-                return "asd" + __input;
-            }
-        }
-        private string __input = "THIS IS INPUT";
-        public string Input
-        {
-            get
-            {
-                return __input;
+                
+                return _displaytourlist;
             }
             set
             {
-                __input = value;
-                OnPropertyChanged("Output");
+                _displaytourlist = value;
             }
         }
 
@@ -60,6 +52,12 @@ namespace Tourplaner_Frontend
         }
 
         public ICommand AddTour
+        {
+            get;
+            set;
+        }
+
+        public ICommand Search
         {
             get;
             set;
@@ -80,17 +78,43 @@ namespace Tourplaner_Frontend
             }
         }
 
+        public string Searchterm { get; set; } = string.Empty;
+
+        public void SearchTour()
+        {
+            this._tourlist = Mainlogic.UpdateTours();
+            this._displaytourlist.Clear();
+            foreach (var tour in this._tourlist)
+            {
+                if (tour.Name.Contains(Searchterm))
+                {
+                    _displaytourlist.Add(tour);
+                }
+                
+            }
+
+        }
+
+        public void UpdateSource()
+        {
+            this._tourlist = Mainlogic.UpdateTours();
+            this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
+        }
+
         public MainViewModel()
         {
-            __tourlist = Database.SearchTours();
-            __selectedTour = __tourlist[0];
+            this._tourlist = Mainlogic.UpdateTours();
+            this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
+            this.__selectedTour = _tourlist[0];
             Debug.Print("ctor MainViewModel");
-            this.ExecuteCommand = new ExecuteCommand(this);
+           // this.ExecuteCommand = new ExecuteCommand(this);
             this.AddTour = new OpenTourWindow(this);
-
+            this.Search = new SearchTour(this);
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -100,5 +124,6 @@ namespace Tourplaner_Frontend
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
     }
 }

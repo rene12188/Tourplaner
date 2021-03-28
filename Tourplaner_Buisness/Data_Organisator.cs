@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace Tourplaner_Buisness
 {
-    static class Mainlogic
+    static public class Mainlogic
     {
         public static int SaveTour(Tour tmp)
         {

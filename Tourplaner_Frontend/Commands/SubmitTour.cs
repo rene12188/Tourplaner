@@ -5,9 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Tourplaner_Buisness;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend.Commands
@@ -55,11 +57,15 @@ namespace Tourplaner_Frontend.Commands
                 Debug.Write("Creating TOur \n");
                 Tour tmp = new Tour(__addtourviewmodel.Tourname, __addtourviewmodel.Source,
                     __addtourviewmodel.Destination);
+                Mainlogic.SaveTour(tmp);
+
             }
             catch (Exception e)
             {
                 Debug.Write(e);
             }
+            
+            this.__addtourviewmodel.Closwindow();
         }
 
         public event EventHandler? CanExecuteChanged;
