@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Tourplaner_Buisness;
 using Tourplaner_Data;
+using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
@@ -63,17 +64,28 @@ namespace Tourplaner_Frontend
             set;
         }
 
+        public ICommand Delete
+        {
+            get;
+            set;
+        }
+
         private Tour __selectedTour = null;
 
         public Tour SelectedTour
         {
             get
             {
-                Debug.Write(__selectedTour.getName());
+                
                 return this.__selectedTour;
             }
             set
             {
+                if (value != null)
+                {
+                    Debug.Write("Selected Tour = " + value.getName() + "\n");
+                    __selectedTour = value;
+                }
 
             }
         }
@@ -92,7 +104,6 @@ namespace Tourplaner_Frontend
                 }
                 
             }
-
         }
 
         public void UpdateSource()
@@ -106,10 +117,10 @@ namespace Tourplaner_Frontend
             this._tourlist = Mainlogic.UpdateTours();
             this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
             this.__selectedTour = _tourlist[0];
-            Debug.Print("ctor MainViewModel");
-           // this.ExecuteCommand = new ExecuteCommand(this);
+            // this.ExecuteCommand = new ExecuteCommand(this);
             this.AddTour = new OpenTourWindow(this);
             this.Search = new SearchTour(this);
+            this.Delete = new DeleteTour(this);
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }

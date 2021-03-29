@@ -25,6 +25,11 @@ namespace Tourplaner_Buisness
 
         }
 
+        public static int DeleteTour(string name)
+        {
+            return Database.DeleteTour(name);
+        }
+
 
     }
 }

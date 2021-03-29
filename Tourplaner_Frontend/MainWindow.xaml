@@ -33,7 +33,7 @@
             </Menu>
         </DockPanel>
         <Button  Grid.Row="1" Grid.Column="0" Command="{Binding AddTour,  UpdateSourceTrigger=PropertyChanged}" >Add</Button>
-        <Button  Grid.Row="1"  Grid.Column="1">Delete</Button>
+        <Button  Grid.Row="1"  Grid.Column="1" Command="{Binding Delete}">Delete</Button>
         <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="3" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" />
         <Button  Grid.Row="1" Grid.Column="2" Command="{Binding Search, UpdateSourceTrigger=PropertyChanged}">Search/Refresh</Button>
         <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="3"></Image>
