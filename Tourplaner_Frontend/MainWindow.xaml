@@ -12,18 +12,21 @@
     </Window.DataContext>
     <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120*"/>
-            <ColumnDefinition Width="89*"/>
-            <ColumnDefinition Width="89*"/>
-            <ColumnDefinition Width="612*"/>
+            <ColumnDefinition Width="95*"/>
+            <ColumnDefinition Width="95*"/>
+            <ColumnDefinition Width="95*"/>
+            <ColumnDefinition Width="130,*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="521*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="204*"/>
-            <RowDefinition Height="309*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="170*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="303*"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.ColumnSpan="4">
+        <DockPanel Grid.ColumnSpan="6">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Import" />
@@ -33,12 +36,14 @@
             </Menu>
         </DockPanel>
         <Button  Grid.Row="1" Grid.Column="0" Command="{Binding AddTour,  UpdateSourceTrigger=PropertyChanged}" >Add</Button>
-        <Button  Grid.Row="1"  Grid.Column="1" Command="{Binding Delete}">Delete</Button>
-        <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="3" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" />
-        <Button  Grid.Row="1" Grid.Column="2" Command="{Binding Search, UpdateSourceTrigger=PropertyChanged}">Search/Refresh</Button>
-        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="3"></Image>
-        <DataGrid x:Name="Tourloglist" Grid.Row="3" Grid.Column="3" />
-        <ListBox x:Name="TL" Grid.RowSpan="2" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour}">
+        <Button Grid.Column="1"  Grid.Row="1" Command="{Binding Delete}" >Delete</Button>
+        <Button  Grid.Row="1" Grid.Column="2" Command="{Binding Copy, UpdateSourceTrigger=PropertyChanged}">Copy</Button>
+        <Button  Grid.Row="1" Grid.Column="3" Command="{Binding Search, UpdateSourceTrigger=PropertyChanged}">Search/Refresh</Button>
+
+        <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="4" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" />
+        <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" />
+        <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour}" Margin="0,28,0,0">
         </ListBox>
     </Grid>
 </Window>
