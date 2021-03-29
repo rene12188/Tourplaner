@@ -33,9 +33,9 @@
             </Menu>
         </DockPanel>
         <Button  Grid.Row="1" Grid.Column="0" Command="{Binding AddTour,  UpdateSourceTrigger=PropertyChanged}" >Add</Button>
-        <Button  Grid.Row="1"  Grid.Column="1">Edit</Button>
+        <Button  Grid.Row="1"  Grid.Column="1">Delete</Button>
         <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="3" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" />
-        <Button  Grid.Row="1" Grid.Column="2" Command="{Binding Search, UpdateSourceTrigger=PropertyChanged}">Search</Button>
+        <Button  Grid.Row="1" Grid.Column="2" Command="{Binding Search, UpdateSourceTrigger=PropertyChanged}">Search/Refresh</Button>
         <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="3"></Image>
         <DataGrid x:Name="Tourloglist" Grid.Row="3" Grid.Column="3" />
         <ListBox x:Name="TL" Grid.RowSpan="2" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour}">
