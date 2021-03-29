@@ -7,6 +7,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Tourplaner_Buisness;
@@ -66,8 +67,12 @@ namespace Tourplaner_Frontend.Commands
             }
             
             this.__addtourviewmodel.Closwindow();
+            if (parameter != null && parameter is Window)
+            { 
+                ((Window)parameter).Close();
+            }
         }
-
+        
         public event EventHandler? CanExecuteChanged;
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tourplaner_Frontend"
+        x:Name="ReferenceToWindow"
         mc:Ignorable="d"
         Title="TouraddingForm" Height="210" Width="374">
     <Window.DataContext>
@@ -30,6 +31,6 @@
         <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Tourname,  UpdateSourceTrigger=PropertyChanged}" Name="TName" ></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Source, UpdateSourceTrigger=PropertyChanged}"  Name="Source"></TextBox>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"  Name="Dest"></TextBox>
-        <Button  Grid.Row="4" Grid.Column="1" Command="{Binding Submittour}" IsEnabled="{Binding }"> Submit</Button>
+        <Button  Grid.Row="4" Grid.Column="1" Command="{Binding Submittour}" CommandParameter="{Binding ElementName=ReferenceToWindow}" > Submit</Button>
     </Grid>
 </Window>
