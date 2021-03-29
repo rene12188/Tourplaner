@@ -37,25 +37,7 @@ namespace Tourplaner_Frontend.Commands
 
         public void Execute(object? parameter)
         {
-           /*
-            try
-            {
-                Debug.Write("Creating TOur \n");
-                Tour tmp = new Tour(__addtourviewmodel.Tourname, __addtourviewmodel.Source,
-                    __addtourviewmodel.Destination);
-                Mainlogic.SaveTour(tmp);
-
-            }
-            catch (Exception e)
-            {
-                Debug.Write(e);
-            }
-            
-            this.__addtourviewmodel.Closwindow();
-            if (parameter != null && parameter is Window)
-            { 
-                ((Window)parameter).Close();
-            }*/
+            Mainlogic.CopyTour(__mainviewmodel.SelectedTour.getName());
         }
         
         public event EventHandler? CanExecuteChanged;

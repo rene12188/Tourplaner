@@ -193,7 +193,7 @@ namespace Tourplaner_Data
             }
         }
 
-        public static int Copy(string name)
+        public static int CopyTour(string name)
         {
             int returnval = -3;
             using NpgsqlConnection conn = Connectionhander.returnConnection();

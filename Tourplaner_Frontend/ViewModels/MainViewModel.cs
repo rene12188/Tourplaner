@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Tourplaner_Buisness;
-using Tourplaner_Data;
 using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
 
@@ -17,7 +12,7 @@ namespace Tourplaner_Frontend
 {
     public class MainViewModel : INotifyPropertyChanged, INotifyCollectionChanged
     {
-      
+
 
         private ObservableCollection<Tour> _tourlist = new ObservableCollection<Tour>();
         public ObservableCollection<Tour> Tourlist
@@ -37,7 +32,7 @@ namespace Tourplaner_Frontend
         {
             get
             {
-                
+
                 return _displaytourlist;
             }
             set
@@ -45,6 +40,8 @@ namespace Tourplaner_Frontend
                 _displaytourlist = value;
             }
         }
+
+
 
         public ICommand ExecuteCommand
         {
@@ -69,6 +66,11 @@ namespace Tourplaner_Frontend
             get;
             set;
         }
+        public ICommand Copy
+        {
+            get;
+            set;
+        }
 
         private Tour __selectedTour = null;
 
@@ -76,7 +78,7 @@ namespace Tourplaner_Frontend
         {
             get
             {
-                
+
                 return this.__selectedTour;
             }
             set
@@ -90,6 +92,45 @@ namespace Tourplaner_Frontend
             }
         }
 
+        public string SelectedTourName
+        {
+            get
+            {
+                return __selectedTour.getName();
+            }
+        }
+
+        public string SelectedTourDescription
+        {
+            get
+            {
+                return __selectedTour.getDescription();
+            }
+        }
+
+        public string SelectedTourSource
+        {
+            get
+            {
+                return __selectedTour.getSource();
+            }
+        }
+
+        public string SelectedTourDestination
+        {
+            get
+            {
+                return __selectedTour.getDestination();
+            }
+        }
+
+        public int SelectedTourDistance
+        {
+            get
+            {
+                return __selectedTour.getDistance();
+            }
+        }
         public string Searchterm { get; set; } = string.Empty;
 
         public void SearchTour()
@@ -102,7 +143,7 @@ namespace Tourplaner_Frontend
                 {
                     _displaytourlist.Add(tour);
                 }
-                
+
             }
         }
 
@@ -121,6 +162,7 @@ namespace Tourplaner_Frontend
             this.AddTour = new OpenTourWindow(this);
             this.Search = new SearchTour(this);
             this.Delete = new DeleteTour(this);
+            this.Copy = new CopyTour(this);
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }

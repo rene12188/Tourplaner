@@ -30,6 +30,11 @@ namespace Tourplaner_Buisness
             return Database.DeleteTour(name);
         }
 
+        public static int CopyTour(string tmp)
+        {
+
+            return Database.CopyTour(tmp);
+        }
 
     }
 }

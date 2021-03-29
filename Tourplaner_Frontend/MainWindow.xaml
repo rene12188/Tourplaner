@@ -41,9 +41,33 @@
         <Button  Grid.Row="1" Grid.Column="3" Command="{Binding Search, UpdateSourceTrigger=PropertyChanged}">Search/Refresh</Button>
 
         <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="4" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
-        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" />
-        <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" />
-        <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour}" Margin="0,28,0,0">
+        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" />
+        <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" />
+        <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}">
         </ListBox>
+        <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="95*"/>
+               
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.ColumnSpan="2" Content="{Binding SelectedTourName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontWeight="Bold"  ></Label>
+            <Label Grid.Column="0" Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Source</Label>
+            <Label Grid.Column="1" Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Destination</Label>
+            <Label Grid.Row="3" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center"> Description</Label>
+            <Label Grid.Column="2" Grid.Row="2"  Content="{Binding SelectedTourDestination, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontWeight="Normal"  ></Label>
+            <Label Grid.Column="0" Grid.Row="2"  Content="{Binding SelectedTourSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontWeight="Normal"  ></Label>
+            <Label Grid.Row="4" Grid.ColumnSpan="2" Content="{Binding SelectedTourDescription , UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  ></Label>
+        </Grid>
     </Grid>
+ 
 </Window>
