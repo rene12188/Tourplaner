@@ -4,17 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tourplaner_Frontend"
-        x:Name="ReferenceToWindow"
         mc:Ignorable="d"
+        x:Name="RTW"
         Title="TouraddingForm" Height="210" Width="374">
     <Window.DataContext>
         <local:AddTourViewModel/>
     </Window.DataContext>
     <Grid >
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="187*"/>
             <ColumnDefinition Width="175*"/>
-            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -22,15 +23,21 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
 
         </Grid.RowDefinitions>
-        <Label >Add Tour</Label>
-        <Label Grid.Column="0" Grid.Row="1">Tour Name</Label>
-        <Label Grid.Row="3" Grid.Column="0">Source</Label>
-        <Label Grid.Row="2" Grid.Column="0"  >Destination</Label>
-        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Tourname,  UpdateSourceTrigger=PropertyChanged}" Name="TName" ></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Source, UpdateSourceTrigger=PropertyChanged}"  Name="Source"></TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"  Name="Dest"></TextBox>
-        <Button  Grid.Row="4" Grid.Column="1" Command="{Binding Submittour}" CommandParameter="{Binding ElementName=ReferenceToWindow}" > Submit</Button>
+        <Label Grid.Column="1">Add Tour</Label>
+        <Label Grid.Column="1" Grid.Row="1">Tour Name</Label>
+        <Label Grid.Row="2" Grid.Column="1">Description</Label>
+        <Label Grid.Row="3" Grid.Column="1"  >Destination</Label>
+        <Label Grid.Row="4" Grid.Column="1">Source</Label>
+        <Label Grid.Row="5" Grid.Column="1">Distance</Label>
+        <TextBox  Grid.Row="1" Grid.Column="2" Text="{Binding Tourname,  UpdateSourceTrigger=PropertyChanged}" Name="TName" ></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"  Name="Desc"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Source , UpdateSourceTrigger=PropertyChanged}"  Name="Dest"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"  Name="Src"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Distance , UpdateSourceTrigger=PropertyChanged}"  Name="Dist"></TextBox>
+        <Button  Grid.Row="6" Grid.Column="2" Command="{Binding Submittour}" CommandParameter="{Binding ElementName=RTW}"> Submit</Button>
     </Grid>
 </Window>

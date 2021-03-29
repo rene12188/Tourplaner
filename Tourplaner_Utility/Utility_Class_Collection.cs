@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Tourplaner_Utility
@@ -9,17 +10,22 @@ namespace Tourplaner_Utility
     {
 
 
-         public string Name;
-         private string source;
-         private string dest;
+         private string Name;
+         private string Description;
+         private string Source;
+         private string Destination;
+         private int Distance;
+         ObservableCollection<Tourlog> Tourlogs = new ObservableCollection<Tourlog>();
 
 
-         public Tour(string name ,string source, string dest )
+         public Tour(string name,string description ,string source, string dest,int distance )
          { 
 
             this.Name = name;
-            this.source = source;
-            this.dest = dest;
+            this.Description = description;
+            this.Source = source;
+            this.Destination = dest;
+            this.Distance = distance;
 
          }
 
@@ -30,20 +36,29 @@ namespace Tourplaner_Utility
 
          public string getSource()
          {
-             return source;
+             return this.Source;
          }
 
 
          public string getDestination()
          {
-             return dest;
+             return this.Destination;
          }
         public override string ToString()
          {
              return this.Name;
          }
-    }
 
+        public string getDescription()
+        {
+            return this.Description;
+        }
+
+        public int getDistance()
+        {
+            return this.Distance;
+        }
+    }
 }
 
     public class Tourlog

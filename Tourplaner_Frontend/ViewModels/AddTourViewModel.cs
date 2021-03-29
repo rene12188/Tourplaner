@@ -29,53 +29,79 @@ namespace Tourplaner_Frontend
             Submittour = new SubmitTour(this);
         }
 
-        private string __tourname;
+        private string _tourname;
 
         public string Tourname
         {
 
             get
             {
-                return __tourname;
+                return _tourname;
             }
             set
             {
                 Debug.Write("Tourname Changed");
-                __tourname = value;
+                _tourname = value;
             }
         }
 
-        private string __source;
+        private string _source;
         public string Source
         {
 
             get
             {
-                return __source;
+                return _source;
             }
             set
             {
-                __source = value;
+                _source = value;
             }
         }
 
-        private string __destination;
+        private string _destination;
         public string Destination
         {
 
             get
             {
-                return __destination;
+                return _destination;
             }
             set
             {
-                __destination = value;
+                _destination = value;
             }
         }
 
-        public void Closwindow()
+        private string _description;
+
+        public string Description
         {
 
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
+        }
+
+        public int _distance;
+
+        public int Distance
+        {
+
+            get
+            {
+                return _distance;
+            }
+            set
+            {
+
+                _distance = value;
+            }
         }
 
 

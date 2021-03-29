@@ -98,7 +98,7 @@ namespace Tourplaner_Frontend
             this._displaytourlist.Clear();
             foreach (var tour in this._tourlist)
             {
-                if (tour.Name.Contains(Searchterm))
+                if (tour.getName().Contains(Searchterm))
                 {
                     _displaytourlist.Add(tour);
                 }

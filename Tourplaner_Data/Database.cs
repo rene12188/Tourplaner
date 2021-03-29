@@ -80,7 +80,7 @@ namespace Tourplaner_Data
             conn.Open();
             try
             {
-                var cmd = new NpgsqlCommand($"Select Name, Source, destination from Tour  WHERE Name Like @payload;", conn);
+                var cmd = new NpgsqlCommand($"Select Name, Description  ,Source, Destination,Distance from Tour  WHERE Name Like @payload;", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm));
 
                 NpgsqlDataReader myReader = cmd.ExecuteReader();
@@ -90,7 +90,7 @@ namespace Tourplaner_Data
 
                     while (myReader.Read())
                     {
-                        returnval.Add(new Tour(myReader.GetString(0), myReader.GetString(1), myReader.GetString(2)));
+                        returnval.Add(new Tour(myReader.GetString(0), myReader.GetString(1), myReader.GetString(2), myReader.GetString(3), myReader.GetInt16(4)));
                     }
 
                    
@@ -119,10 +119,12 @@ namespace Tourplaner_Data
             conn.Open();
             try
             {
-                var cmd = new NpgsqlCommand($"SELECT insert_tours(@Name, @SRC, @DSC);", conn);
+                var cmd = new NpgsqlCommand($"SELECT insert_tours(@Name, @DESC ,@SRC, @DSC, @DIST);", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("Name", tmo.getName()));
                 cmd.Parameters.Add(new NpgsqlParameter("SRC", tmo.getSource()));
                 cmd.Parameters.Add(new NpgsqlParameter("DSC", tmo.getDestination()));
+                cmd.Parameters.Add(new NpgsqlParameter("DESC", tmo.getDescription()));
+                cmd.Parameters.Add(new NpgsqlParameter("DIST", tmo.getDistance()));
 
                 NpgsqlDataReader myReader = cmd.ExecuteReader();
                 if (myReader.HasRows)
@@ -160,6 +162,46 @@ namespace Tourplaner_Data
             try
             {
                 var cmd = new NpgsqlCommand($"Delete FROM Tour Where Name = @name; ", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("name", name));
+
+
+                NpgsqlDataReader myReader = cmd.ExecuteReader();
+                if (myReader.HasRows)
+                {
+                    Console.WriteLine("Query Generated result:");
+
+                    while (myReader.Read())
+                    {
+                        returnval = myReader.GetInt16(0);
+                    }
+
+
+                }
+
+                return returnval;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("SQ :Query Error: " + e.Message);
+                throw;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static int Copy(string name)
+        {
+            int returnval = -3;
+            using NpgsqlConnection conn = Connectionhander.returnConnection();
+
+            conn.Open();
+            try
+            {
+                var cmd = new NpgsqlCommand($"Select copy_tour(@name); ", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("name", name));
 
 
