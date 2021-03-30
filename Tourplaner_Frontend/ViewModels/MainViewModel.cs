@@ -85,52 +85,15 @@ namespace Tourplaner_Frontend
             {
                 if (value != null)
                 {
-                    Debug.Write("Selected Tour = " + value.getName() + "\n");
+                    Debug.Write("Selected Tour = " + value.Name + "\n");
                     __selectedTour = value;
+                    OnPropertyChanged(nameof(SelectedTour));
                 }
-
+                
             }
         }
 
-        public string SelectedTourName
-        {
-            get
-            {
-                return __selectedTour.getName();
-            }
-        }
-
-        public string SelectedTourDescription
-        {
-            get
-            {
-                return __selectedTour.getDescription();
-            }
-        }
-
-        public string SelectedTourSource
-        {
-            get
-            {
-                return __selectedTour.getSource();
-            }
-        }
-
-        public string SelectedTourDestination
-        {
-            get
-            {
-                return __selectedTour.getDestination();
-            }
-        }
-
-        public int SelectedTourDistance
-        {
-            get
-            {
-                return __selectedTour.getDistance();
-            }
-        }
+  
         public string Searchterm { get; set; } = string.Empty;
 
         public void SearchTour()
@@ -139,7 +102,7 @@ namespace Tourplaner_Frontend
             this._displaytourlist.Clear();
             foreach (var tour in this._tourlist)
             {
-                if (tour.getName().Contains(Searchterm))
+                if (tour.Name.Contains(Searchterm))
                 {
                     _displaytourlist.Add(tour);
                 }

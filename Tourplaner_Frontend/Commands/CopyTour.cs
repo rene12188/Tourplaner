@@ -37,7 +37,7 @@ namespace Tourplaner_Frontend.Commands
 
         public void Execute(object? parameter)
         {
-            Mainlogic.CopyTour(__mainviewmodel.SelectedTour.getName());
+            Mainlogic.CopyTour(__mainviewmodel.SelectedTour.Name);
         }
         
         public event EventHandler? CanExecuteChanged;

@@ -35,7 +35,7 @@ namespace Tourplaner_Frontend.Commands
           
             try
             {
-                Mainlogic.DeleteTour(_mainviewModel.SelectedTour.getName());
+                Mainlogic.DeleteTour(_mainviewModel.SelectedTour.Name);
 
             }
             catch (Exception e)

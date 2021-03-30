@@ -120,11 +120,11 @@ namespace Tourplaner_Data
             try
             {
                 var cmd = new NpgsqlCommand($"SELECT insert_tours(@Name, @DESC ,@SRC, @DSC, @DIST);", conn);
-                cmd.Parameters.Add(new NpgsqlParameter("Name", tmo.getName()));
-                cmd.Parameters.Add(new NpgsqlParameter("SRC", tmo.getSource()));
-                cmd.Parameters.Add(new NpgsqlParameter("DSC", tmo.getDestination()));
-                cmd.Parameters.Add(new NpgsqlParameter("DESC", tmo.getDescription()));
-                cmd.Parameters.Add(new NpgsqlParameter("DIST", tmo.getDistance()));
+                cmd.Parameters.Add(new NpgsqlParameter("Name", tmo.Name));
+                cmd.Parameters.Add(new NpgsqlParameter("SRC", tmo.Source));
+                cmd.Parameters.Add(new NpgsqlParameter("DSC", tmo.Destination));
+                cmd.Parameters.Add(new NpgsqlParameter("DESC", tmo.Description));
+                cmd.Parameters.Add(new NpgsqlParameter("DIST", tmo.Distance));
 
                 NpgsqlDataReader myReader = cmd.ExecuteReader();
                 if (myReader.HasRows)

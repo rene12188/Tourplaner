@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Tourplaner_Data\Tourplaner_Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>
