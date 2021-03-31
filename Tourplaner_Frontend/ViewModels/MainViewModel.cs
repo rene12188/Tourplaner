@@ -120,7 +120,7 @@ namespace Tourplaner_Frontend
         {
             this._tourlist = Mainlogic.UpdateTours();
             this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
-            this.__selectedTour = _tourlist[0];
+            this.__selectedTour = null;
             // this.ExecuteCommand = new ExecuteCommand(this);
             this.AddTour = new OpenTourWindow(this);
             this.Search = new SearchTour(this);

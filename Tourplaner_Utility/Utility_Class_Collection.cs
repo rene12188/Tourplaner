@@ -28,6 +28,11 @@ namespace Tourplaner_Utility
             this.Distance = distance;
 
          }
+
+         public override string ToString()
+         {
+             return this.Name.ToString();
+         }
     }
 }
 

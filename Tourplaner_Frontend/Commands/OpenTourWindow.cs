@@ -13,7 +13,6 @@ namespace Tourplaner_Frontend
     
     class OpenTourWindow : ICommand
     {
-        private int count = 0;
         private readonly MainViewModel _mainViewModel;
         TouradderWindow Newwindow = null;
 
@@ -49,6 +48,7 @@ namespace Tourplaner_Frontend
            Debug.Write("AddTour Window Opened");
            Newwindow = new TouradderWindow();
            Newwindow.Show();
+           Newwindow = null;
         }
     }
 }

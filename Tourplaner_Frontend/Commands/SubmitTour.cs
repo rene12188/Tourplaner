@@ -57,7 +57,7 @@ namespace Tourplaner_Frontend.Commands
             {
                 Debug.Write("Creating TOur \n");
                 Tour tmp = new Tour(__addtourviewmodel.Tourname, __addtourviewmodel.Description,
-                    __addtourviewmodel.Source,__addtourviewmodel.Description,__addtourviewmodel.Distance);
+                    __addtourviewmodel.Source,__addtourviewmodel.Destination,__addtourviewmodel.Distance);
                 Mainlogic.SaveTour(tmp);
 
             }

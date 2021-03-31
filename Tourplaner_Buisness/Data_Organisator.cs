@@ -3,17 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Tourplaner_Data;
 using Tourplaner_Utility;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Tourplaner_Buisness
 {
     static public class Mainlogic
     {
-        public static int SaveTour(Tour tmp)
+        public static int SaveTour(Tour tour)
         {
-            Database.InsertTour(tmp);
+            try
+            {
+                int rCode = Database.InsertTour(tour);
+                if (rCode == 0)
+                {
+
+                    FetchImage(tour.Name, tour.Source, tour.Destination);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception Encountered:{0}", e.Message);
+            }
+
+
 
             return 0;
         }
@@ -36,5 +56,46 @@ namespace Tourplaner_Buisness
             return Database.CopyTour(tmp);
         }
 
+        public static void DeserializeJson(string from, string to)
+        {
+
+        }
+
+        public static void FetchImage(string tourname, string from, string to)
+        {
+            byte[] image = null;
+            try
+            {
+                image = WebRequester.GetPicture(from, to).Result;
+                SaveImage(image, tourname);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception Encountered: {0}", e.Message);
+            }
+
+        }
+
+
+        public static void SaveImage(byte[] image, string tourname)
+        {
+            try
+            {
+                string path = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + tourname+".jpg";
+                using (var sw = new FileStream(path,FileMode.Create, FileAccess.Write) )
+                {
+                    sw.Write(image);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception Encountered:{0}", e.Message);
+            }
+
+
+        }
     }
 }
+
+
