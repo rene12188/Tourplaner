@@ -17,7 +17,7 @@ namespace Tourplaner_Buisness
 {
     static public class Mainlogic
     {
-        public static int SaveTour(Tour tour)
+        public static async void SaveTour(Tour tour)
         {
             try
             {

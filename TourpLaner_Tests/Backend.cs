@@ -1,11 +1,16 @@
+using System;
 using NUnit.Framework;
 using Tourplaner_Data;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Threading.Tasks;
+using Tourplaner_Buisness;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Tests
 {
-    public class Tests
+    public class Backend_Tests
     {
         [SetUp]
         public void Setup()
@@ -22,16 +27,16 @@ namespace Tourplaner_Tests
         [Test]
         public void Database_GetTours_SerachTerm()
         {
-            List<Tour> tmp = new List<Tour>();
+            ObservableCollection<Tour> tmp = new ObservableCollection<Tour>();
             tmp = Database.SearchTours("Kurze Runde");
 
-            Assert.AreEqual(tmp[0].getName(), "Kurze Runde");
+            Assert.AreEqual(tmp[0].Name, "Kurze Runde");
         }
 
         [Test]
         public void Database_GetTours_NOSearchterm()
         {
-            List<Tour> tmp = new List<Tour>();
+            ObservableCollection<Tour> tmp = new ObservableCollection<Tour>();
             tmp = Database.SearchTours();
 
             Assert.AreEqual(1, tmp.Count);
@@ -40,7 +45,7 @@ namespace Tourplaner_Tests
         [Test]
         public void Database_Inserttours()
         {
-            Tour tmp = new Tour("Weite Runde", "Illmitz", "Podersdorf");
+            Tour tmp = new Tour("Weite Runde","abc" ,"Illmitz", "Podersdorf", 20);
             int returncode = Database.InsertTour(tmp);
 
             Assert.AreEqual(0, returncode);
@@ -53,5 +58,16 @@ namespace Tourplaner_Tests
 
             Assert.AreEqual(-3, returncode);
         }
+
+         [Test]
+         public void Database_GetImage()
+         {
+            Byte[] result = null;
+            Task<Byte[]> tmp = WebRequester.GetPicture("Illmitz", "Neusiedl am See");
+            tmp.Wait();
+            result = tmp.Result;
+            Mainlogic.SaveImage(result,"test");
+            Assert.IsNotNull(result);
+         }
     }
 }
