@@ -61,12 +61,13 @@ namespace Tourplaner_Buisness
 
         }
 
-        public static void FetchImage(string tourname, string from, string to)
+        public static async void FetchImage(string tourname, string from, string to)
         {
             byte[] image = null;
             try
             {
-                image = WebRequester.GetPicture(from, to).Result;
+                byte [] tmp = await WebRequester.GetPicture(from, to);
+                image = tmp;
                 SaveImage(image, tourname);
             }
             catch (Exception e)
