@@ -43,9 +43,15 @@
         <Button  Grid.Row="3" Grid.Column="4">Add Log</Button>
         <Button  Grid.Row="3" Grid.Column="5">Del Log</Button>
         <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="4" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" />
-        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" />
+        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Stretch="Fill" Source="{Binding SelectedTour.Image,UpdateSourceTrigger=PropertyChanged}">
+            <!--<Image.Source>
+                <BitmapImage UriSource="{Binding SelectedTour.Image, UpdateSourceTrigger=PropertyChanged}"></BitmapImage>
+            </Image.Source>-->
+        </Image>
+        
+      
         <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" />
-        <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}">
+        <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="False">
         </ListBox>
         <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <Grid.ColumnDefinitions>

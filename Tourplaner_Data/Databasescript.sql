@@ -90,6 +90,8 @@ $$ LANGUAGE plpgsql;
 SELECT insert_tours('Kurze Runde','Short Walk', 'Illmitz', 'Apetlon', 2);
 SELECT copy_tour('Kurze Runde_copy');
 
+
+
 select *
 from Tour;
 
@@ -99,5 +101,5 @@ WHERE Name Like '%%';
 
 Delete
 FROM Tour
-Where Name = 'Kurze Runde_copy_copy';
+Where Name = 'Kleine Runde';
 COMMIT;

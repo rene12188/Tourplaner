@@ -22,11 +22,9 @@ namespace Tourplaner_Frontend
             _mainViewModel.PropertyChanged += (sender, args) =>
             {
                 Debug.Print("command: reveived prop changed");
-                if (args.PropertyName == "Searchbar")
-                {
-                    Debug.Print("command: reveived prop changed of Input");
-                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-                }
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                
+
             };
         }
 
