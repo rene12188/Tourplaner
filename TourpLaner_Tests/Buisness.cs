@@ -25,7 +25,7 @@ namespace Tourplaner_Tests
          { 
              Byte[] result = Encoding.ASCII.GetBytes("Hello World");
            Mainlogic.SaveImage(result, "test");
-           Assert.IsTrue(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test"));
+           Assert.IsTrue(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test.jpg"));
          }
 
 
@@ -33,13 +33,14 @@ namespace Tourplaner_Tests
          public void Database_Fetchimage()
          {
              Mainlogic.FetchImage("ASD", "Illmitz", "Apetlon");
-             Assert.IsTrue(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test"));
+             Assert.IsTrue(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg"));
          }
 
         [TearDown]
          public void Teardown()
          {
-            File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test.jpg");
-         }
+            File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test.jpg"); 
+            File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg");
+        }
     }
 }
