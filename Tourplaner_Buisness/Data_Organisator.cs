@@ -21,6 +21,7 @@ namespace Tourplaner_Buisness
         {
             try
             {
+
                 int rCode = Database.InsertTour(tour);
                 if (rCode == 0)
                 {
@@ -33,9 +34,21 @@ namespace Tourplaner_Buisness
                 Console.WriteLine("Exception Encountered:{0}", e.Message);
             }
 
+        }
 
-
-            return 0;
+        public static Image LoadImage(string tourname)
+        {
+            try
+            {
+                Image tmp = Image.FromFile(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + tourname + ".jpg");
+                return tmp;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         public static ObservableCollection<Tour> UpdateTours(string term = "")
