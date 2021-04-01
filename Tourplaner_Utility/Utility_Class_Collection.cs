@@ -15,6 +15,8 @@ namespace Tourplaner_Utility
         public string Source { get; set; }
         public string Destination { get; set; }
         public int Distance { get; set; }
+
+        public string Image { get; private set; }
         ObservableCollection<Tourlog> Tourlogs = new ObservableCollection<Tourlog>();
 
 
@@ -26,6 +28,7 @@ namespace Tourplaner_Utility
             this.Source = source;
             this.Destination = dest;
             this.Distance = distance;
+            this.Image = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + name + ".jpg";
 
          }
 

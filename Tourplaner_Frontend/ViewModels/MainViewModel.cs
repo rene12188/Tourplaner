@@ -2,15 +2,17 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Tourplaner_Buisness;
 using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
+using System.Drawing;
 
 namespace Tourplaner_Frontend
 {
-    public class MainViewModel : INotifyPropertyChanged, INotifyCollectionChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
 
 
@@ -72,21 +74,23 @@ namespace Tourplaner_Frontend
             set;
         }
 
-        private Tour __selectedTour = null;
+        private Tour _selectedTour = null;
+
+
 
         public Tour SelectedTour
         {
             get
             {
 
-                return this.__selectedTour;
+                return this._selectedTour;
             }
             set
             {
                 if (value != null)
                 {
                     Debug.Write("Selected Tour = " + value.Name + "\n");
-                    __selectedTour = value;
+                    _selectedTour = value;
                     OnPropertyChanged(nameof(SelectedTour));
                 }
                 
@@ -108,6 +112,7 @@ namespace Tourplaner_Frontend
                 }
 
             }
+            OnPropertyChanged(nameof(Searchterm));
         }
 
         public void UpdateSource()
@@ -120,7 +125,7 @@ namespace Tourplaner_Frontend
         {
             this._tourlist = Mainlogic.UpdateTours();
             this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
-            this.__selectedTour = null;
+            this._selectedTour = _displaytourlist[0];
             // this.ExecuteCommand = new ExecuteCommand(this);
             this.AddTour = new OpenTourWindow(this);
             this.Search = new SearchTour(this);
@@ -130,16 +135,11 @@ namespace Tourplaner_Frontend
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }
 
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             Debug.Print($"propertyChanged \"{propertyName}\"");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
     }
 }
