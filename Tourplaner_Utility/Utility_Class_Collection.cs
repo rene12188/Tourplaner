@@ -14,13 +14,13 @@ namespace Tourplaner_Utility
         public string Description { get; set; }
         public string Source { get; set; }
         public string Destination { get; set; }
-        public int Distance { get; set; }
+        public double Distance { get; set; }
 
         public string Image { get; private set; }
         ObservableCollection<Tourlog> Tourlogs = new ObservableCollection<Tourlog>();
 
 
-         public Tour(string name,string description ,string source, string dest,int distance )
+         public Tour(string name,string description ,string source, string dest, double distance )
          { 
 
             this.Name = name;
@@ -41,21 +41,26 @@ namespace Tourplaner_Utility
 
     public class Tourlog
     {
-        int TLID;
-        int TID;
-        private DateTime Timestamp;
-        private string Report;
-        private int Distance;
-        private int Rating;
+        private DateTime Timestamp { get; set; }
+        private string Report { get; set; }
+        private int Distance { get; set; }
+        private int Totaltime { get; set; }
+        private int Rating { get; set; }
 
-        public Tourlog(int tlid, int tid, DateTime timestamp, string report, int distance, int rating)
+        private float  AvgSpeed { get; set; }
+
+        private int Difficulty { get; set; }
+        private int EnergyBurn { get; set; }
+        private int Temperature { get; set; }
+        private float Water { get; set; }
+    public Tourlog(DateTime timestamp, string report, int distance, int rating)
         {
-            this.TLID = tlid;
-            this.TID = tid;
+
             this.Timestamp = timestamp;
+            this.Report = report;
             this.Distance = distance;
             this.Rating = rating;
-            this.Report = report;
+
 
 
     }

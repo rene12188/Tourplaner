@@ -9,7 +9,7 @@ CREATE TABLE Tour
     Description varchar(255),
     Source varchar(255),
     Destination   varchar(255),
-    Distance double precision
+    Distance double precision /*in KM*/
 );
 
 CREATE TABLE Tour_Log
@@ -23,7 +23,7 @@ CREATE TABLE Tour_Log
     Totaltime int, /*in Minutes*/
     Rating   int, /*1/Easy-5/Hard*/
 
-    AvgSpeed float,
+    AvgSpeed double precision,
     Difficulty int, /*1/Easy-5/Hard*/
     EnergyBurn int,
     Temperature int,
@@ -45,12 +45,14 @@ CREATE OR REPLACE FUNCTION insert_tourlog(i_TID int,
 $$
 DECLARE
     i_tcounter int;
+    i_distancecheck double precision;
     i_calories int;
 BEGIN
-    select count(*) into i_tcounter from Tour where TID = i_TID;
+    select count(*) into i_tcounter from Tour where TID = i_TID AND Distance > i_Distance;
     IF i_tcounter = 0 THEN
         return -1;
     END IF;
+
     i_calories = 6.66*i_Distance*i_Difficulty;
     Insert Into Tour_Log(TID, DateTime, Report, Distance, Totaltime,Rating,AvgSpeed , Difficulty,EnergyBurn,Temperature,WaterRecomendation)
     VALUES (i_TID, TS_Moment, s_report, i_rating, i_Totaltime, i_Rating, i_Distance/i_Totaltime,i_Difficulty,i_calories, i_Temperature, i_Distance*100+20);
@@ -58,7 +60,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_tours(s_Name varchar(255), s_desc varchar(255),s_source varchar(255), s_dest varchar(255), i_Dist float) RETURNS int AS
+CREATE OR REPLACE FUNCTION insert_tours(s_Name varchar(255), s_desc varchar(255),s_source varchar(255), s_dest varchar(255), i_Dist double precision) RETURNS int AS
 $$
 DECLARE
     i_tcounter int;

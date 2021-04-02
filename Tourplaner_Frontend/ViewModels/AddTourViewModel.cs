@@ -88,9 +88,9 @@ namespace Tourplaner_Frontend
             }
         }
 
-        public int _distance;
+        public float _distance;
 
-        public int Distance
+        public float Distance
         {
 
             get

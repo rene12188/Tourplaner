@@ -21,7 +21,7 @@ namespace Tourplaner_Buisness
         {
             try
             {
-                string tourJson = WebRequester.GetJson(tour.Source, tour.Destination).Result;
+                //string tourJson = WebRequester.GetJson(tour.Source, tour.Destination).Result;
                 int rCode = Database.InsertTour(tour);
                 if (rCode == 0)
                 {
