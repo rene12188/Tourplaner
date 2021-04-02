@@ -115,12 +115,6 @@ namespace Tourplaner_Frontend
             OnPropertyChanged(nameof(Searchterm));
         }
 
-        public void UpdateSource()
-        {
-            this._tourlist = Mainlogic.UpdateTours();
-            this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
-        }
-
         public MainViewModel()
         {
             this._tourlist = Mainlogic.UpdateTours();

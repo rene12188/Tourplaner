@@ -21,7 +21,7 @@ namespace Tourplaner_Tests
 
 
          [Test]
-         public void Database_SaveImage()
+         public void Buisnesslogic_SaveImage()
          { 
              Byte[] result = Encoding.ASCII.GetBytes("Hello World");
            Mainlogic.SaveImage(result, "test");
@@ -30,11 +30,17 @@ namespace Tourplaner_Tests
 
 
          [Test]
-         public void Database_Fetchimage()
+         public void Buisnesslogic_Fetchimage()
          {
              Mainlogic.FetchImage("ASD", "Illmitz", "Apetlon");
              Assert.IsTrue(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg"));
          }
+         [Test]
+        public void Buisnesslogic_Deleteimage()
+        {
+            Mainlogic.DeleteTourimage(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg");
+            Assert.IsFalse(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg"));
+        }
 
         [TearDown]
          public void Teardown()

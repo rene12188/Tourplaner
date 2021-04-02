@@ -98,7 +98,7 @@ $$ LANGUAGE plpgsql;
 SELECT insert_tours('Kurze Runde','Short Walk', 'Illmitz', 'Apetlon', 2);
 SELECT copy_tour('Kurze Runde_copy');
 
-Select insert_tourlog(37, 'THis is a report' , current_date, 5.0,60,3,3,20);
+Select insert_tourlog(2, 'THis is a report' , current_date, 1.0,60,3,3,20);
 
 
 select *
@@ -108,8 +108,9 @@ Select *
 from Tour
 WHERE Name Like '%%';
 
-Select *
+Select DateTime,Report,Distance,Totaltime,Rating,AvgSpeed,Difficulty,EnergyBurn,Temperature,WaterRecomendation
 from Tour_Log
+    WHERE TID = (Select TID from Tour WHERE Name = 'Kleine Runde');
 
 Delete
 FROM Tour

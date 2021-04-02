@@ -1,8 +1,5 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace Tourplaner_Utility
 {
@@ -10,58 +7,62 @@ namespace Tourplaner_Utility
     {
 
 
+        public Tour(string name, string description, string source, string dest, double distance)
+        {
+            Name = name;
+            Description = description;
+            Source = source;
+            Destination = dest;
+            Distance = distance;
+            Image = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + name + ".jpg";
+        }
+
+        public ObservableCollection<Tourlog> Tourlogs = new ObservableCollection<Tourlog>();
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string Source { get; set; }
         public string Destination { get; set; }
         public double Distance { get; set; }
 
-        public string Image { get; private set; }
-        ObservableCollection<Tourlog> Tourlogs = new ObservableCollection<Tourlog>();
+        public string Image { get; }
 
-
-         public Tour(string name,string description ,string source, string dest, double distance )
-         { 
-
-            this.Name = name;
-            this.Description = description;
-            this.Source = source;
-            this.Destination = dest;
-            this.Distance = distance;
-            this.Image = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + name + ".jpg";
-
-         }
-
-         public override string ToString()
-         {
-             return this.Name.ToString();
-         }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
 
-    public class Tourlog
+public class Tourlog
+{
+    public Tourlog(int tlid, DateTime timestamp, string report, double distance, int totaltime, int rating, double avgapseed,
+        int difficultty, int energyburn, int temperature, double water)
     {
-        private DateTime Timestamp { get; set; }
-        private string Report { get; set; }
-        private int Distance { get; set; }
-        private int Totaltime { get; set; }
-        private int Rating { get; set; }
-
-        private float  AvgSpeed { get; set; }
-
-        private int Difficulty { get; set; }
-        private int EnergyBurn { get; set; }
-        private int Temperature { get; set; }
-        private float Water { get; set; }
-    public Tourlog(DateTime timestamp, string report, int distance, int rating)
-        {
-
-            this.Timestamp = timestamp;
-            this.Report = report;
-            this.Distance = distance;
-            this.Rating = rating;
-
-
-
+        this.TLID = tlid;
+        this.Timestamp = timestamp;
+        this.Report = report;
+        this.Distance = distance;
+        this.Totaltime = totaltime;
+        this.Rating = rating;
+        this.AvgSpeed = avgapseed;
+        this.Difficulty = difficultty;
+        this.EnergyBurn = energyburn;
+        this.Temperature = temperature;
+        this.Water = water;
     }
+
+    public int TLID { get; set; }
+    public DateTime Timestamp { get; set; }
+    public string Report { get; set; }
+    public double Distance { get; set; }
+    public int Totaltime { get; set; }
+    public int Rating { get; set; }
+
+    public double AvgSpeed { get; set; }
+
+    public int Difficulty { get; set; }
+    public int EnergyBurn { get; set; }
+    public int Temperature { get; set; }
+    public double Water { get; set; }
 }
