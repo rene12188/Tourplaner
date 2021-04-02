@@ -74,6 +74,12 @@ namespace Tourplaner_Frontend
             set;
         }
 
+        public ICommand AddLog
+        {
+            get;
+            set;
+        }
+
         private Tour _selectedTour = null;
 
 
@@ -125,6 +131,7 @@ namespace Tourplaner_Frontend
             this.Search = new SearchTour(this);
             this.Delete = new DeleteTour(this);
             this.Copy = new CopyTour(this);
+            this.AddLog = new OpenTourlogWindow(this);
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }
