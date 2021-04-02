@@ -15,9 +15,10 @@ namespace Tourplaner_Utility
             Destination = dest;
             Distance = distance;
             Image = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + name + ".jpg";
+            Tourlogs = new ObservableCollection<Tourlog>();
         }
 
-        public ObservableCollection<Tourlog> Tourlogs = new ObservableCollection<Tourlog>();
+        public ObservableCollection<Tourlog> Tourlogs { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }

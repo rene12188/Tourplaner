@@ -50,7 +50,7 @@
         </Image>
         
       
-        <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" />
+        <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" ItemsSource="{Binding SelectedTour.Tourlogs, UpdateSourceTrigger=PropertyChanged}" />
         <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="False">
         </ListBox>
         <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3">
