@@ -21,7 +21,7 @@ namespace Tourplaner_Buisness
         {
             try
             {
-
+                string tourJson = WebRequester.GetJson(tour.Source, tour.Destination).Result;
                 int rCode = Database.InsertTour(tour);
                 if (rCode == 0)
                 {
@@ -36,20 +36,6 @@ namespace Tourplaner_Buisness
 
         }
 
-        public static Image LoadImage(string tourname)
-        {
-            try
-            {
-                Image tmp = Image.FromFile(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + tourname + ".jpg");
-                return tmp;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            
-        }
 
         public static ObservableCollection<Tour> UpdateTours(string term = "")
         {
@@ -58,9 +44,16 @@ namespace Tourplaner_Buisness
 
         }
 
-        public static int DeleteTour(string name)
+        public static int DeleteTour(Tour tour)
         {
-            return Database.DeleteTour(name);
+           
+            DeleteTourimage(tour.Image);
+            return Database.DeleteTour(tour.Name);
+        }
+
+        public static void DeleteTourimage(string imagepath)
+        {
+            File.Delete(imagepath);
         }
 
         public static int CopyTour(string tmp)
@@ -69,7 +62,7 @@ namespace Tourplaner_Buisness
             return Database.CopyTour(tmp);
         }
 
-        public static void DeserializeJson(string from, string to)
+        public static void DeserializeJson(string content)
         {
 
         }

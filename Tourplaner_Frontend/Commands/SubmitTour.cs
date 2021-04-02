@@ -52,6 +52,12 @@ namespace Tourplaner_Frontend.Commands
                 System.Windows.MessageBox.Show("Please Enter a Destination ");
                 return;
             }
+            else if (string.IsNullOrWhiteSpace(__addtourviewmodel.Description))
+            {
+                System.Windows.MessageBox.Show("Please Enter a Description ");
+                return;
+            }
+
 
             try
             {

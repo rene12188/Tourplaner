@@ -9,7 +9,7 @@ CREATE TABLE Tour
     Description varchar(255),
     Source varchar(255),
     Destination   varchar(255),
-    Distance int
+    Distance double precision
 );
 
 CREATE TABLE Tour_Log
@@ -19,40 +19,46 @@ CREATE TABLE Tour_Log
         CONSTRAINT TID_Tour references Tour (TID),
     DateTime timestamp,
     Report   varchar(255),
-    Rating   int,
-    Deaths int,
-    Difficulty int,
-    Energy_burn int,
-    Water_rec float,
-    try_dist float,
-    try_time int,
-    Average_speed float,
-    Health_Rating int
+    Distance double precision, /*in KM*/
+    Totaltime int, /*in Minutes*/
+    Rating   int, /*1/Easy-5/Hard*/
+
+    AvgSpeed float,
+    Difficulty int, /*1/Easy-5/Hard*/
+    EnergyBurn int,
+    Temperature int,
+    WaterRecomendation double precision /*in ml*/
+
+
 );
 
 
-CREATE OR REPLACE FUNCTION insert_tourlog(i_TID int, TS_Moment timestamp, vchar_rep varchar(255),
-                                          i_rating int, i_deaths int, i_Dificulty int, i_Engergyburn int,
-                                          f_try_dist float,
-                                          i_try_time int,
-                                          f_Water_rec float,
-                                          f_average_speed float,
-                                          i_Health_Rating int) RETURNS int AS
+CREATE OR REPLACE FUNCTION insert_tourlog(i_TID int,
+                                          s_report varchar,
+                                          ts_Moment timestamp,
+                                          i_Distance double precision,
+                                          i_Totaltime int,
+                                          i_Rating int,
+                                          i_Difficulty int,
+                                          i_Temperature int
+                                          ) RETURNS int AS
 $$
 DECLARE
     i_tcounter int;
+    i_calories int;
 BEGIN
     select count(*) into i_tcounter from Tour where TID = i_TID;
     IF i_tcounter = 0 THEN
         return -1;
     END IF;
-    Insert Into Tour_Log(TID, DateTime, Report, Rating, Deaths, Difficulty,Energy_burn,Water_rec,try_dist, try_time, Average_speed, Health_Rating)
-    VALUES (i_TID, TS_Moment, vchar_rep, i_rating, i_deaths, i_Dificulty, i_Engergyburn,f_Water_rec,f_try_dist, i_try_time, f_try_dist/i_try_time, i_Health_Rating);
-
+    i_calories = 6.66*i_Distance*i_Difficulty;
+    Insert Into Tour_Log(TID, DateTime, Report, Distance, Totaltime,Rating,AvgSpeed , Difficulty,EnergyBurn,Temperature,WaterRecomendation)
+    VALUES (i_TID, TS_Moment, s_report, i_rating, i_Totaltime, i_Rating, i_Distance/i_Totaltime,i_Difficulty,i_calories, i_Temperature, i_Distance*100+20);
+    return 0 ;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_tours(s_Name varchar(255), s_desc varchar(255),s_source varchar(255), s_dest varchar(255), i_Dist int) RETURNS int AS
+CREATE OR REPLACE FUNCTION insert_tours(s_Name varchar(255), s_desc varchar(255),s_source varchar(255), s_dest varchar(255), i_Dist float) RETURNS int AS
 $$
 DECLARE
     i_tcounter int;
@@ -90,6 +96,7 @@ $$ LANGUAGE plpgsql;
 SELECT insert_tours('Kurze Runde','Short Walk', 'Illmitz', 'Apetlon', 2);
 SELECT copy_tour('Kurze Runde_copy');
 
+Select insert_tourlog(37, 'THis is a report' , current_date, 5.0,60,3,3,20);
 
 
 select *
@@ -98,6 +105,9 @@ from Tour;
 Select *
 from Tour
 WHERE Name Like '%%';
+
+Select *
+from Tour_Log
 
 Delete
 FROM Tour
