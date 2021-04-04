@@ -36,6 +36,10 @@ namespace Tourplaner_Buisness
 
         }
 
+        public static void DeleteTourLog(Tourlog tmp)
+        {
+            Database.DeleteTourlog(tmp.TLID);
+        }
 
         public static ObservableCollection<Tour> UpdateTours(string term = "")
         {
@@ -44,11 +48,9 @@ namespace Tourplaner_Buisness
 
         }
 
-        public static int DeleteTour(Tour tour)
+        public static async void DeleteTour(Tour tour)
         {
-           
-            DeleteTourimage(tour.Image);
-            return Database.DeleteTour(tour.Name);
+            Database.DeleteTour(tour.Name);
         }
 
         public static void DeleteTourimage(string imagepath)

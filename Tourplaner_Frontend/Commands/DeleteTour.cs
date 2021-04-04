@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -15,19 +16,25 @@ using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend.Commands
 {
-    class DeleteTour : ICommand
+    class DeleteTour : ICommand, INotifyPropertyChanged
     {
         private readonly MainViewModel _mainviewModel = null;
         public DeleteTour(MainViewModel tmp)
         {
             this._mainviewModel = tmp;
+            _mainviewModel.PropertyChanged += (sender, args) =>
+            {
+                Debug.Print("command: reveived prop changed");
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            };
 
         }
 
         public bool CanExecute(object? parameter)
         {
-
-        return true;
+            if(_mainviewModel.SelectedTour != null)    
+              return true;
+            return false;
         }
 
         public void Execute(object? parameter)
@@ -36,14 +43,20 @@ namespace Tourplaner_Frontend.Commands
             try
             {
                 Mainlogic.DeleteTour(_mainviewModel.SelectedTour);
-
             }
             catch (Exception e)
             {
                 Debug.Write(e);
             }
         }
-        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            Debug.Print($"propertyChanged \"{propertyName}\"");
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public event EventHandler? CanExecuteChanged;
     }
 }

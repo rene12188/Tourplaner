@@ -18,11 +18,30 @@ namespace Tourplaner_Frontend
     class AddTourlogViewModel : INotifyPropertyChanged
     {
       
+        public enum _difficulty
+        {
+            VeryEasy = 1,
+            Easy = 2,
+            Medium = 3,
+            Hard = 4,
+            VeryHard = 5,
+        }
+
         public ICommand Submittourlog
         {
             get;
             set;
         }
+
+        private string _report;
+        public string Report { get; set; }
+
+        private int _distance;
+        public int Distance { get; set; }
+        private int _ttime;
+        public int TTime { get; set; }
+        private int _temp;
+        public int Temp { get; set; }
 
     public AddTourlogViewModel()
         {

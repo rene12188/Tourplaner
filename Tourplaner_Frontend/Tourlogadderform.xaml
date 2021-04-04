@@ -9,7 +9,51 @@
     <Window.DataContext>
         <local:AddTourlogViewModel/>
     </Window.DataContext>
-    <Grid>
-        
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="175*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Content="Add Tourlog"/>
+        <Label Grid.Column="1" Grid.Row="1">TourDate</Label>
+        <Label Grid.Row="2" Grid.Column="1">Difficulty</Label>
+        <Label Grid.Row="3" Grid.Column="1"  >Rating</Label>
+        <Label Grid.Row="4" Grid.Column="1">Report</Label>
+        <Label Grid.Row="5" Grid.Column="1">Distance</Label>
+        <Label Grid.Row="6" Grid.Column="1">Total Time (In Minutes)</Label>
+        <Label Grid.Row="7" Grid.Column="1">Temperature in non-Retarded Units (°C)</Label>
+        <DatePicker  Grid.Row="1" Grid.Column="2" Text="{Binding Tourname,  UpdateSourceTrigger=PropertyChanged}" Name="TName" ></DatePicker>
+        <ComboBox Grid.Row="2" Grid.Column="2">
+            <ComboBoxItem Tag="{Binding}"  >Very Easy</ComboBoxItem>
+            <ComboBoxItem Tag="{Binding }">Easy</ComboBoxItem>
+            <ComboBoxItem >Meduim</ComboBoxItem>
+            <ComboBoxItem >Hard</ComboBoxItem>
+            <ComboBoxItem >Very Hard</ComboBoxItem>
+        </ComboBox>
+        <ComboBox Grid.Row="3" Grid.Column="2">
+            <ComboBoxItem >Very Bad</ComboBoxItem>
+            <ComboBoxItem >Bad</ComboBoxItem>
+            <ComboBoxItem >Ok</ComboBoxItem>
+            <ComboBoxItem >Good</ComboBoxItem>
+            <ComboBoxItem >Very Good</ComboBoxItem>
+        </ComboBox>
+        <TextBox Grid.Row="4" Grid.Column="2" Name="Dest" Text="{Binding Report, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="2" Name="Dist" Text="{Binding Distance, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+        <TextBox Grid.Row="6" Grid.Column="2" Name="TotTime" Text="{Binding TTime, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+        <TextBox Grid.Row="7" Grid.Column="2" Name="Temp" Text="{Binding Temp, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+        <Button  Grid.Row="8" Grid.Column="2" Command="{Binding Submittour}" CommandParameter="{Binding ElementName=RTW}">Submit</Button>
     </Grid>
 </Window>

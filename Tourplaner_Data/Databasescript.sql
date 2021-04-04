@@ -28,8 +28,6 @@ CREATE TABLE Tour_Log
     EnergyBurn int,
     Temperature int,
     WaterRecomendation double precision /*in ml*/
-
-
 );
 
 

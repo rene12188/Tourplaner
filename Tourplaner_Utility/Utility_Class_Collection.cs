@@ -26,7 +26,7 @@ namespace Tourplaner_Utility
         public string Destination { get; set; }
         public double Distance { get; set; }
 
-        public string Image { get; }
+        public string Image { get; set; }
 
         public override string ToString()
         {
