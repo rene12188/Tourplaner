@@ -53,6 +53,22 @@ public class Tourlog
         this.Water = water;
     }
 
+    public Tourlog(DateTime timestamp, string report, double distance, int totaltime, int rating,
+        int difficultty, int temperature)
+    {
+        this.TLID = 0;
+        this.Timestamp = timestamp;
+        this.Report = report;
+        this.Distance = distance;
+        this.Totaltime = totaltime;
+        this.Rating = rating;
+        this.AvgSpeed = 0;
+        this.Difficulty = difficultty;
+        this.EnergyBurn = 0;
+        this.Temperature = temperature;
+        this.Water = 0;
+    }
+
     public int TLID { get; set; }
     public DateTime Timestamp { get; set; }
     public string Report { get; set; }

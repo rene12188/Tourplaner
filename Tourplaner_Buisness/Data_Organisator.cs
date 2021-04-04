@@ -41,6 +41,11 @@ namespace Tourplaner_Buisness
             Database.DeleteTourlog(tmp.TLID);
         }
 
+        public static void Inserttourlog(Tourlog tmp, string selectedname)
+        {
+            Database.InsertTourlogs(tmp, selectedname);
+        }
+
         public static ObservableCollection<Tour> UpdateTours(string term = "")
         {
             return Database.SearchTours(term);

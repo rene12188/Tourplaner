@@ -107,8 +107,8 @@ from Tour
 WHERE Name Like '%%';
 
 Select DateTime,Report,Distance,Totaltime,Rating,AvgSpeed,Difficulty,EnergyBurn,Temperature,WaterRecomendation
-from Tour_Log
-    WHERE TID = (Select TID from Tour WHERE Name = 'Kleine Runde');
+from Tour_Log;
+
 
 Delete
 FROM Tour

@@ -17,35 +17,118 @@ namespace Tourplaner_Frontend
 
     class AddTourlogViewModel : INotifyPropertyChanged
     {
-      
-        public enum _difficulty
+        private DateTime _time;
+        public DateTime Time
         {
-            VeryEasy = 1,
-            Easy = 2,
-            Medium = 3,
-            Hard = 4,
-            VeryHard = 5,
+            get
+            {
+                return _time;
+            }
+            set
+            {
+                _time = value;
+            }
         }
 
-        public ICommand Submittourlog
+        private int _rating;
+        public int Rating
+        {
+            get
+            {
+                return _rating;
+            }
+            set
+            {
+                _rating = value + 1;
+            }
+        }
+
+        private int _difficulty;
+        public int Difficulty
+        {
+            get
+            {
+                return _difficulty;
+            }
+            set
+            {
+                _difficulty = value+1;
+            }
+        }
+
+
+        private string _report;
+        public string Report
+        {
+            get
+            {
+                return _report;
+            }
+            set
+            {
+                _report = value;
+            }
+        }
+
+        private double _distance;
+        public double Distance
+        {
+            get
+            {
+                return _distance;
+            }
+            set
+            {
+                _distance = value;
+            }
+        }
+        private int _ttime;
+
+        public int TTime
+        {
+            get
+            {
+                return _ttime;
+            }
+            set
+            {
+                _ttime = value;
+            }
+        }
+        private int _temp;
+        public int Temp
+        {
+            get
+            {
+                return _temp;
+            }
+            set
+            {
+                _temp = value;
+            }
+        }
+
+        public ICommand SubmitTourlog
         {
             get;
             set;
         }
 
-        private string _report;
-        public string Report { get; set; }
-
-        private int _distance;
-        public int Distance { get; set; }
-        private int _ttime;
-        public int TTime { get; set; }
-        private int _temp;
-        public int Temp { get; set; }
-
-    public AddTourlogViewModel()
+        private string _selectedtourname;
+        public string SelectedTourName
         {
-            Submittourlog = new SubmitTourlog(this);
+            get
+            {
+                return _selectedtourname;
+            }
+            set
+            {
+                this._selectedtourname = value;
+            }
+        }
+    public AddTourlogViewModel()
+    {
+        SubmitTourlog = new SubmitTourlog(this, _selectedtourname);
         }
 
     public event PropertyChangedEventHandler PropertyChanged;

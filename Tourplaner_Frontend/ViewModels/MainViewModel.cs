@@ -43,14 +43,6 @@ namespace Tourplaner_Frontend
             }
         }
 
-
-
-        public ICommand ExecuteCommand
-        {
-            get;
-            set;
-        }
-
         public ICommand AddTour
         {
             get;
@@ -86,19 +78,38 @@ namespace Tourplaner_Frontend
             set;
         }
 
+        public static Tour _publicselectedTour = null;
+        public static Tour PublicselectedTour
+        {
+            get
+            {
+
+                return _publicselectedTour;
+            }
+            set
+            {
+
+                Debug.Write("Selected Tour = " + value.Name + "\n");
+                _publicselectedTour = value;
+
+
+            }
+        }
+
         private Tour _selectedTour = null;
         public Tour SelectedTour
         {
             get
             {
 
-                return this._selectedTour;
+                return _selectedTour;
             }
             set
             {
 
                 Debug.Write("Selected Tour = " + value.Name + "\n");
                 _selectedTour = value;
+                _publicselectedTour = value;
                 OnPropertyChanged(nameof(SelectedTour));
                 
                 
@@ -140,7 +151,8 @@ namespace Tourplaner_Frontend
 
         public void ImageShowToNull()
         {
-            
+            _selectedTour.Image = null;
+            OnPropertyChanged(nameof(_selectedTour.Image));
         }
         public MainViewModel()
         {
