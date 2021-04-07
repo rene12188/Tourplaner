@@ -42,6 +42,7 @@ namespace Tourplaner_Frontend
             {
                 Debug.Write("Tourname Changed");
                 _tourname = value;
+                OnPropertyChanged(nameof(_tourname));
             }
         }
 
@@ -56,6 +57,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _source = value;
+                OnPropertyChanged(nameof(_source));
             }
         }
 
@@ -70,6 +72,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _destination = value;
+                OnPropertyChanged(nameof(_destination));
             }
         }
 
@@ -85,6 +88,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _description = value;
+                OnPropertyChanged(nameof(_description));
             }
         }
 

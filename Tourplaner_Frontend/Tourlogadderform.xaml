@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tourplaner_Frontend"
+        x:Name="WDW"
         mc:Ignorable="d"
-        Title="Tourlogadderform" Height="450" Width="800">
+        Title="Tourlogadderform" Height="450" Width="800"
+        
+        >
     <Window.DataContext>
         <local:AddTourlogViewModel/>
     </Window.DataContext>
@@ -54,6 +57,6 @@
         <TextBox Grid.Row="5" Grid.Column="2" Name="Dist" Text="{Binding Distance, UpdateSourceTrigger=PropertyChanged }"></TextBox>
         <TextBox Grid.Row="6" Grid.Column="2" Name="TotTime" Text="{Binding TTime, UpdateSourceTrigger=PropertyChanged }"></TextBox>
         <TextBox Grid.Row="7" Grid.Column="2" Name="Temp" Text="{Binding Temp, UpdateSourceTrigger=PropertyChanged }"></TextBox>
-        <Button  Grid.Row="8" Grid.Column="2" Command="{Binding SubmitTourlog, UpdateSourceTrigger=PropertyChanged}">Submit</Button>
+        <Button  Grid.Row="8" Grid.Column="2" Command="{Binding SubmitTourlog, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=WDW}">Submit</Button>
     </Grid>
 </Window>

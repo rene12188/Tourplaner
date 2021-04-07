@@ -21,44 +21,29 @@ namespace Tourplaner_Frontend.Commands
         public SubmitTour(AddTourViewModel tmp)
         {
             this.__addtourviewmodel = tmp;
+            __addtourviewmodel.PropertyChanged += (sender, args) =>
+            {
+                Debug.Print("command: reveived prop changed of Input");
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
+            };
         }
 
         public bool CanExecute(object? parameter)
         {
-        /*    if (!string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Source) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Destination))
+            //return true;
+            if (!string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Source) &&
+                !string.IsNullOrWhiteSpace(__addtourviewmodel.Description)&& !string.IsNullOrWhiteSpace(__addtourviewmodel.Destination))
             {
                 return true;
             }
 
-            return false;*/
-        return true;
+            return false;
+        
         }
 
         public void Execute(object? parameter)
         {
-            if (string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname))
-            {
-                System.Windows.MessageBox.Show("Please Enter a Tour Name ");
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(__addtourviewmodel.Source))
-            {
-                System.Windows.MessageBox.Show("Please Enter a Source ");
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(__addtourviewmodel.Destination))
-            {
-                System.Windows.MessageBox.Show("Please Enter a Destination ");
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(__addtourviewmodel.Description))
-            {
-                System.Windows.MessageBox.Show("Please Enter a Description ");
-                return;
-            }
-
-
             try
             {
                 Debug.Write("Creating TOur \n");

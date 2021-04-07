@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,13 @@ namespace Tourplaner_Frontend.Commands
         {
             this.SelectedTour = selectedtourname;
             this.__addtourviewmodel = tmp;
+            __addtourviewmodel.PropertyChanged += (sender, args) =>
+            {
+
+                Debug.Print("command: reveived prop changed of Input");
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
+            };
         }
         public bool CanExecute(object? parameter)
         {
@@ -26,6 +34,9 @@ namespace Tourplaner_Frontend.Commands
 
         public void Execute(object? parameter)
         {
+
+
+
             try
             {
                 Tourlog tmp = new Tourlog(__addtourviewmodel.Time, __addtourviewmodel.Report, __addtourviewmodel.Distance, __addtourviewmodel.TTime, __addtourviewmodel.Rating, __addtourviewmodel.Difficulty, __addtourviewmodel.Temp);

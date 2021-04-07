@@ -53,7 +53,7 @@ BEGIN
 
     i_calories = 6.66*i_Distance*i_Difficulty;
     Insert Into Tour_Log(TID, DateTime, Report, Distance, Totaltime,Rating,AvgSpeed , Difficulty,EnergyBurn,Temperature,WaterRecomendation)
-    VALUES (i_TID, TS_Moment, s_report, i_rating, i_Totaltime, i_Rating, i_Distance/i_Totaltime,i_Difficulty,i_calories, i_Temperature, i_Distance*100+20);
+    VALUES (i_TID, TS_Moment, s_report, i_rating, i_Totaltime, i_Rating, i_Distance/i_Totaltime,i_Difficulty,i_calories, i_Temperature, (i_Distance*100)+20);
     return 0 ;
 END;
 $$ LANGUAGE plpgsql;

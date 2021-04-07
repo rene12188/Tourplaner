@@ -9,6 +9,7 @@ using Tourplaner_Buisness;
 using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
 using System.Drawing;
+using System.Windows.Controls;
 
 namespace Tourplaner_Frontend
 {
@@ -106,11 +107,14 @@ namespace Tourplaner_Frontend
             }
             set
             {
+                if(value != null)
+                {
+                    Debug.Write("Selected Tour = " + value.Name + "\n");
+                    _selectedTour = value;
+                    _publicselectedTour = value;
+                    OnPropertyChanged(nameof(SelectedTour));
+                }
 
-                Debug.Write("Selected Tour = " + value.Name + "\n");
-                _selectedTour = value;
-                _publicselectedTour = value;
-                OnPropertyChanged(nameof(SelectedTour));
                 
                 
             }
@@ -126,8 +130,13 @@ namespace Tourplaner_Frontend
             }
             set
             {
-                Debug.WriteLine("Selected Tourlog: " + value.TLID);
-                _selectecTourlog = value;
+                if(value != null)
+                {
+                    Debug.WriteLine("Selected Tourlog: " + value.TLID);
+                    _selectecTourlog = value;
+                    OnPropertyChanged(nameof(_selectecTourlog));
+                }
+
             }
         }
 
@@ -165,7 +174,7 @@ namespace Tourplaner_Frontend
             this.Delete = new DeleteTour(this);
             this.Copy = new CopyTour(this);
             this.AddLog = new OpenTourlogWindow(this);
-            this.DeleteLog = new DeleteTour(this);
+            this.DeleteLog = new DeleteTourlog(this);
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }
