@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using Tourplaner_Data;
 using Tourplaner_Utility;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -69,11 +62,6 @@ namespace Tourplaner_Buisness
             return Database.CopyTour(tmp);
         }
 
-        public static void DeserializeJson(string content)
-        {
-
-        }
-
         public static async void FetchImage(string tourname, string from, string to)
         {
             byte[] image = null;
@@ -107,7 +95,57 @@ namespace Tourplaner_Buisness
                 Console.WriteLine("Exception Encountered:{0}", e.Message);
             }
 
+        }
 
+        public static void Export(ObservableCollection<Tour> tourlist, string filepath)
+        {
+            string JSON = SerializeTours(tourlist);
+
+
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(filepath, "Tours.txt")))
+            {
+                outputFile.WriteLine(JSON);
+            }
+
+
+        }
+
+        public static string SerializeTours(ObservableCollection<Tour> tourlist)
+        {
+            string returnstring = String.Empty;
+            returnstring += JsonSerializer.Serialize<ObservableCollection<Tour>>(tourlist);
+            
+          /*  foreach (var obj in tourlist)
+            {
+                
+            }*/
+
+          return returnstring;
+        }
+
+        public static void Import(string filepath)
+        {
+
+
+        }
+
+        public static ObservableCollection<Tour> DeserializeTours(string filepath)
+        {
+            Tour tmp = null;
+            ObservableCollection<Tour> retunrval = new ObservableCollection<Tour>();
+            string s = File.ReadAllText(Path.Combine(filepath, "Tours.txt"));
+            retunrval = JsonSerializer.Deserialize<ObservableCollection<Tour>>(s);
+            /*using (StreamReader sr = File.OpenText(Path.Combine(filepath, "Tours.txt")))
+            {
+                while ((s = sr.ReadLine()) != null)
+                {
+                    tmp = JsonSerializer.Deserialize<Tour>(s);
+                    retunrval.Add(tmp);
+                }
+            }*/
+
+
+            return retunrval;
         }
     }
 }

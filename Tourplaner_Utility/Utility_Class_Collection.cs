@@ -7,15 +7,21 @@ namespace Tourplaner_Utility
     {
 
 
-        public Tour(string name, string description, string source, string dest, double distance)
+        public Tour(ObservableCollection<Tourlog> tourlogs, string name, string description, string source, string dest, double distance)
         {
+            Tourlogs = tourlogs;
             Name = name;
             Description = description;
             Source = source;
             Destination = dest;
             Distance = distance;
             Image = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + name + ".jpg";
-            Tourlogs = new ObservableCollection<Tourlog>();
+            
+        }
+
+        public Tour()
+        {
+
         }
 
         public ObservableCollection<Tourlog> Tourlogs { get; set; }
@@ -67,6 +73,11 @@ public class Tourlog
         this.EnergyBurn = 0;
         this.Temperature = temperature;
         this.Water = 0;
+    }
+
+    public Tourlog()
+    {
+
     }
 
     public int TLID { get; set; }
