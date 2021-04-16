@@ -22,6 +22,13 @@ namespace Tourplaner_Frontend.Commands
         {
             this.__mainviewmodel = tmp;
 
+            __mainviewmodel.PropertyChanged += (sender, args) =>
+            {
+
+                Debug.Print("command: reveived prop changed of Input");
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
+            };
         }
 
         public bool CanExecute(object? parameter)

@@ -28,8 +28,6 @@ CREATE TABLE Tour_Log
     EnergyBurn int,
     Temperature int,
     WaterRecomendation double precision /*in ml*/
-
-
 );
 
 
@@ -55,7 +53,7 @@ BEGIN
 
     i_calories = 6.66*i_Distance*i_Difficulty;
     Insert Into Tour_Log(TID, DateTime, Report, Distance, Totaltime,Rating,AvgSpeed , Difficulty,EnergyBurn,Temperature,WaterRecomendation)
-    VALUES (i_TID, TS_Moment, s_report, i_rating, i_Totaltime, i_Rating, i_Distance/i_Totaltime,i_Difficulty,i_calories, i_Temperature, i_Distance*100+20);
+    VALUES (i_TID, TS_Moment, s_report, i_rating, i_Totaltime, i_Rating, i_Distance/i_Totaltime,i_Difficulty,i_calories, i_Temperature, (i_Distance*100)+20);
     return 0 ;
 END;
 $$ LANGUAGE plpgsql;
@@ -119,8 +117,8 @@ from Tour
 WHERE Name Like '%%';
 
 Select DateTime,Report,Distance,Totaltime,Rating,AvgSpeed,Difficulty,EnergyBurn,Temperature,WaterRecomendation
-from Tour_Log
-    WHERE TID = (Select TID from Tour WHERE Name = 'Kleine Runde');
+from Tour_Log;
+
 
 Delete
 FROM Tour

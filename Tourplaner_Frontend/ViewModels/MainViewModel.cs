@@ -9,6 +9,7 @@ using Tourplaner_Buisness;
 using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
 using System.Drawing;
+using System.Windows.Controls;
 
 namespace Tourplaner_Frontend
 {
@@ -43,14 +44,6 @@ namespace Tourplaner_Frontend
             }
         }
 
-
-
-        public ICommand ExecuteCommand
-        {
-            get;
-            set;
-        }
-
         public ICommand AddTour
         {
             get;
@@ -74,30 +67,84 @@ namespace Tourplaner_Frontend
             set;
         }
 
+        public ICommand AddLog
+        {
+            get;
+            set;
+        }
+
+        public ICommand DeleteLog
+        {
+            get;
+            set;
+        }
+        public ICommand Export
+        {
+            get;
+            set;
+        }
+
+        public static Tour _publicselectedTour = null;
+        public static Tour PublicselectedTour
+        {
+            get
+            {
+
+                return _publicselectedTour;
+            }
+            set
+            {
+
+                Debug.Write("Selected Tour = " + value.Name + "\n");
+                _publicselectedTour = value;
+
+
+            }
+        }
+
         private Tour _selectedTour = null;
-
-
-
         public Tour SelectedTour
         {
             get
             {
 
-                return this._selectedTour;
+                return _selectedTour;
             }
             set
             {
-                if (value != null)
+                if(value != null)
                 {
                     Debug.Write("Selected Tour = " + value.Name + "\n");
                     _selectedTour = value;
+                    _publicselectedTour = value;
                     OnPropertyChanged(nameof(SelectedTour));
                 }
+
+                
                 
             }
         }
 
-  
+        private Tourlog _selectecTourlog = null;
+
+        public Tourlog SelectedTourlog
+        {
+            get
+            {
+                return _selectecTourlog;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    Debug.WriteLine("Selected Tourlog: " + value.TLID);
+                    _selectecTourlog = value;
+                    OnPropertyChanged(nameof(_selectecTourlog));
+                }
+
+            }
+        }
+
         public string Searchterm { get; set; } = string.Empty;
 
         public void SearchTour()
@@ -115,6 +162,8 @@ namespace Tourplaner_Frontend
             OnPropertyChanged(nameof(Searchterm));
         }
 
+        
+
         public MainViewModel()
         {
             this._tourlist = Mainlogic.UpdateTours();
@@ -125,6 +174,9 @@ namespace Tourplaner_Frontend
             this.Search = new SearchTour(this);
             this.Delete = new DeleteTour(this);
             this.Copy = new CopyTour(this);
+            this.AddLog = new OpenTourlogWindow(this);
+            this.DeleteLog = new DeleteTourlog(this);
+            this.Export = new ExportTours(this);
             // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
             // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
         }

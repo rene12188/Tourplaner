@@ -38,7 +38,7 @@ namespace Tourplaner_Tests
         [Test]
         public void Database_Inserttours()
         {
-            Tour tmp = new Tour("Weite Runde","abc" ,"Illmitz", "Podersdorf", 20);
+            Tour tmp = new Tour(null,"Weite Runde","abc" ,"Illmitz", "Podersdorf", 20);
             int returncode = Database.InsertTour(tmp);
 
             Assert.AreEqual(0, returncode);

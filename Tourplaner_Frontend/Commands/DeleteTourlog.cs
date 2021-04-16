@@ -6,24 +6,23 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Windows.Input;
+using Tourplaner_Buisness;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
 {
     
-    class OpenTourWindow : ICommand
+    class DeleteTourlog : ICommand
     {
         private readonly MainViewModel _mainViewModel;
-        public TouradderWindow Newwindow = null;
+        Tourlogadderform Newwindow = null;
 
-        public OpenTourWindow(MainViewModel mainViewModel)
+        public DeleteTourlog(MainViewModel mainViewModel)
         {
             this._mainViewModel = mainViewModel;
-            
 
             _mainViewModel.PropertyChanged += (sender, args) =>
             {
-                
                 Debug.Print("command: reveived prop changed of Input");
                 CanExecuteChanged?.Invoke(this, EventArgs.Empty);
                 
@@ -34,16 +33,17 @@ namespace Tourplaner_Frontend
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (_mainViewModel.SelectedTourlog != null)
+            {
+                return true;
+            }
 
+            return false;
         }
 
         public void Execute(object parameter)
         {
-           Debug.Write("AddTour Window Opened");
-           Newwindow = new TouradderWindow();
-           Newwindow.Show();
-
+           Mainlogic.DeleteTourLog(_mainViewModel.SelectedTourlog);
         }
     }
 }
