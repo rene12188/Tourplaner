@@ -144,7 +144,7 @@ namespace Tourplaner_Buisness
         {
             Tour tmp = null;
             ObservableCollection<Tour> retunrval = new ObservableCollection<Tour>();
-            string s = File.ReadAllText(Path.Combine(filepath, "Tours.txt"));
+            string s = File.ReadAllText(filepath);
             retunrval = JsonSerializer.Deserialize<ObservableCollection<Tour>>(s);
             /*using (StreamReader sr = File.OpenText(Path.Combine(filepath, "Tours.txt")))
             {
