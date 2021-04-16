@@ -95,6 +95,16 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION Nuke() RETURNS int AS
+$$
+DECLARE
+BEGIN
+Delete FROM Tour_Log;
+Delete FROM Tour;
+    return 0;
+END;
+$$ LANGUAGE plpgsql;
+
 SELECT insert_tours('Kurze Runde','Short Walk', 'Illmitz', 'Apetlon', 2);
 SELECT copy_tour('Kurze Runde_copy');
 
