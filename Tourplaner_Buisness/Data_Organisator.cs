@@ -125,8 +125,19 @@ namespace Tourplaner_Buisness
 
         public static void Import(string filepath)
         {
+            ObservableCollection<Tour> tmp = DeserializeTours(filepath);
 
+            Database.NukeDatabase();
 
+            foreach (var tmpTour in tmp)
+            {
+                Database.InsertTour(tmpTour);
+                foreach (var tmpLog in tmpTour.Tourlogs)
+                {
+                    Database.InsertTourlogs(tmpLog, tmpTour.Name);
+                }
+
+            }
         }
 
         public static ObservableCollection<Tour> DeserializeTours(string filepath)

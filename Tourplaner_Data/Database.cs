@@ -371,7 +371,31 @@ namespace Tourplaner_Data
                 conn.Close();
             }
         }
+        public static void NukeDatabase()
+        {
+            int returnval = -3;
+            using NpgsqlConnection conn = Connectionhander.returnConnection();
 
+            conn.Open();
+            try
+            {
+                var cmd = new NpgsqlCommand($"Select Nuke(); ", conn);
+
+
+                NpgsqlDataReader myReader = cmd.ExecuteReader();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("SQ :Query Error: " + e.Message);
+                throw;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public static int CopyTour(string name)
         {
             int returnval = -3;
