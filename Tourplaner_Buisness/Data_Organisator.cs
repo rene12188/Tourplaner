@@ -102,7 +102,7 @@ namespace Tourplaner_Buisness
             string JSON = SerializeTours(tourlist);
 
 
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(filepath, "Tours.txt")))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(filepath, "Tours.json")))
             {
                 outputFile.WriteLine(JSON);
             }

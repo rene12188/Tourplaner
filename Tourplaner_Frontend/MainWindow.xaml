@@ -31,7 +31,7 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Import" />
-                    <MenuItem Header="_Export" />
+                    <MenuItem Header="_Export" Command="{Binding Export, UpdateSourceTrigger=PropertyChanged}" />
                 </MenuItem>
                 <MenuItem Header="Help" ></MenuItem>
             </Menu>
