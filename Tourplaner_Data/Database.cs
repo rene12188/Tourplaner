@@ -79,9 +79,10 @@ namespace Tourplaner_Data
             ObservableCollection<Tour> returnval = new ObservableCollection<Tour>();
             using NpgsqlConnection conn = Connectionhander.returnConnection();
             Searchterm = '%' + Searchterm + '%';
-            conn.Open();
+            
             try
             {
+                conn.Open();
                 var cmd = new NpgsqlCommand($"Select Name, Description  ,Source, Destination,Distance from Tour  WHERE Name Like @payload;", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("payload", Searchterm));
 

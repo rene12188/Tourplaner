@@ -43,7 +43,14 @@ namespace Tourplaner_Frontend.Commands
           
             try
             {
-                Mainlogic.DeleteTour(_mainviewModel.SelectedTour);
+                Tour tmp = _mainviewModel.SelectedTour;
+
+                _mainviewModel.SelectedTour = null;
+                _mainviewModel.UpdateImage();
+                _mainviewModel.TourImage = null;
+                Mainlogic.DeleteTour(tmp);
+                _mainviewModel.UpdateImage();
+                _mainviewModel.UpdateTours();
             }
             catch (Exception e)
             {

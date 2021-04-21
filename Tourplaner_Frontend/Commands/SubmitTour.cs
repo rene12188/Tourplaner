@@ -42,15 +42,16 @@ namespace Tourplaner_Frontend.Commands
         
         }
 
-        public void Execute(object? parameter)
+        public async void Execute(object? parameter)
         {
             try
             {
                 Debug.Write("Creating TOur \n");
-                Tour tmp = new Tour(null,__addtourviewmodel.Tourname, __addtourviewmodel.Description,
-                    __addtourviewmodel.Source,__addtourviewmodel.Destination,__addtourviewmodel.Distance);
-                Mainlogic.SaveTour(tmp);
+                Tour tmp = new Tour(null, __addtourviewmodel.Tourname, __addtourviewmodel.Description,
+                    __addtourviewmodel.Source, __addtourviewmodel.Destination, __addtourviewmodel.Distance);
 
+                var t = Mainlogic.SaveTour(tmp);
+                await t;
             }
             catch (Exception e)
             {

@@ -2,15 +2,17 @@
 using Tourplaner_Data;
 using Tourplaner_Utility;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace Tourplaner_Buisness
 {
     static public class Mainlogic
     {
-        public static async void SaveTour(Tour tour)
+        public static async Task<int> SaveTour(Tour tour)
         {
             try
             {
@@ -27,6 +29,7 @@ namespace Tourplaner_Buisness
                 Console.WriteLine("Exception Encountered:{0}", e.Message);
             }
 
+            return 1;
         }
 
         public static void DeleteTourLog(Tourlog tmp)
@@ -48,7 +51,9 @@ namespace Tourplaner_Buisness
 
         public static async void DeleteTour(Tour tour)
         {
+            DeleteTourimage(tour.Image);
             Database.DeleteTour(tour.Name);
+            
         }
 
         public static void DeleteTourimage(string imagepath)

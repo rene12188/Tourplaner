@@ -30,6 +30,7 @@ namespace Tourplaner_Frontend.Commands
                 string filePath = tmp.FileName;
                 MessageBox.Show(filePath);
                 Mainlogic.Import(filePath);
+                __mainviewmodel.Tourlist = Mainlogic.UpdateTours();
             }
         }
         

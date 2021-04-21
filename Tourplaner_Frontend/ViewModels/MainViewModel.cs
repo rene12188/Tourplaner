@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -9,13 +11,30 @@ using Tourplaner_Buisness;
 using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media.Imaging;
+using Image = System.Drawing.Image;
 
 namespace Tourplaner_Frontend
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private BitmapImage _tourImage = null;
 
+        public BitmapImage TourImage
+        {
+            get
+            {
+                return _tourImage;
+            }
+            set
+            {
+                _tourImage = value;
+            }
+        }
 
         private ObservableCollection<Tour> _tourlist = new ObservableCollection<Tour>();
         public ObservableCollection<Tour> Tourlist
@@ -100,11 +119,8 @@ namespace Tourplaner_Frontend
             }
             set
             {
-
                 Debug.Write("Selected Tour = " + value.Name + "\n");
                 _publicselectedTour = value;
-
-
             }
         }
 
@@ -118,16 +134,14 @@ namespace Tourplaner_Frontend
             }
             set
             {
-                if(value != null)
-                {
-                    Debug.Write("Selected Tour = " + value.Name + "\n");
-                    _selectedTour = value;
-                    _publicselectedTour = value;
-                    OnPropertyChanged(nameof(SelectedTour));
-                }
+                _selectedTour = value;
+                _publicselectedTour = value;
+                UpdateImage();
+                OnPropertyChanged(nameof(TourImage));
+                OnPropertyChanged(nameof(SelectedTour));
 
-                
-                
+
+
             }
         }
 
@@ -151,31 +165,69 @@ namespace Tourplaner_Frontend
             }
         }
 
-        public string Searchterm { get; set; } = string.Empty;
+        private string _searchterm = string.Empty;
+
+        public string Searchterm {
+            get
+            {
+                return _searchterm;
+            }
+            set
+            {
+                _searchterm = value;
+                SearchTour();
+                OnPropertyChanged(nameof(_searchterm));
+            }
+
+        }
 
         public void SearchTour()
         {
             this._tourlist = Mainlogic.UpdateTours();
             this._displaytourlist.Clear();
-            foreach (var tour in this._tourlist)
+               foreach (var tour in this._tourlist)
             {
-                if (tour.Name.Contains(Searchterm))
+                if (tour.Name.Contains(_searchterm) || tour.Destination.Contains(_searchterm))
                 {
                     _displaytourlist.Add(tour);
                 }
-
             }
-            OnPropertyChanged(nameof(Searchterm));
+            OnPropertyChanged(nameof(_searchterm));
         }
 
-        
+        public void UpdateImage()
+        {
+            if (_selectedTour != null)
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = new Uri(_selectedTour.Image);
+                image.EndInit();
+                TourImage = image;
+            }
+            else
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.Default;
+                image.UriSource = new Uri(@"./Fallback.JPG", UriKind.Relative);
+                image.EndInit();
+                TourImage = image;
+            }
+        }
 
+        public void UpdateTours()
+        {
+            this._tourlist = Mainlogic.UpdateTours();
+        }
+        
         public MainViewModel()
         {
+            UpdateImage();
             this._tourlist = Mainlogic.UpdateTours();
             this._displaytourlist = new ObservableCollection<Tour>(_tourlist);
             this._selectedTour = null;
-            // this.ExecuteCommand = new ExecuteCommand(this);
             this.AddTour = new OpenTourWindow(this);
             this.Search = new SearchTour(this);
             this.Delete = new DeleteTour(this);
@@ -184,8 +236,7 @@ namespace Tourplaner_Frontend
             this.DeleteLog = new DeleteTourlog(this);
             this.Export = new ExportTours(this);
             this.Import = new ImportTour(this);
-            // Alternative: https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090030
-            // this.ExecuteCommand = new RelayCommand(() => Output = $"Hello {Input}!");
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

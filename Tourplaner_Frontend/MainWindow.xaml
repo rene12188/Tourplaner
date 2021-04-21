@@ -43,10 +43,11 @@
         <Button  Grid.Row="3" Grid.Column="4" Command="{Binding AddLog, UpdateSourceTrigger=PropertyChanged}">Add Log</Button>
         <Button  Grid.Row="3" Grid.Column="5" Command="{Binding DeleteLog, UpdateSourceTrigger=PropertyChanged}">Del Log</Button>
         <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="4" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" />
-        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Stretch="Fill" Source="{Binding SelectedTour.Image,UpdateSourceTrigger=PropertyChanged}">
-            <!--<Image.Source>
-                <BitmapImage UriSource="{Binding SelectedTour.Image, UpdateSourceTrigger=PropertyChanged}"></BitmapImage>
+        <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Stretch="Fill" Source="{Binding TourImage,UpdateSourceTrigger=PropertyChanged}">
+         <!--   <Image.Source>
+                <BitmapImage UriSource="{Binding TourImage.UriSource ,UpdateSourceTrigger=PropertyChanged}"></BitmapImage>
             </Image.Source>-->
+
         </Image>
         
       
