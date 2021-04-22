@@ -49,11 +49,12 @@ namespace Tourplaner_Buisness
 
         }
 
-        public static async void DeleteTour(Tour tour)
+        public static async  Task<int>  DeleteTour(Tour tour)
         {
             DeleteTourimage(tour.Image);
             Database.DeleteTour(tour.Name);
-            
+            return 1;
+
         }
 
         public static void DeleteTourimage(string imagepath)

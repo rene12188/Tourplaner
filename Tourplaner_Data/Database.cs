@@ -32,7 +32,7 @@ namespace Tourplaner_Data
 
             private static string LoadCFG()
             {
-                return "Host=localhost;Username=postgres; Password=a;Database=tourplaner";
+                return "Host="+ CFGManager.ReadSetting("Host")+ ";Username=" + CFGManager.ReadSetting("Username") + "; Password=" + CFGManager.ReadSetting("Password") + ";Database=" + CFGManager.ReadSetting("Database");
             }
         }
      

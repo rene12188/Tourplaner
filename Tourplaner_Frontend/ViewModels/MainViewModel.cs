@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Tourplaner_Buisness;
 using Tourplaner_Frontend.Commands;
 using Tourplaner_Utility;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Documents;
+using log4net;
+using log4net.Config;
 using System.Windows.Media.Imaging;
 using Image = System.Drawing.Image;
+
 
 namespace Tourplaner_Frontend
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+
+        private static readonly ILog log = LogManager.GetLogger(typeof(MainViewModel));
+
         private BitmapImage _tourImage = null;
 
         public BitmapImage TourImage
@@ -175,6 +173,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _searchterm = value;
+                log.Info("Searchterm changed Updated");
                 SearchTour();
                 OnPropertyChanged(nameof(_searchterm));
             }
@@ -193,12 +192,15 @@ namespace Tourplaner_Frontend
                 }
             }
             OnPropertyChanged(nameof(_searchterm));
+            log.Info("Displaytourlist changed Selected now contains: "+ _displaytourlist.Count + " Entries");
         }
 
         public void UpdateImage()
         {
+            log.Info("Image Updated");
             if (_selectedTour != null)
             {
+                log.Info(_selectedTour.Name + "Tour Selected");
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
@@ -208,6 +210,7 @@ namespace Tourplaner_Frontend
             }
             else
             {
+                log.Warn("No Tour Selected");
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.Default;
@@ -224,6 +227,8 @@ namespace Tourplaner_Frontend
         
         public MainViewModel()
         {
+            log.Info("Started Application");
+            
             UpdateImage();
             this._tourlist = Mainlogic.UpdateTours();
             this._displaytourlist = new ObservableCollection<Tour>(_tourlist);

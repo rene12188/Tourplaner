@@ -1,0 +1,8 @@
+{
+
+    "Host": "localhost",
+    "Username": "postgres",
+    "Password": "a",
+    "Database": "tourplaner"
+  
+}

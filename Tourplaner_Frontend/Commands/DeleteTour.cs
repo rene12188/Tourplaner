@@ -38,7 +38,7 @@ namespace Tourplaner_Frontend.Commands
             return false;
         }
 
-        public void Execute(object? parameter)
+        public async void  Execute(object? parameter)
         {
           
             try
@@ -48,7 +48,8 @@ namespace Tourplaner_Frontend.Commands
                 _mainviewModel.SelectedTour = null;
                 _mainviewModel.UpdateImage();
                 _mainviewModel.TourImage = null;
-                Mainlogic.DeleteTour(tmp);
+                var i = Mainlogic.DeleteTour(tmp);
+                await i;
                 _mainviewModel.UpdateImage();
                 _mainviewModel.UpdateTours();
             }

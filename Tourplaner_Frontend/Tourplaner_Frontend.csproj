@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Tourplaner_Utility\Tourplaner_Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+	
 </Project>
