@@ -52,6 +52,7 @@ namespace Tourplaner_Frontend.Commands
 
                 var t = Mainlogic.SaveTour(tmp);
                 await t;
+                
             }
             catch (Exception e)
             {

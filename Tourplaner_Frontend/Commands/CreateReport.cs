@@ -46,7 +46,7 @@ namespace Tourplaner_Frontend.Commands
             {
                 if (tmp.ShowDialog() == DialogResult.OK)
                 {
-                    this._mainviewModel.CreatePDF(tmp.SelectedPath);
+                    Mainlogic.CreatePDF(tmp.SelectedPath, _mainviewModel.SelectedTour);
                 }
               
             }

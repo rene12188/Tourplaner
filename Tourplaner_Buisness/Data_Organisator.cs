@@ -3,15 +3,70 @@ using Tourplaner_Data;
 using Tourplaner_Utility;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using Syncfusion.Pdf.Grid;
 
 namespace Tourplaner_Buisness
 {
     static public class Mainlogic
     {
+
+        public static void  CreatePDF(string path, Tour selectedTour)
+        {
+            try
+            {
+                FileStream fs = File.Open(Path.Combine(path, "Report.pdf"), FileMode.Create);
+                PdfDocument document = new PdfDocument();
+
+                PdfPage page = document.Pages.Add();
+
+                PdfGraphics graphics = page.Graphics;
+
+                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
+
+                PdfGrid pdfGrid = new PdfGrid();
+                //Create a DataTable
+                DataTable dataTable = new DataTable();
+                //Add columns to the DataTable
+                dataTable.Columns.Add("TLID");
+                dataTable.Columns.Add("Timestamp");
+                dataTable.Columns.Add("Report");
+                dataTable.Columns.Add("Distance");
+                dataTable.Columns.Add("Totaltime");
+                dataTable.Columns.Add("Rating");
+                dataTable.Columns.Add("AvgSpeed");
+                dataTable.Columns.Add("Difficulty");
+                dataTable.Columns.Add("EnergyBurn");
+                dataTable.Columns.Add("Temperature");
+                dataTable.Columns.Add("Water");
+                //Add rows to the DataTable
+                foreach (Tourlog TL in selectedTour.Tourlogs)
+                {
+
+                    dataTable.Rows.Add(TL.PrintToPDF());
+                }
+                //Assign data source
+                pdfGrid.DataSource = dataTable;
+                //Draw grid to the page of PDF document
+                pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 10));
+
+                document.Save(fs);
+
+                document.Close(true);
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
         public static async Task<int> SaveTour(Tour tour)
         {
             try
@@ -68,7 +123,7 @@ namespace Tourplaner_Buisness
             return Database.CopyTour(tmp);
         }
 
-        public static async void FetchImage(string tourname, string from, string to)
+        public static async Task<int> FetchImage(string tourname, string from, string to)
         {
             byte[] image = null;
             try
@@ -82,6 +137,7 @@ namespace Tourplaner_Buisness
                 Console.WriteLine("Exception Encountered: {0}", e.Message);
             }
 
+            return 0;
         }
 
 
@@ -93,8 +149,10 @@ namespace Tourplaner_Buisness
                 using (var sw = new FileStream(path,FileMode.Create, FileAccess.Write) )
                 {
                     sw.Write(image);
+                    sw.Close();
                 }
 
+                
             }
             catch (Exception e)
             {
@@ -152,14 +210,6 @@ namespace Tourplaner_Buisness
             ObservableCollection<Tour> retunrval = new ObservableCollection<Tour>();
             string s = File.ReadAllText(filepath);
             retunrval = JsonSerializer.Deserialize<ObservableCollection<Tour>>(s);
-            /*using (StreamReader sr = File.OpenText(Path.Combine(filepath, "Tours.txt")))
-            {
-                while ((s = sr.ReadLine()) != null)
-                {
-                    tmp = JsonSerializer.Deserialize<Tour>(s);
-                    retunrval.Add(tmp);
-                }
-            }*/
 
 
             return retunrval;
