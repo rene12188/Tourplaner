@@ -128,8 +128,9 @@ namespace Tourplaner_Frontend
         }
     public AddTourlogViewModel()
     {
+        this._time = DateTime.Now;
         SubmitTourlog = new SubmitTourlog(this, _selectedtourname);
-        }
+    }
 
     public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

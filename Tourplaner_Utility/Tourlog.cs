@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Tourplaner_Utility
@@ -56,5 +57,12 @@ namespace Tourplaner_Utility
         public int EnergyBurn { get; set; }
         public int Temperature { get; set; }
         public double Water { get; set; }
+
+        public string[] PrintToPDF()
+        {
+            string[] expected;
+            return  expected = new string[] { this.TLID.ToString(), this.Timestamp.ToString(), this.Report, this.Distance.ToString(),this.Totaltime.ToString(),this.Rating.ToString(),this.AvgSpeed.ToString(), this.Difficulty.ToString(), this.EnergyBurn.ToString(),this.Temperature.ToString(), this.Water.ToString() };
+
+        }
     }
 }

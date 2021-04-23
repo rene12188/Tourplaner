@@ -32,6 +32,7 @@
                 <MenuItem Header="_File">
                     <MenuItem Header="_Import" Command="{Binding Import, UpdateSourceTrigger=PropertyChanged}" />
                     <MenuItem Header="_Export" Command="{Binding Export, UpdateSourceTrigger=PropertyChanged}" />
+                    <MenuItem Header="_Report" Command="{Binding Report, UpdateSourceTrigger=PropertyChanged}" />
                 </MenuItem>
                 <MenuItem Header="Help" ></MenuItem>
             </Menu>

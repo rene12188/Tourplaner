@@ -28,7 +28,7 @@ namespace Tourplaner_Frontend.Commands
             if (tmp.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show(tmp.SelectedPath);
-                Mainlogic.Export(__mainviewmodel.Tourlist, tmp.SelectedPath);
+                this.__mainviewmodel.CreatePDF(tmp.SelectedPath);
             }
         }
         
