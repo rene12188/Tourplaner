@@ -35,7 +35,15 @@ namespace Tourplaner_Utility
         {
             try
             {
-              
+               
+                if (config[key] == null)
+                {
+                    
+                }
+                else
+                {
+                    config[key] = value;
+                }
             }
             catch 
             {

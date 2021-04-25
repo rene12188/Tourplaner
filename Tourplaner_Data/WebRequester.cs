@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Tourplaner_Utility;
 
 namespace Tourplaner_Data
 {
@@ -16,7 +17,7 @@ namespace Tourplaner_Data
             {
 
                 HttpResponseMessage response = await client.GetAsync(
-                    $"https://open.mapquestapi.com/staticmap/v5/map?start= {from}&end={to}&size=@2x&key=wJH0FXZIHnP3ttxaM8qswamKylCJH1A3");
+                    $"https://open.mapquestapi.com/staticmap/v5/map?start= {from}&end={to}&size=@2x&key="+ CFGManager.ReadSetting("MapKey"));
                 //response.EnsureSuccessStatusCode();
                 responseBody = await response.Content.ReadAsByteArrayAsync();
                 // Above three lines can be replaced with new helper method below

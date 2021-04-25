@@ -118,6 +118,12 @@ namespace Tourplaner_Frontend
             set;
         }
 
+        public ICommand SetImageFolder
+        {
+            get;
+            set;
+        }
+
         public static Tour _publicselectedTour = null;
         public static Tour PublicselectedTour
         {
@@ -210,27 +216,31 @@ namespace Tourplaner_Frontend
 
         public void UpdateImage()
         {
+            BitmapImage image = null;
             log.Info("Image Updated");
             if (_selectedTour != null)
             {
-                log.Info(_selectedTour.Name + "Tour Selected");
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = new Uri(_selectedTour.Image);
-                image.EndInit();
-                TourImage = image;
+                if (File.Exists(_selectedTour.Image))
+                {
+                    log.Info(_selectedTour.Name + "Tour Selected");
+                    image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = new Uri(_selectedTour.Image);
+                    image.EndInit();
+                    TourImage = image;
+                    return;
+                }
             }
-            else
-            {
-                log.Warn("No Tour Selected");
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.Default;
-                image.UriSource = new Uri(@"./Fallback.JPG", UriKind.Relative);
-                image.EndInit();
-                TourImage = image;
-            }
+
+            log.Warn("No Tour Selected");
+            image = new BitmapImage();
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.Default;
+            image.UriSource = new Uri(@"./Fallback.JPG", UriKind.Relative);
+            image.EndInit();
+            TourImage = image;
+            
         }
 
         public void UpdateTours()
@@ -254,6 +264,7 @@ namespace Tourplaner_Frontend
             this.Export = new ExportTours(this);
             this.Import = new ImportTour(this);
             this.Report = new CreateReport(this);
+            this.SetImageFolder = new SetImageFolder(this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

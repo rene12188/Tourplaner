@@ -122,5 +122,5 @@ from Tour_Log;
 
 Delete
 FROM Tour
-Where Name = 'Kleine Runde';
+Where Name = 'Weite Runde';
 COMMIT;

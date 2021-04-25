@@ -17,7 +17,7 @@ namespace Tourplaner_Utility
             Source = source;
             Destination = dest;
             Distance = distance;
-            Image = @"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\" + name + ".jpg";
+            Image = CFGManager.ReadSetting("ImageFolder") + "/" + name + ".jpg";
 
         }
 

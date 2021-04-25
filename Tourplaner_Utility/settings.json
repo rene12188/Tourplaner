@@ -1,8 +1,9 @@
 {
+  "Host": "localhost",
+  "Username": "postgres",
+  "Password": "a",
+  "Database": "tourplaner",
+  "MapKey": "wJH0FXZIHnP3ttxaM8qswamKylCJH1A3",
+  "ImageFolder": "E:\\Programming\\C#\\SWE2\\Tourplaner_Buisness\\Images"
 
-    "Host": "localhost",
-    "Username": "postgres",
-    "Password": "a",
-    "Database": "tourplaner"
-  
 }
