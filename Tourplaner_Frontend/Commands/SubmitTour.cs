@@ -52,11 +52,15 @@ namespace Tourplaner_Frontend.Commands
 
                 var t = Mainlogic.SaveTour(tmp);
                 await t;
-                
+                if (t.Result != 1)
+                {
+                    MessageBox.Show("An Could not insert Entry into the Database");
+                }
             }
             catch (Exception e)
             {
                 Debug.Write(e);
+                MessageBox.Show("Exception Occured");
             }
             
             if (parameter != null && parameter is Window)

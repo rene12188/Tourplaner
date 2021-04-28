@@ -154,9 +154,6 @@ namespace Tourplaner_Frontend
                 UpdateImage();
                 OnPropertyChanged(nameof(TourImage));
                 OnPropertyChanged(nameof(SelectedTour));
-
-
-
             }
         }
 

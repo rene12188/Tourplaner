@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tourplaner_Data;
 using Tourplaner_Utility;
 using System.Collections.ObjectModel;
@@ -6,11 +7,14 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Text.Json;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Grid;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Tourplaner_Buisness
 {
@@ -71,12 +75,18 @@ namespace Tourplaner_Buisness
         {
             try
             {
-                //string tourJson = WebRequester.GetJson(tour.Source, tour.Destination).Result;
+                Task<float> tmp = WebRequester.ReturnDistance(tour.Source, tour.Destination);
+                await tmp;
+                tour.Distance = tmp.Result;
+
                 int rCode = Database.InsertTour(tour);
                 if (rCode == 0)
                 {
-
                     FetchImage(tour.Name, tour.Source, tour.Destination);
+                }
+                else
+                {
+                    return -1;
                 }
             }
             catch (Exception e)
@@ -100,8 +110,6 @@ namespace Tourplaner_Buisness
         public static ObservableCollection<Tour> UpdateTours(string term = "")
         {
             return Database.SearchTours(term);
-
-
         }
 
         public static async  Task<int>  DeleteTour(Tour tour)
