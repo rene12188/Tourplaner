@@ -32,20 +32,15 @@ namespace Tourplaner_Tests
 
 
          [Test]
-         public  void Buisnesslogic_Fetchimage()
+         public async Task Buisnesslogic_Fetchimage()
          {
-              Mainlogic.FetchImage("ASD", "Illmitz", "Apetlon");
-             
+              Task<int> tmp =  Mainlogic.FetchImage("ASD", "Illmitz", "Apetlon");
+              await tmp;
+
              Assert.IsTrue(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg"));
          }
-         [Test]
-        public void Buisnesslogic_Deleteimage()
-        {
-            Mainlogic.DeleteTourimage(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg");
-            Assert.IsFalse(File.Exists(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg"));
-        }
 
-        [Test]
+         [Test]
         public void Buisnesslogic_SerializeTourJson()
         {
             Tour Tour1 = new Tour(null,"Weite Runde", "abc", "Illmitz", "Podersdorf", 20);
@@ -81,7 +76,7 @@ namespace Tourplaner_Tests
             Mainlogic.Export(Tourlog, @"E:\tmp");
 
            
-            Assert.IsTrue(File.Exists(@"E:\tmp\Tours.txt"));
+            Assert.IsTrue(File.Exists(@"E:\tmp\Tours.json"));
         }
 
         [Test]
@@ -97,7 +92,7 @@ namespace Tourplaner_Tests
             Tour1.Tourlogs = Tourloglist;
             Tourlog.Add(Tour1);
 
-            ObservableCollection<Tour> returnval = Mainlogic.DeserializeTours(@"E:\tmp");
+            ObservableCollection<Tour> returnval = Mainlogic.DeserializeTours(@"E:\tmp\Tours.json");
 
             Assert.AreEqual(returnval[0].Name, Tourlog[0].Name);
         }

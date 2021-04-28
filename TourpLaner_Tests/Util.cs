@@ -13,13 +13,6 @@ namespace Tourplaner_Tests
     public class Util
     {
         [Test]
-        public void TestConfigloader()
-        {
-            string result = null;
-            result = CFGManager.ReadSetting("Username");
-            Assert.AreEqual("a", result, "Some useful error message");
-        }
-        [Test]
         public void TestPDFStringTourlog()
         {
              var TL = new Tourlog(-1, DateTime.Now, "Very Nice", 10, 120, 3, 3.34, 4, 200, 40, 3.5);

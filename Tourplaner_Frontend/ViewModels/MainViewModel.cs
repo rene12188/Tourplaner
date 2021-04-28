@@ -134,7 +134,7 @@ namespace Tourplaner_Frontend
             }
             set
             {
-                Debug.Write("Selected Tour = " + value.Name + "\n");
+                log.Info("Selected Tour = " + value.Name + "\n");
                 _publicselectedTour = value;
             }
         }
@@ -172,7 +172,7 @@ namespace Tourplaner_Frontend
             {
                 if(value != null)
                 {
-                    Debug.WriteLine("Selected Tourlog: " + value.TLID);
+                    log.Info("Selected Tourlog: " + value.TLID);
                     _selectecTourlog = value;
                     OnPropertyChanged(nameof(_selectecTourlog));
                 }
