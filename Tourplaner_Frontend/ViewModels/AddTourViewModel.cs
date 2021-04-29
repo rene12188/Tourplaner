@@ -92,7 +92,7 @@ namespace Tourplaner_Frontend
             }
         }
 
-        public float _distance;
+        public float _distance = 0;
 
         public float Distance
         {

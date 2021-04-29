@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Grid;
@@ -33,6 +34,8 @@ namespace Tourplaner_Buisness
                 PdfGraphics graphics = page.Graphics;
 
                 PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
+
+                graphics.DrawString(selectedTour.Name, font, PdfBrushes.Black, new PointF(10, 10));
 
                 PdfGrid pdfGrid = new PdfGrid();
                 //Create a DataTable
@@ -58,7 +61,7 @@ namespace Tourplaner_Buisness
                 //Assign data source
                 pdfGrid.DataSource = dataTable;
                 //Draw grid to the page of PDF document
-                pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 10));
+                pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 40));
 
                 document.Save(fs);
 

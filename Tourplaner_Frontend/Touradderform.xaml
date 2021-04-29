@@ -32,12 +32,10 @@
         <Label Grid.Row="2" Grid.Column="1">Description</Label>
         <Label Grid.Row="3" Grid.Column="1"  >Destination</Label>
         <Label Grid.Row="4" Grid.Column="1">Source</Label>
-        <Label Grid.Row="5" Grid.Column="1">Distance</Label>
         <TextBox  Grid.Row="1" Grid.Column="2" Text="{Binding Tourname,  UpdateSourceTrigger=PropertyChanged}" Name="TName" ></TextBox>
         <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"  Name="Desc"></TextBox>
         <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Source , UpdateSourceTrigger=PropertyChanged}"  Name="Dest"></TextBox>
         <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"  Name="Src"></TextBox>
-        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Distance , UpdateSourceTrigger=PropertyChanged}"  Name="Dist"></TextBox>
         <Button  Grid.Row="6" Grid.Column="2" Command="{Binding Submittour}" CommandParameter="{Binding ElementName=RTW}"> Submit</Button>
     </Grid>
 </Window>
