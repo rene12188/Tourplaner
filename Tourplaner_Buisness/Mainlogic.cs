@@ -22,11 +22,15 @@ namespace Tourplaner_Buisness
     static public class Mainlogic
     {
 
-        public static void  CreatePDF(string path, Tour selectedTour)
+        public static int  CreatePDF(string path, Tour selectedTour)
         {
             try
             {
                 FileStream fs = File.Open(Path.Combine(path, "Report.pdf"), FileMode.Create);
+                if (!fs.CanWrite)
+                {
+                    return -1;
+                }
                 PdfDocument document = new PdfDocument();
 
                 PdfPage page = document.Pages.Add();
@@ -72,6 +76,8 @@ namespace Tourplaner_Buisness
             {
                 throw e;
             }
+
+            return 0;
 
         }
         public static async Task<int> SaveTour(Tour tour)
