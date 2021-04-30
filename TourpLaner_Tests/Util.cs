@@ -20,5 +20,12 @@ namespace Tourplaner_Tests
                  Assert.AreEqual(TL.PrintToPDF(), expected, "Some useful error message");
         }
 
+        [Test]
+        public void Test_Tour_to_String()
+        {
+            Tour Tour1 = new Tour(null, "Weite Runde", "abc", "Illmitz", "Podersdorf", 20);
+            Assert.AreEqual(Tour1.Name, Tour1.ToString() , "Some useful error message");
+        }
+
     }
 }

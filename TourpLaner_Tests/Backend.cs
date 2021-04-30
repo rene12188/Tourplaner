@@ -33,10 +33,10 @@ namespace Tourplaner_Tests
             ObservableCollection<Tour> tmp = new ObservableCollection<Tour>();
             tmp = Database.SearchTours();
 
-            Assert.AreEqual(3, tmp.Count);
+            Assert.AreEqual(4, tmp.Count);
         }
 
-        [Test]
+        [Test, Order(1)]
         public void Database_Inserttours()
         {
             Tour tmp = new Tour(null,"Weite Runde","abc" ,"Illmitz", "Podersdorf", 20);
@@ -44,7 +44,7 @@ namespace Tourplaner_Tests
 
             Assert.AreEqual(0, returncode);
         }
-        [Test]
+        [Test, Order(2)]
         public void Database_GetTours_Inserttourlog()
         {
 
@@ -53,8 +53,16 @@ namespace Tourplaner_Tests
 
             Assert.AreEqual(0, ret);
         }
-
         [Test]
+        public void Database_GetTours_Inserttourlog_Failed()
+        {
+
+            Tourlog tmp = new Tourlog(-1, DateTime.Now, "Very Nice", 10, 120, 3, 3.34, 4, 200, 40, 3.5);
+            int ret = Database.InsertTourlogs(tmp, "컴컴컴컴컴컴컴컴");
+
+            Assert.AreEqual(-1, ret);
+        }
+        [Test, Order(3)]
         public void Database_GetTours_SerachTerm()
         {
             ObservableCollection<Tour> tmp = new ObservableCollection<Tour>();
@@ -62,7 +70,7 @@ namespace Tourplaner_Tests
 
             Assert.AreEqual(tmp[0].Name, "Weite Runde");
         }
-        [Test]
+        [Test, Order(4)]
         public void Database_Deletetours()
         {
             int returncode = Database.DeleteTour("Weite Runde");

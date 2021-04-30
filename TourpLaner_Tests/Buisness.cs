@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Tourplaner_Buisness;
 using Tourplaner_Utility;
 
+
 namespace Tourplaner_Tests
 {
     public class Buisness_Tests
@@ -97,11 +98,57 @@ namespace Tourplaner_Tests
             Assert.AreEqual(returnval[0].Name, Tourlog[0].Name);
         }
 
+        [Test]
+        public void Buisnesslogic_CreatePDF()
+        {
+            Tour Tour1 = new Tour(null, "Weite Runde", "abc", "Illmitz", "Podersdorf", 20);
+            Tourlog TL1 = new Tourlog(-1, DateTime.Now, "Very Nice", 10, 120, 3, 3.34, 4, 200, 40, 3.5);
+
+
+            ObservableCollection<Tourlog> Tourloglist = new ObservableCollection<Tourlog>();
+            ObservableCollection<Tour> Tourlog = new ObservableCollection<Tour>();
+            Tourloglist.Add(TL1);
+            Tour1.Tourlogs = Tourloglist;
+            
+
+           Mainlogic.CreatePDF(@"C:\tmp", Tour1);
+
+            Assert.AreEqual(true, File.Exists(@"C:\tmp\Report.pdf") );
+        }
+
+        [Test]
+        public void Buisnesslogic_CreatePDFFailed()
+        {
+            Exception ex_returnval = null;
+            Tour Tour1 = new Tour(null, "Weite Runde", "abc", "Illmitz", "Podersdorf", 20);
+            Tourlog TL1 = new Tourlog(-1, DateTime.Now, "Very Nice", 10, 120, 3, 3.34, 4, 200, 40, 3.5);
+
+
+            ObservableCollection<Tourlog> Tourloglist = new ObservableCollection<Tourlog>();
+            ObservableCollection<Tour> Tourlog = new ObservableCollection<Tour>();
+            Tourloglist.Add(TL1);
+            Tour1.Tourlogs = Tourloglist;
+
+            try
+            {
+                int returnval = Mainlogic.CreatePDF(@"U:\tmp", Tour1);
+            }
+            catch (Exception e)
+            {
+                  ex_returnval = e;
+            }
+
+            
+
+            Assert.AreEqual(typeof(DirectoryNotFoundException), ex_returnval.GetType());
+        }
+
         [TearDown]
          public void Teardown()
          {
             File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test.jpg"); 
             File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg");
+            File.Delete(@"C:\tmp\Report.pdf");
         }
     }
 }
