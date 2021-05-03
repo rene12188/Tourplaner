@@ -138,6 +138,7 @@ namespace Tourplaner_Frontend
             {
                 log.Info("Selected Tour = " + value.Name + "\n");
                 _publicselectedTour = value;
+                
             }
         }
 
@@ -153,6 +154,10 @@ namespace Tourplaner_Frontend
             {
                 _selectedTour = value;
                 _publicselectedTour = value;
+                AverageDistance = 0;
+                AverageDifficulty = 0;
+                AverageRating = 0;
+                AverageSpeed = 0;
                 UpdateImage();
                 OnPropertyChanged(nameof(TourImage));
                 OnPropertyChanged(nameof(SelectedTour));
@@ -269,11 +274,117 @@ namespace Tourplaner_Frontend
             this.SetImageFolder = new SetImageFolder(this);
         }
 
+
+
+        private double _averageDistance;
+
+        public double AverageDistance
+        {
+            get
+            {
+                return _averageDistance;
+            }
+            set
+            {
+                double sum = 0;
+                if (_selectedTour != null)
+                {
+                    
+                    foreach (var TL in _selectedTour.Tourlogs)
+                    {
+                         sum =+ TL.Distance;
+                    }
+
+                    _averageDistance = sum / _selectedTour.Tourlogs.Count;
+                    OnPropertyChanged(nameof(AverageDistance));
+                }
+            
+            }
+        }
+
+        private double _averageSpeed;
+
+        public double AverageSpeed
+        {
+            get
+            {
+                return _averageSpeed;
+            }
+            set
+            {
+                double sum = 0;
+                if (_selectedTour != null)
+                {
+
+                    foreach (var TL in _selectedTour.Tourlogs)
+                    {
+                        sum = +TL.AvgSpeed;
+                    }
+
+                    _averageSpeed = sum / _selectedTour.Tourlogs.Count;
+                    OnPropertyChanged(nameof(AverageSpeed));
+                }
+            }
+        }
+
+        private double _averageRating;
+
+        public double AverageRating
+        {
+            get
+            {
+                return _averageRating;
+            }
+            set
+            {
+                double sum = 0;
+                if (_selectedTour != null)
+                {
+
+                    foreach (var TL in _selectedTour.Tourlogs)
+                    {
+                        sum = +TL.Rating;
+                    }
+
+                    _averageRating = sum / _selectedTour.Tourlogs.Count;
+                    OnPropertyChanged(nameof(_averageRating));
+                }
+            }
+        }
+
+        private double _averageDifficulty;
+
+        public double AverageDifficulty
+        {
+            get
+            {
+                return _averageDifficulty;
+            }
+            set
+            {
+                double sum = 0;
+                if (_selectedTour != null)
+                {
+
+                    foreach (var TL in _selectedTour.Tourlogs)
+                    {
+                        sum = +TL.Difficulty;
+                    }
+
+                    _averageDifficulty = sum / _selectedTour.Tourlogs.Count;
+                    OnPropertyChanged(nameof(AverageDifficulty));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             Debug.Print($"propertyChanged \"{propertyName}\"");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
     }
 }

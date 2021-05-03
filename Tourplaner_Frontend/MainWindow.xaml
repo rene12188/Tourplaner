@@ -1,4 +1,5 @@
 ﻿<Window x:Class="TourPlaner.MainWindow"
+
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -48,13 +49,13 @@
         <Button  Grid.Row="3" Grid.Column="5" Command="{Binding DeleteLog, UpdateSourceTrigger=PropertyChanged}">Del Log</Button>
         <TextBox x:Name="Searchbar" Grid.Row="1" Grid.Column="4" Text="{Binding Searchterm, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" />
         <Image x:Name="TourImageShow"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Stretch="Fill" Source="{Binding TourImage,UpdateSourceTrigger=PropertyChanged}">
-         <!--   <Image.Source>
+            <!--   <Image.Source>
                 <BitmapImage UriSource="{Binding TourImage.UriSource ,UpdateSourceTrigger=PropertyChanged}"></BitmapImage>
             </Image.Source>-->
 
         </Image>
-        
-      
+
+
         <DataGrid x:Name="Tourloglist" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" ItemsSource="{Binding SelectedTour.Tourlogs, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding  SelectedTourlog, UpdateSourceTrigger=PropertyChanged}"/>
         <ListBox x:Name="TL" Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DisplayTourlist, Mode=OneWay}" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="False">
         </ListBox>
@@ -62,7 +63,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="95*"/>
                 <ColumnDefinition Width="95*"/>
-               
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -71,16 +72,29 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="90"/>
-                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="247*"/>
             </Grid.RowDefinitions>
-            <Label Grid.ColumnSpan="2" Content="{Binding SelectedTour.Name, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Bold"  ></Label>
-            <Label Grid.Column="0" Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Source</Label>
+            <Label Grid.ColumnSpan="2" Content="{Binding SelectedTour.Name, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Left" FontWeight="Bold"></Label>
+            <Label Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Source</Label>
             <Label Grid.Column="1" Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Destination</Label>
-            <Label Grid.Row="3" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center"> Description</Label>
-            <Label Grid.Column="2" Grid.Row="2"  Content="{Binding SelectedTour.Destination, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Normal"  ></Label>
-            <Label Grid.Column="0" Grid.Row="2"  Content="{Binding SelectedTour.Source, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Normal"  ></Label>
-            <Label Grid.Row="4" Grid.ColumnSpan="2" Content="{Binding SelectedTour.Description , UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center"  ></Label>
+            <Label Grid.Row="3" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" Margin="65,0,0,0">Description</Label>
+            <Label Grid.Column="1" Grid.Row="2"  Content="{Binding SelectedTour.Destination, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Normal"  ></Label>
+            <Label Grid.Row="2"  Content="{Binding SelectedTour.Source, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Normal"  />
+            <Label Grid.Row="4" Content="{Binding SelectedTour.Description , UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Left" ></Label>
+            <Label Grid.Row="5">Average Distance</Label>
+            <Label Grid.Row="6"  >Average Speed</Label>
+            <Label Grid.Row="7" >Average Rating</Label>
+            <Label Grid.Row="8">Average Difficulty</Label>
+
+            <Label Grid.Row="5" Grid.Column="2" Content="{Binding AverageDistance, UpdateSourceTrigger=PropertyChanged }" ></Label>
+            <Label Grid.Row="6" Grid.Column="2" Content="{Binding AverageSpeed , UpdateSourceTrigger=PropertyChanged}"></Label>
+            <Label Grid.Row="7" Grid.Column="2" Content="{Binding AverageRating , UpdateSourceTrigger=PropertyChanged}"></Label>
+            <Label Grid.Row="8" Grid.Column="2" Content="{Binding AverageDifficulty , UpdateSourceTrigger=PropertyChanged}"></Label>
         </Grid>
     </Grid>
- 
+
 </Window>
