@@ -48,8 +48,7 @@ namespace Tourplaner_Frontend.Commands
                 _mainviewModel.SelectedTour = null;
                 _mainviewModel.UpdateImage();
                 _mainviewModel.TourImage = null;
-                var i = Mainlogic.DeleteTour(tmp);
-                await i;
+                int i = await Mainlogic.DeleteTour(tmp);
                 _mainviewModel.UpdateImage();
                 _mainviewModel.UpdateTours();
             }

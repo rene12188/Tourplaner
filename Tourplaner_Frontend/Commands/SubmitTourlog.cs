@@ -33,22 +33,24 @@ namespace Tourplaner_Frontend.Commands
             return true;
         }
 
-        public void Execute(object? parameter)
+        public async void Execute(object? parameter)
         {
 
 
 
             try
             {
-                Tourlog tmp = new Tourlog(__addtourviewmodel.Time, __addtourviewmodel.Report, __addtourviewmodel.Distance, __addtourviewmodel.TTime, __addtourviewmodel.Rating, __addtourviewmodel.Difficulty, __addtourviewmodel.Temp);
-                Mainlogic.Inserttourlog(tmp, MainViewModel.PublicselectedTour.Name);
+                Tourlog tmp = new Tourlog(__addtourviewmodel.Time, __addtourviewmodel.Report,
+                    __addtourviewmodel.Distance, __addtourviewmodel.TTime, __addtourviewmodel.Rating,
+                    __addtourviewmodel.Difficulty, __addtourviewmodel.Temp);
+                await Mainlogic.Inserttourlog(tmp, MainViewModel.PublicselectedTour.Name);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-           
+
 
             if (parameter != null && parameter is Window)
             {

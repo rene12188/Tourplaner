@@ -5,7 +5,9 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using System.Windows.Input;
 using Tourplaner_Buisness;
 using Tourplaner_Frontend.Commands;
@@ -171,7 +173,7 @@ namespace Tourplaner_Frontend
                 {
                     log.Info("Selected Tourlog: " + value.TLID);
                     _selectecTourlog = value;
-                    OnPropertyChanged(nameof(_selectecTourlog));
+                    OnPropertyChanged(nameof(SelectedTourlog));
                 }
 
             }
@@ -189,23 +191,26 @@ namespace Tourplaner_Frontend
                 _searchterm = value;
                 log.Info("Searchterm changed Updated");
                 SearchTour();
-                OnPropertyChanged(nameof(_searchterm));
+                OnPropertyChanged(nameof(Searchterm));
             }
 
         }
 
         public void SearchTour()
         {
-            this._tourlist = Mainlogic.UpdateTours();
-            this._displaytourlist.Clear();
-               foreach (var tour in this._tourlist)
-            {
-                if (tour.Name.Contains(_searchterm) || tour.Destination.Contains(_searchterm))
-                {
-                    _displaytourlist.Add(tour);
-                }
-            }
-            OnPropertyChanged(nameof(_searchterm));
+            _displaytourlist.Clear();
+            /*   foreach (var tour in this._tourlist)
+               {
+                   if (tour.Name.Contains(_searchterm) || tour.Destination.Contains(_searchterm))
+                   {
+                       _displaytourlist.Add(tour);
+                   }
+               }*/
+             _displaytourlist = new ObservableCollection<Tour>(from TL in _tourlist
+                where TL.Name.Contains(_searchterm) || TL.Destination.Contains(_searchterm)
+                select TL);
+          //  _displaytourlist.Add(tmp);
+          OnPropertyChanged(nameof(DisplayTourlist));
             log.Info("Displaytourlist changed Selected now contains: "+ _displaytourlist.Count + " Entries");
         }
 
@@ -240,7 +245,7 @@ namespace Tourplaner_Frontend
             
         }
 
-        public void UpdateTours()
+        public void  UpdateTours()
         {
             this._tourlist = Mainlogic.UpdateTours();
         }

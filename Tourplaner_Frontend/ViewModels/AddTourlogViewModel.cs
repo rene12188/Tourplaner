@@ -126,7 +126,7 @@ namespace Tourplaner_Frontend
                 this._selectedtourname = value;
             }
         }
-    public AddTourlogViewModel()
+        public AddTourlogViewModel(MainViewModel mainViewModel)
     {
         this._time = DateTime.Now;
         SubmitTourlog = new SubmitTourlog(this, _selectedtourname);

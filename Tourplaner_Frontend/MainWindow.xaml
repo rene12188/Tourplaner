@@ -35,7 +35,9 @@
                     <MenuItem Header="_Report" Command="{Binding Report, UpdateSourceTrigger=PropertyChanged}" />
                     <MenuItem Header="_Set Folder" Command="{Binding SetImageFolder, UpdateSourceTrigger=PropertyChanged}" />
                 </MenuItem>
-                <MenuItem Header="Help" ></MenuItem>
+                <MenuItem Header="Help" >
+
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Button  Grid.Row="1" Grid.Column="0" Command="{Binding AddTour,  UpdateSourceTrigger=PropertyChanged}" >Add</Button>

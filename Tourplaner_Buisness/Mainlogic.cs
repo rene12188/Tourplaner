@@ -111,7 +111,7 @@ namespace Tourplaner_Buisness
             Database.DeleteTourlog(tmp.TLID);
         }
 
-        public static void Inserttourlog(Tourlog tmp, string selectedname)
+        public static async Task Inserttourlog(Tourlog tmp, string selectedname)
         {
             Database.InsertTourlogs(tmp, selectedname);
         }
@@ -134,7 +134,7 @@ namespace Tourplaner_Buisness
             File.Delete(imagepath);
         }
 
-        public static int CopyTour(string tmp)
+        public static async Task<int> CopyTour(string tmp)
         {
 
             return Database.CopyTour(tmp);
