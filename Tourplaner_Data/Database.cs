@@ -4,6 +4,7 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Threading.Tasks;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Data
@@ -37,7 +38,7 @@ namespace Tourplaner_Data
         }
      
 
-        public static async void SimpleQuery(string queryToRun, string payload)
+        public static async Task<NpgsqlDataReader> SimpleQuery(string queryToRun, string payload)
         {
 
             using NpgsqlConnection conn = Connectionhander.returnConnection();
@@ -54,15 +55,7 @@ namespace Tourplaner_Data
                 cmd.Parameters.Add(new NpgsqlParameter("payload", payload));
 
                 NpgsqlDataReader ndr = await cmd.ExecuteReaderAsync();
-
-                if (ndr.HasRows)
-                {
-                    Console.WriteLine("Query Successfully executed!");
-                }
-                else
-                {
-                    Console.WriteLine("OOPS");
-                }
+                return ndr;
 
             }
             catch (Exception e)

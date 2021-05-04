@@ -51,6 +51,8 @@ namespace Tourplaner_Frontend.Commands
                 int i = await Mainlogic.DeleteTour(tmp);
                 _mainviewModel.UpdateImage();
                 _mainviewModel.UpdateTours();
+
+
             }
             catch (Exception e)
             {

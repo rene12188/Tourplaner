@@ -211,9 +211,13 @@ namespace Tourplaner_Frontend
                        _displaytourlist.Add(tour);
                    }
                }*/
-             _displaytourlist = new ObservableCollection<Tour>(from TL in _tourlist
-                where TL.Name.Contains(_searchterm) || TL.Destination.Contains(_searchterm)
-                select TL);
+            _displaytourlist = new ObservableCollection<Tour>( _tourlist.Where(x =>
+                x.Name.Contains(_searchterm) || x.Description.Contains(_searchterm) ||
+                x.Tourlogs.Any(y => y.Report.Contains(_searchterm))));
+                
+            
+
+
           //  _displaytourlist.Add(tmp);
           OnPropertyChanged(nameof(DisplayTourlist));
             log.Info("Displaytourlist changed Selected now contains: "+ _displaytourlist.Count + " Entries");
@@ -252,7 +256,9 @@ namespace Tourplaner_Frontend
 
         public void  UpdateTours()
         {
-            this._tourlist = Mainlogic.UpdateTours();
+            this._tourlist = Mainlogic.UpdateTours(); 
+            this.Searchterm = String.Empty;
+            OnPropertyChanged(nameof(Searchterm));
         }
         
         public MainViewModel()
@@ -383,8 +389,5 @@ namespace Tourplaner_Frontend
             Debug.Print($"propertyChanged \"{propertyName}\"");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
-
     }
 }

@@ -181,11 +181,18 @@ namespace Tourplaner_Buisness
         public static void Export(ObservableCollection<Tour> tourlist, string filepath)
         {
             string JSON = SerializeTours(tourlist);
-
-
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(filepath, "Tours.json")))
+            try
             {
-                outputFile.WriteLine(JSON);
+
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(filepath, "Tours.json")))
+                {
+                    outputFile.WriteLine(JSON);
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
 
 

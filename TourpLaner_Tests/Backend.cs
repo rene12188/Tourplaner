@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Tourplaner_Buisness;
 using Tourplaner_Utility;
 using System.Threading;
+using Npgsql;
 
 namespace Tourplaner_Tests
 {
@@ -23,9 +24,17 @@ namespace Tourplaner_Tests
         public void Database_Connection_is_valid()
         {
            Database.SimpleQuery("Select * from Tour;", "");
+           Assert.Pass();
         }
 
 
+        [Test]
+        public async Task Database_SimpleQuery_returns_Databasereader()
+        {
+            NpgsqlDataReader ndr = await Database.SimpleQuery("Select * from Tour;", "");
+
+            Assert.AreEqual(true, ndr.IsClosed);
+        }
 
         [Test]
         public void Database_GetTours_NOSearchterm()
@@ -33,7 +42,7 @@ namespace Tourplaner_Tests
             ObservableCollection<Tour> tmp = new ObservableCollection<Tour>();
             tmp = Database.SearchTours();
 
-            Assert.AreEqual(4, tmp.Count);
+            Assert.AreEqual(3, tmp.Count);
         }
 
         [Test, Order(1)]

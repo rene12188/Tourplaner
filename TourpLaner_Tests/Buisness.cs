@@ -80,8 +80,40 @@ namespace Tourplaner_Tests
             Assert.IsTrue(File.Exists(@"E:\tmp\Tours.json"));
         }
 
+
         [Test]
-        public void Buisnesslogic_Deserialize()
+        public void Buisnesslogic_SerializeExportFailed()
+        {
+            Exception ex_returnval = null;
+            Tour Tour1 = new Tour(null, "Weite Runde", "abc", "Illmitz", "Podersdorf", 20);
+            Tourlog TL1 = new Tourlog(-1, DateTime.Now, "Very Nice", 10, 120, 3, 3.34, 4, 200, 40, 3.5);
+            Tour Tour2 = new Tour(null, "Weite Runde2", "abc", "Illmitz", "Podersdorf", 20);
+            ObservableCollection<Tourlog> Tourloglist = new ObservableCollection<Tourlog>();
+            ObservableCollection<Tour> Tourlog = new ObservableCollection<Tour>();
+
+            Tourloglist.Add(TL1);
+            Tour1.Tourlogs = Tourloglist;
+            Tourlog.Add(Tour1);
+            Tourlog.Add(Tour2);
+            try
+            {
+
+                Mainlogic.Export(Tourlog, @"Z:\tmp");
+
+            }
+            catch (Exception e)
+            {
+                ex_returnval = e;
+            }
+
+
+
+            Assert.AreEqual(typeof(DirectoryNotFoundException), ex_returnval.GetType());
+            Assert.Pass();
+        }
+
+        [Test]
+        public void Buisnesslogic_DeserializeTourJson()
         {
             Tour Tour1 = new Tour(null,"Weite Runde", "abc", "Illmitz", "Podersdorf", 20);
             Tourlog TL1 = new Tourlog(-1, DateTime.Now, "Very Nice", 10, 120, 3, 3.34, 4, 200, 40, 3.5);
