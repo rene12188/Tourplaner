@@ -21,65 +21,6 @@ namespace Tourplaner_Buisness
 {
     static public class Mainlogic
     {
-
-        public static int  CreatePDF(string path, Tour selectedTour)
-        {
-            try
-            {
-                FileStream fs = File.Open(Path.Combine(path, "Report.pdf"), FileMode.Create);
-                if (!fs.CanWrite)
-                {
-                    return -1;
-                }
-                PdfDocument document = new PdfDocument();
-
-                PdfPage page = document.Pages.Add();
-
-                PdfGraphics graphics = page.Graphics;
-
-                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
-
-                graphics.DrawString(selectedTour.Name, font, PdfBrushes.Black, new PointF(10, 10));
-
-                PdfGrid pdfGrid = new PdfGrid();
-                //Create a DataTable
-                DataTable dataTable = new DataTable();
-                //Add columns to the DataTable
-                dataTable.Columns.Add("TLID");
-                dataTable.Columns.Add("Timestamp");
-                dataTable.Columns.Add("Report");
-                dataTable.Columns.Add("Distance");
-                dataTable.Columns.Add("Totaltime");
-                dataTable.Columns.Add("Rating");
-                dataTable.Columns.Add("AvgSpeed");
-                dataTable.Columns.Add("Difficulty");
-                dataTable.Columns.Add("EnergyBurn");
-                dataTable.Columns.Add("Temperature");
-                dataTable.Columns.Add("Water");
-                //Add rows to the DataTable
-                foreach (Tourlog TL in selectedTour.Tourlogs)
-                {
-
-                    dataTable.Rows.Add(TL.PrintToPDF());
-                }
-                //Assign data source
-                pdfGrid.DataSource = dataTable;
-                //Draw grid to the page of PDF document
-                pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 40));
-
-                document.Save(fs);
-
-                document.Close(true);
-                fs.Close();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-            return 0;
-
-        }
         public static async Task<int> SaveTour(Tour tour)
         {
             try

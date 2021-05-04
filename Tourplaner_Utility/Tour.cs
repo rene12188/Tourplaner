@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Text;
 
 namespace Tourplaner_Utility
@@ -39,6 +40,12 @@ namespace Tourplaner_Utility
         public override string ToString()
         {
             return Name;
+        }
+
+        public string[] PrintToPDF()
+        {
+            string[] expected;
+            return expected = new string[] { this.Name, this.Description, this.Source, this.Destination, this.Distance.ToString(), this.Tourlogs.Count.ToString() };
         }
     }
 }

@@ -18,10 +18,10 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace Tourplaner_Frontend.Commands
 {
-    class CreateReport : ICommand, INotifyPropertyChanged
+    class CreateSummary : ICommand, INotifyPropertyChanged
     {
         private readonly MainViewModel _mainviewModel = null;
-        public CreateReport(MainViewModel tmp)
+        public CreateSummary(MainViewModel tmp)
         {
             this._mainviewModel = tmp;
             _mainviewModel.PropertyChanged += (sender, args) =>
@@ -33,9 +33,8 @@ namespace Tourplaner_Frontend.Commands
 
         public bool CanExecute(object? parameter)
         {
-            if(_mainviewModel.SelectedTour != null)    
+
               return true;
-            return false;
         }
 
         public async void  Execute(object? parameter)
@@ -46,7 +45,7 @@ namespace Tourplaner_Frontend.Commands
             {
                 if (tmp.ShowDialog() == DialogResult.OK)
                 {
-                    PdfWriter.CreatePdfReport(tmp.SelectedPath, _mainviewModel.SelectedTour);
+                    PdfWriter.CreatePdfSummary(tmp.SelectedPath, _mainviewModel.Tourlist);
                 }
               
             }

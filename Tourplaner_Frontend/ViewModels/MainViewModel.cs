@@ -43,7 +43,7 @@ namespace Tourplaner_Frontend
         }
 
         private ObservableCollection<Tour> _tourlist = new ObservableCollection<Tour>();
-        public ObservableCollection<Tour> Tourlist
+        public  ObservableCollection<Tour> Tourlist
         {
             get
             {
@@ -120,6 +120,11 @@ namespace Tourplaner_Frontend
             set;
         }
 
+        public ICommand Summary
+        {
+            get; 
+            set;
+        }
         public ICommand SetImageFolder
         {
             get;
@@ -277,6 +282,7 @@ namespace Tourplaner_Frontend
             this.Export = new ExportTours(this);
             this.Import = new ImportTour(this);
             this.Report = new CreateReport(this);
+            this.Summary = new CreateSummary(this);
             this.SetImageFolder = new SetImageFolder(this);
         }
 
