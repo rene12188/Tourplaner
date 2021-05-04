@@ -265,8 +265,16 @@ namespace Tourplaner_Frontend
             this.Searchterm = String.Empty;
             OnPropertyChanged(nameof(Searchterm));
         }
-        
-        public MainViewModel()
+
+
+        protected static MainViewModel singelton = new MainViewModel();
+
+        public static MainViewModel Clone()
+        {
+            return singelton;
+        }
+
+        protected MainViewModel()
         {
             log.Info("Started Application");
             UpdateImage();

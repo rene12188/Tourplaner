@@ -56,7 +56,7 @@ namespace Tourplaner_Tests
             Tourlog.Add(Tour1);
 
 
-            string returnval = Mainlogic.SerializeTours(Tourlog);
+            string returnval = JsonOperator.SerializeTours(Tourlog);
             string expt = JsonSerializer.Serialize(Tourlog) ;
             Assert.AreEqual(expt, returnval);
         }
@@ -74,7 +74,7 @@ namespace Tourplaner_Tests
             Tour1.Tourlogs = Tourloglist;
             Tourlog.Add(Tour1);
             Tourlog.Add(Tour2);
-            Mainlogic.Export(Tourlog, @"E:\tmp");
+            JsonOperator.Export(Tourlog, @"E:\tmp");
 
            
             Assert.IsTrue(File.Exists(@"E:\tmp\Tours.json"));
@@ -98,7 +98,7 @@ namespace Tourplaner_Tests
             try
             {
 
-                Mainlogic.Export(Tourlog, @"Z:\tmp");
+                JsonOperator.Export(Tourlog, @"Z:\tmp");
 
             }
             catch (Exception e)
@@ -125,7 +125,7 @@ namespace Tourplaner_Tests
             Tour1.Tourlogs = Tourloglist;
             Tourlog.Add(Tour1);
 
-            ObservableCollection<Tour> returnval = Mainlogic.DeserializeTours(@"E:\tmp\Tours.json");
+            ObservableCollection<Tour> returnval = JsonOperator.DeserializeTours(@"E:\tmp\Tours.json");
 
             Assert.AreEqual(returnval[0].Name, Tourlog[0].Name);
         }

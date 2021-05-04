@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -11,13 +12,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Tourplaner_Buisness;
+using Tourplaner_Frontend.Annotations;
 using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend.Commands
 {
-    class SubmitTour : ICommand
+    class SubmitTour : ICommand, INotifyPropertyChanged
     {
         private readonly AddTourViewModel __addtourviewmodel = null;
+        private readonly MainViewModel _mainViewModel = MainViewModel.Clone();
         public SubmitTour(AddTourViewModel tmp)
         {
             this.__addtourviewmodel = tmp;
@@ -56,6 +59,9 @@ namespace Tourplaner_Frontend.Commands
                 {
                     MessageBox.Show("An Could not insert Entry into the Database");
                 }
+                _mainViewModel.UpdateTours();
+                OnPropertyChanged(nameof(_mainViewModel.Searchterm));
+                
             }
             catch (Exception e)
             {
@@ -70,5 +76,12 @@ namespace Tourplaner_Frontend.Commands
         }
         
         public event EventHandler? CanExecuteChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
