@@ -266,15 +266,7 @@ namespace Tourplaner_Frontend
             OnPropertyChanged(nameof(Searchterm));
         }
 
-
-        protected static MainViewModel singelton = new MainViewModel();
-
-        public static MainViewModel Clone()
-        {
-            return singelton;
-        }
-
-        protected MainViewModel()
+        public MainViewModel()
         {
             log.Info("Started Application");
             UpdateImage();
@@ -292,6 +284,7 @@ namespace Tourplaner_Frontend
             this.Report = new CreateReport(this);
             this.Summary = new CreateSummary(this);
             this.SetImageFolder = new SetImageFolder(this);
+            
         }
 
 

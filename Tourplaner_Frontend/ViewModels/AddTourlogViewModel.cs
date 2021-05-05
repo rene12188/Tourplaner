@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using Tourplaner_Frontend.Commands;
 using System.Windows.Controls;
+using Tourplaner_Utility;
 
 namespace Tourplaner_Frontend
 {
@@ -114,22 +115,23 @@ namespace Tourplaner_Frontend
             set;
         }
 
-        private string _selectedtourname;
-        public string SelectedTourName
+        private Tour _selectedtour;
+        public Tour SelectedTour
         {
             get
             {
-                return _selectedtourname;
+                return _selectedtour;
             }
             set
             {
-                this._selectedtourname = value;
+                this._selectedtour = value;
             }
         }
-        public AddTourlogViewModel(MainViewModel mainViewModel)
+        public AddTourlogViewModel()
     {
+        SelectedTour = MainViewModel.PublicselectedTour;
         this._time = DateTime.Now;
-        SubmitTourlog = new SubmitTourlog(this, _selectedtourname);
+        SubmitTourlog = new SubmitTourlog(this, _selectedtour.Name);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

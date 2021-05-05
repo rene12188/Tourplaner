@@ -143,7 +143,7 @@ namespace Tourplaner_Tests
             Tour1.Tourlogs = Tourloglist;
             
 
-           PDFWriter.CreatePDF(@"C:\tmp", Tour1);
+           PdfWriter.CreatePdfReport(@"C:\tmp", Tour1);
 
             Assert.AreEqual(true, File.Exists(@"C:\tmp\Report.pdf") );
         }
@@ -163,7 +163,7 @@ namespace Tourplaner_Tests
 
             try
             {
-                int returnval = PDFWriter.CreatePDF(@"U:\tmp", Tour1);
+                int returnval = PdfWriter.CreatePdfReport(@"U:\tmp", Tour1);
             }
             catch (Exception e)
             {

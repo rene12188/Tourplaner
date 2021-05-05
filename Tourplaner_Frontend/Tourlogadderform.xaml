@@ -38,6 +38,7 @@
         <Label Grid.Row="5" Grid.Column="1">Distance</Label>
         <Label Grid.Row="6" Grid.Column="1">Total Time (In Minutes)</Label>
         <Label Grid.Row="7" Grid.Column="1">Temperature in non-Retarded Units (°C)</Label>
+        <local:UserControl1  Grid.Row="8" Grid.Column="1" Content="{Binding SelectedTour.Distance }" ></local:UserControl1>
         <DatePicker  Grid.Row="1" Grid.Column="2" SelectedDate="{Binding Time ,  UpdateSourceTrigger=PropertyChanged}" Name="TName" DisplayDate="04/23/2021 13:34:00" ></DatePicker>
         <ComboBox Grid.Row="2" Grid.Column="2" SelectedIndex="{Binding Difficulty, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem IsSelected="True">Very Easy</ComboBoxItem>

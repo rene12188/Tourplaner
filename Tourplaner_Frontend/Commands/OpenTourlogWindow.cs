@@ -34,12 +34,12 @@ namespace Tourplaner_Frontend
 
         public bool CanExecute(object parameter)
         {
-            if (Newwindow == null)
+            if (Newwindow == null && _mainViewModel.SelectedTour != null)
             {
                 return true;
             }
-
             return false;
+
         }
 
         public void Execute(object parameter)

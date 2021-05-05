@@ -20,7 +20,6 @@ namespace Tourplaner_Frontend.Commands
     class SubmitTour : ICommand, INotifyPropertyChanged
     {
         private readonly AddTourViewModel __addtourviewmodel = null;
-        private readonly MainViewModel _mainViewModel = MainViewModel.Clone();
         public SubmitTour(AddTourViewModel tmp)
         {
             this.__addtourviewmodel = tmp;
@@ -59,9 +58,7 @@ namespace Tourplaner_Frontend.Commands
                 {
                     MessageBox.Show("An Could not insert Entry into the Database");
                 }
-                _mainViewModel.UpdateTours();
-                OnPropertyChanged(nameof(_mainViewModel.Searchterm));
-                
+
             }
             catch (Exception e)
             {

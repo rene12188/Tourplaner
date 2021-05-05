@@ -67,7 +67,9 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="90"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
+               
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
@@ -77,19 +79,21 @@
             <Label Grid.ColumnSpan="2" Content="{Binding SelectedTour.Name, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Left" FontWeight="Bold" />
             <Label Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Source</Label>
             <Label Grid.Column="1" Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Center">Destination</Label>
-            <Label Grid.Row="3" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" Margin="65,0,0,0">Description</Label>
+            <Label Grid.Column="0" Grid.Row="3" FontWeight="Bold" HorizontalAlignment="Center">Distance</Label>
+            <tourplanerFrontend:UserControl1 Grid.Column="1" Grid.Row="3" FontWeight="Bold" HorizontalAlignment="Center" Content="{Binding SelectedTour.Distance}"></tourplanerFrontend:UserControl1>
+            <Label Grid.Row="4" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" Margin="65,0,0,0">Description</Label>
             <Label Grid.Column="1" Grid.Row="2"  Content="{Binding SelectedTour.Destination, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Normal" />
             <Label Grid.Row="2"  Content="{Binding SelectedTour.Source, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Center" FontWeight="Normal"  />
-            <Label Grid.Row="4" Content="{Binding SelectedTour.Description , UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Left" />
-            <Label Grid.Row="5">Average Distance</Label>
-            <Label Grid.Row="6"  >Average Speed</Label>
-            <Label Grid.Row="7" >Average Rating</Label>
-            <Label Grid.Row="8">Average Difficulty</Label>
+            <Label Grid.Row="5" Content="{Binding SelectedTour.Description , UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" HorizontalAlignment="Left" />
+            <Label Grid.Row="6">Average Distance</Label>
+            <Label Grid.Row="7"  >Average Speed</Label>
+            <Label Grid.Row="8" >Average Rating</Label>
+            <Label Grid.Row="9">Average Difficulty</Label>
 
-            <Label Grid.Row="5" Grid.Column="2" Content="{Binding AverageDistance, UpdateSourceTrigger=PropertyChanged }" />
-            <Label Grid.Row="6" Grid.Column="2" Content="{Binding AverageSpeed , UpdateSourceTrigger=PropertyChanged}" />
-            <Label Grid.Row="7" Grid.Column="2" Content="{Binding AverageRating , UpdateSourceTrigger=PropertyChanged}" />
-            <Label Grid.Row="8" Grid.Column="2" Content="{Binding AverageDifficulty , UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="6" Grid.Column="2" Content="{Binding AverageDistance, UpdateSourceTrigger=PropertyChanged }" />
+            <Label Grid.Row="7" Grid.Column="2" Content="{Binding AverageSpeed , UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="8" Grid.Column="2" Content="{Binding AverageRating , UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="9" Grid.Column="2" Content="{Binding AverageDifficulty , UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
     </Grid>
 
