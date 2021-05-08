@@ -58,7 +58,7 @@ namespace Tourplaner_Frontend.Commands
                 {
                     MessageBox.Show("An Could not insert Entry into the Database");
                 }
-
+                MainViewModel.Singelton.UpdateTours();
             }
             catch (Exception e)
             {

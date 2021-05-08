@@ -266,6 +266,8 @@ namespace Tourplaner_Frontend
             OnPropertyChanged(nameof(Searchterm));
         }
 
+        public static MainViewModel Singelton = null;
+
         public MainViewModel()
         {
             log.Info("Started Application");
@@ -284,7 +286,8 @@ namespace Tourplaner_Frontend
             this.Report = new CreateReport(this);
             this.Summary = new CreateSummary(this);
             this.SetImageFolder = new SetImageFolder(this);
-            
+            Singelton = this;
+
         }
 
 

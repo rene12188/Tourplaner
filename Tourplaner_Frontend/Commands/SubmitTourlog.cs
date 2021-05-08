@@ -44,6 +44,7 @@ namespace Tourplaner_Frontend.Commands
                     __addtourviewmodel.Distance, __addtourviewmodel.TTime, __addtourviewmodel.Rating,
                     __addtourviewmodel.Difficulty, __addtourviewmodel.Temp);
                 await Mainlogic.Inserttourlog(tmp, MainViewModel.PublicselectedTour.Name);
+                MainViewModel.Singelton.UpdateTours();
             }
             catch (Exception e)
             {
