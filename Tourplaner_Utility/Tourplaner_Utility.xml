@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tourplaner_Utility</name>
+    </assembly>
+    <members>
+        <member name="T:Tourplaner_Utility.CFGManager">
+            <summary>Loads the Config and anwers calls for certain Config settings</summary>
+        </member>
+        <member name="M:Tourplaner_Utility.CFGManager.ReadSetting(System.String)">
+            <summary>Reads the Config setting.</summary>
+            <param name="key">The key.</param>
+            <returns>
+              <para>Returns a String which Represents the read setting or "No"</para>
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Utility.CFGManager.AddUpdateAppSettings(System.String,System.String)">
+            <summary>
+              <para>
+            Updates application settings, but only in the Runtime.
+            </para>
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Tourplaner_Utility.Tour">
+            <summary>
+              <para>A Data Class which represents a Tour</para>
+            </summary>
+        </member>
+        <member name="M:Tourplaner_Utility.Tour.PrintToPDF">
+            <summary>
+              <para>
+            Print a String Array for the PDFWriter.
+            </para>
+            </summary>
+            <returns>
+              <br />
+            </returns>
+        </member>
+        <member name="T:Tourplaner_Utility.Tourlog">
+            <summary>Data Class  representing a Tourlog</summary>
+        </member>
+        <member name="M:Tourplaner_Utility.Tourlog.PrintToPDF">
+            <summary>
+              <para>
+            Creates a String Array that can be Print onto a Pdf</para>
+            </summary>
+            <returns>
+              <br />
+            </returns>
+        </member>
+    </members>
+</doc>

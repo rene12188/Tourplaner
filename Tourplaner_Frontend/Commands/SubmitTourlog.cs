@@ -30,7 +30,13 @@ namespace Tourplaner_Frontend.Commands
         }
         public bool CanExecute(object? parameter)
         {
-            return true;
+            if (!string.IsNullOrWhiteSpace(__addtourviewmodel.Distance.ToString()) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Report) &&
+                !string.IsNullOrWhiteSpace(__addtourviewmodel.Temp.ToString()) && !string.IsNullOrWhiteSpace(__addtourviewmodel.TTime.ToString()))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public async void Execute(object? parameter)

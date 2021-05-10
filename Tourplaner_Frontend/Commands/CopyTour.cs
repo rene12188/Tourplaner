@@ -32,13 +32,9 @@ namespace Tourplaner_Frontend.Commands
 
         public bool CanExecute(object? parameter)
         {
-        /*    if (!string.IsNullOrWhiteSpace(__addtourviewmodel.Tourname) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Source) && !string.IsNullOrWhiteSpace(__addtourviewmodel.Destination))
-            {
+            if (_mainviewModel.SelectedTour != null)
                 return true;
-            }
-
-            return false;*/
-        return true;
+            return false;
         }
 
         public async void Execute(object? parameter)

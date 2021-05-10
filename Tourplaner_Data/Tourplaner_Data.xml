@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tourplaner_Data</name>
+    </assembly>
+    <members>
+        <member name="T:Tourplaner_Data.Database">
+            <summary>
+              <para>Static Database Class, which handles Connections to the DB</para>
+            </summary>
+        </member>
+        <member name="T:Tourplaner_Data.Database.Connectionhander">
+            <summary>
+              <para>Singelton, Prepares the Connectionstring</para>
+            </summary>
+        </member>
+        <member name="M:Tourplaner_Data.Database.Connectionhander.LoadCFG">
+            <summary>
+              <para>
+            Loads the CFGstring for the Connectionhandler
+            </para>
+            </summary>
+            <returns>
+              <br />
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.SimpleQuery(System.String,System.String)">
+            <summary>Simples the query.</summary>
+            <param name="queryToRun">The query to run.</param>
+            <param name="payload">The payload.</param>
+            <returns>
+              <br />
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.SearchTours(System.String)">
+            <summary>Searches the tours.</summary>
+            <param name="Searchterm">The searchterm.</param>
+            <returns>Oberservable Collection of said Tours</returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.SearchTourlogs(System.String)">
+            <summary>Returns the tourlogs.</summary>
+            <param name="nameoftour">Name der Tour</param>
+            <returns>
+              <para>Returns an Oberservable Collection with Tourlogs</para>
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.InsertTour(Tourplaner_Utility.Tour)">
+            <summary>Inserts the tour.</summary>
+            <param name="tmo">The tmo.</param>
+            <returns>
+              <br />
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.DeleteTour(System.String)">
+            <summary>Deletes the tour.</summary>
+            <param name="name">The name.</param>
+            <returns>
+              <br />
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.InsertTourlogs(Tourplaner_Utility.Tourlog,System.String)">
+            <summary>Inserts the tourlogs.</summary>
+            <param name="TL">The tl.</param>
+            <param name="name">The name.</param>
+            <returns>
+              <br />
+            </returns>
+        </member>
+        <member name="M:Tourplaner_Data.Database.DeleteTourlog(System.Int32)">
+            <summary>Deletes the tourlog.</summary>
+            <param name="Logid">The logid.</param>
+        </member>
+        <member name="M:Tourplaner_Data.Database.DeleteTourlog(System.String)">
+            <summary>Deletes the tourlog.</summary>
+            <param name="Tourname">The tourname.</param>
+        </member>
+        <member name="M:Tourplaner_Data.Database.NukeDatabase">
+            <summary>
+              <para>
+            Nukes the database.
+            (Tactical Nuke incomeing)</para>
+            </summary>
+        </member>
+        <member name="M:Tourplaner_Data.Database.CopyTour(System.String)">
+            <summary>Copies the tour.</summary>
+            <param name="name">The name.</param>
+            <returns>
+              <br />
+            </returns>
+        </member>
+    </members>
+</doc>

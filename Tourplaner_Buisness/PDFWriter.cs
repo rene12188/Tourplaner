@@ -14,8 +14,19 @@ using Tourplaner_Utility;
 
 namespace Tourplaner_Buisness
 {
+
+    /// <summary>This Class has the Job of Creating the PDF Summary and The PDF Report</summary>
     public static class PdfWriter
     {
+
+
+        /// <summary>Creates the PDF report.
+        /// Needs A valid Path to a Folder as a String</summary>
+        /// <param name="path">The path.</param>
+        /// <param name="selectedTour">The selected tour.</param>
+        /// <returns>
+        ///   <para>No Returnvalue, but a Directory not Found Exception may be thrown</para>
+        /// </returns>
         public static int  CreatePdfReport(string path, Tour selectedTour)
         {
             try
@@ -58,6 +69,11 @@ namespace Tourplaner_Buisness
                 }
                 //Assign data source
                 pdfGrid.DataSource = dataTable;
+
+                //Load the image from the disk
+                FileStream imageFileStream = File.Open(selectedTour.Image, FileMode.Open);
+                PdfBitmap image = new PdfBitmap(imageFileStream);
+                graphics.DrawImage(image, 0, 0);
                 //Draw grid to the page of PDF document
                 pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 40));
 
@@ -74,6 +90,14 @@ namespace Tourplaner_Buisness
             return 0;
 
         }
+
+
+        /// <summary>Creates the PDF summary.</summary>
+        /// <param name="path">The path.</param>
+        /// <param name="Tourlist">The tourlist.</param>
+        /// <returns>
+        ///   <para>No Returnvalue, but may throw a Directory not found Exception</para>
+        /// </returns>
         public static int CreatePdfSummary(string path, ObservableCollection<Tour> Tourlist)
         {
             try

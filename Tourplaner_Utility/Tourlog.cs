@@ -5,6 +5,8 @@ using System.Text;
 
 namespace Tourplaner_Utility
 {
+
+    /// <summary>Data Class  representing a Tourlog</summary>
     public class Tourlog
     {
         public Tourlog(int tlid, DateTime timestamp, string report, double distance, int totaltime, int rating, double avgapseed,
@@ -58,6 +60,14 @@ namespace Tourplaner_Utility
         public int Temperature { get; set; }
         public double Water { get; set; }
 
+
+        /// <summary>
+        ///   <para>
+        /// Creates a String Array that can be Print onto a Pdf</para>
+        /// </summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public string[] PrintToPDF()
         {
             string[] expected;

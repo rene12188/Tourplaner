@@ -17,11 +17,7 @@ namespace Tourplaner_Frontend.Commands
 
         }
 
-        public bool CanExecute(object? parameter)
-        {
-
-        return true;
-        }
+        public bool CanExecute(object? parameter) => true;
 
         public void Execute(object? parameter)
         {

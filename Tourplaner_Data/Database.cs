@@ -11,8 +11,15 @@ namespace Tourplaner_Data
 {
 
 
+    /// <summary>
+    ///   <para>Static Database Class, which handles Connections to the DB</para>
+    /// </summary>
     public class Database
     {
+
+        /// <summary>
+        ///   <para>Singelton, Prepares the Connectionstring</para>
+        /// </summary>
         private abstract class Connectionhander //Singelton
         {
             private static string CFGstring = LoadCFG();
@@ -31,13 +38,28 @@ namespace Tourplaner_Data
                 
             }
 
+
+            /// <summary>
+            ///   <para>
+            /// Loads the CFGstring for the Connectionhandler
+            /// </para>
+            /// </summary>
+            /// <returns>
+            ///   <br />
+            /// </returns>
             private static string LoadCFG()
             {
                 return "Host="+ CFGManager.ReadSetting("Host")+ ";Username=" + CFGManager.ReadSetting("Username") + "; Password=" + CFGManager.ReadSetting("Password") + ";Database=" + CFGManager.ReadSetting("Database");
             }
         }
-     
 
+
+        /// <summary>Simples the query.</summary>
+        /// <param name="queryToRun">The query to run.</param>
+        /// <param name="payload">The payload.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static async Task<NpgsqlDataReader> SimpleQuery(string queryToRun, string payload)
         {
 
@@ -61,11 +83,17 @@ namespace Tourplaner_Data
             catch (Exception e)
             {
                 Console.WriteLine("SQ :Query Error: " + e.Message);
-                throw e;
+
 
             }
+
+            return null;
         }
 
+
+        /// <summary>Searches the tours.</summary>
+        /// <param name="Searchterm">The searchterm.</param>
+        /// <returns>Oberservable Collection of said Tours</returns>
         public static ObservableCollection<Tour> SearchTours(string Searchterm = "" )
         {
             Tour tmp = null;
@@ -109,6 +137,13 @@ namespace Tourplaner_Data
             return returnval;
         }
 
+
+
+        /// <summary>Returns the tourlogs.</summary>
+        /// <param name="nameoftour">Name der Tour</param>
+        /// <returns>
+        ///   <para>Returns an Oberservable Collection with Tourlogs</para>
+        /// </returns>
         public static ObservableCollection<Tourlog> SearchTourlogs(string nameoftour)
         {
             ObservableCollection<Tourlog> returnval = new ObservableCollection<Tourlog>();
@@ -162,7 +197,12 @@ namespace Tourplaner_Data
 
         //Select insert_tourlog(2, 'THis is a report' , current_date, 1.0,60,3,3,20);
 
-       
+
+        /// <summary>Inserts the tour.</summary>
+        /// <param name="tmo">The tmo.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static int InsertTour(Tour tmo)
         {
             int returnval = -3;
@@ -205,6 +245,13 @@ namespace Tourplaner_Data
                 conn.Close();
             }
         }
+
+
+        /// <summary>Deletes the tour.</summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static int DeleteTour(string name)
         {
             int returnval = -3;
@@ -246,6 +293,14 @@ namespace Tourplaner_Data
             }
         }
 
+
+
+        /// <summary>Inserts the tourlogs.</summary>
+        /// <param name="TL">The tl.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static int InsertTourlogs(Tourlog TL, string name)
         {
             int returnval = -3;
@@ -292,6 +347,10 @@ namespace Tourplaner_Data
             return returnval;
 
         }
+
+
+        /// <summary>Deletes the tourlog.</summary>
+        /// <param name="Logid">The logid.</param>
         public static void DeleteTourlog(int Logid)
         {
             int returnval = -3;
@@ -329,6 +388,9 @@ namespace Tourplaner_Data
             }
         }
 
+
+        /// <summary>Deletes the tourlog.</summary>
+        /// <param name="Tourname">The tourname.</param>
         public static void DeleteTourlog(string Tourname)
         {
             int returnval = -3;
@@ -365,6 +427,13 @@ namespace Tourplaner_Data
                 conn.Close();
             }
         }
+
+
+        /// <summary>
+        ///   <para>
+        /// Nukes the database.
+        /// (Tactical Nuke incomeing)</para>
+        /// </summary>
         public static void NukeDatabase()
         {
             int returnval = -3;
@@ -390,6 +459,13 @@ namespace Tourplaner_Data
                 conn.Close();
             }
         }
+
+
+        /// <summary>Copies the tour.</summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static int CopyTour(string name)
         {
             int returnval = -3;
@@ -429,8 +505,6 @@ namespace Tourplaner_Data
                 conn.Close();
             }
         }
-
-
 
     }
 

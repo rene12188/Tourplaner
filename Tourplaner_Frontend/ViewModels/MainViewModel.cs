@@ -23,6 +23,7 @@ using Syncfusion.Pdf.Grid;
 
 namespace Tourplaner_Frontend
 {
+
     public class MainViewModel : INotifyPropertyChanged
     {
 
@@ -206,6 +207,11 @@ namespace Tourplaner_Frontend
 
         }
 
+
+        /// <summary>
+        ///   <para>Fulltext searches the Tourlist for fits, those are then added to the Displaytourlist with  a LINQ Exrpession.
+        /// </para>
+        /// </summary>
         public void SearchTour()
         {
             _displaytourlist.Clear();
@@ -228,8 +234,12 @@ namespace Tourplaner_Frontend
             log.Info("Displaytourlist changed Selected now contains: "+ _displaytourlist.Count + " Entries");
         }
 
-      
 
+
+        /// <summary>
+        ///   <para>
+        /// Clears The source of the Image for Save Deletion</para>
+        /// </summary>
         public void UpdateImage()
         {
             BitmapImage image = null;
@@ -259,6 +269,10 @@ namespace Tourplaner_Frontend
             
         }
 
+
+        /// <summary>
+        ///   <para>Updates the Tourlist and Fires OnPropertyChanged</para>
+        /// </summary>
         public void  UpdateTours()
         {
             this._tourlist = Mainlogic.UpdateTours(); 
@@ -266,7 +280,19 @@ namespace Tourplaner_Frontend
             OnPropertyChanged(nameof(Searchterm));
         }
 
-        public static MainViewModel Singelton = null;
+        private static MainViewModel singelton = null;
+
+        public static MainViewModel Singelton
+        {
+           private set
+           {
+               singelton = value;
+           }
+           get
+           {
+                return singelton;
+           }
+        }
 
         public MainViewModel()
         {
@@ -393,6 +419,9 @@ namespace Tourplaner_Frontend
             }
         }
 
+
+        /// <summary>Occurs when a property value changes.
+        /// (The Panacea of WPF)</summary>
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

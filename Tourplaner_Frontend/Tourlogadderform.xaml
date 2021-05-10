@@ -38,7 +38,7 @@
         <Label Grid.Row="5" Grid.Column="1">Distance</Label>
         <Label Grid.Row="6" Grid.Column="1">Total Time (In Minutes)</Label>
         <Label Grid.Row="7" Grid.Column="1">Temperature in non-Retarded Units (°C)</Label>
-        <local:UserControl1  Grid.Row="8" Grid.Column="1" Content="{Binding SelectedTour.Distance }" ></local:UserControl1>
+        <local:UserControl1  Grid.Row="8" Grid.Column="1" Content="{Binding SelectedTour.Distance}" ></local:UserControl1>
         <DatePicker  Grid.Row="1" Grid.Column="2" SelectedDate="{Binding Time ,  UpdateSourceTrigger=PropertyChanged}" Name="TName" DisplayDate="04/23/2021 13:34:00" ></DatePicker>
         <ComboBox Grid.Row="2" Grid.Column="2" SelectedIndex="{Binding Difficulty, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem IsSelected="True">Very Easy</ComboBoxItem>
@@ -55,7 +55,7 @@
             <ComboBoxItem >Very Good</ComboBoxItem>
         </ComboBox>
         <TextBox Grid.Row="4" Grid.Column="2" Name="Dest" Text="{Binding Report, UpdateSourceTrigger=PropertyChanged }"></TextBox>
-        <TextBox Grid.Row="5" Grid.Column="2" Name="Dist" Text="{Binding Distance, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="2" Name="Dist" Text="{Binding Distance, UpdateSourceTrigger=PropertyChanged , StringFormat=N3}"></TextBox>
         <TextBox Grid.Row="6" Grid.Column="2" Name="TotTime" Text="{Binding TTime, UpdateSourceTrigger=PropertyChanged }"></TextBox>
         <TextBox Grid.Row="7" Grid.Column="2" Name="Temp" Text="{Binding Temp, UpdateSourceTrigger=PropertyChanged }"></TextBox>
         <Button  Grid.Row="8" Grid.Column="2" Command="{Binding SubmitTourlog, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=WDW}">Submit</Button>

@@ -15,7 +15,6 @@ namespace Tourplaner_Frontend
     class DeleteTourlog : ICommand
     {
         private readonly MainViewModel _mainViewModel;
-        Tourlogadderform Newwindow = null;
 
         public DeleteTourlog(MainViewModel mainViewModel)
         {

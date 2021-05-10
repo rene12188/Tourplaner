@@ -28,6 +28,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _time = value;
+                OnPropertyChanged(nameof(Time));
             }
         }
 
@@ -68,6 +69,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _report = value;
+                OnPropertyChanged(nameof(Report));
             }
         }
 
@@ -80,7 +82,16 @@ namespace Tourplaner_Frontend
             }
             set
             {
-                _distance = value;
+                try
+                {
+                    _distance = value;
+                    OnPropertyChanged(nameof(_distance));
+                }
+                catch(Exception e)
+                {
+                    throw;
+                }
+               
             }
         }
         private int _ttime;
@@ -94,6 +105,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _ttime = value;
+                OnPropertyChanged(nameof(TTime));
             }
         }
         private int _temp;
@@ -106,6 +118,7 @@ namespace Tourplaner_Frontend
             set
             {
                 _temp = value;
+                OnPropertyChanged(nameof(Temp));
             }
         }
 

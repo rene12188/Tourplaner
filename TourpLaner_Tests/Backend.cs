@@ -23,7 +23,7 @@ namespace Tourplaner_Tests
         [Test]
         public void Database_Connection_is_valid()
         {
-           Database.SimpleQuery("Select * from Tour;", "");
+            Database.SimpleQuery("Select * from Tour;", "");
            Assert.Pass();
         }
 
@@ -42,7 +42,7 @@ namespace Tourplaner_Tests
             ObservableCollection<Tour> tmp = new ObservableCollection<Tour>();
             tmp = Database.SearchTours();
 
-            Assert.AreEqual(3, tmp.Count);
+            Assert.AreEqual(2, tmp.Count);
         }
 
         [Test, Order(1)]

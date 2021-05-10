@@ -6,6 +6,10 @@ using System.Text;
 
 namespace Tourplaner_Utility
 {
+
+    /// <summary>
+    ///   <para>A Data Class which represents a Tour</para>
+    /// </summary>
     public class Tour
     {
 
@@ -42,6 +46,15 @@ namespace Tourplaner_Utility
             return Name;
         }
 
+
+        /// <summary>
+        ///   <para>
+        /// Print a String Array for the PDFWriter.
+        /// </para>
+        /// </summary>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public string[] PrintToPDF()
         {
             string[] expected;
