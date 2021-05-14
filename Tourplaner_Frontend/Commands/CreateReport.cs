@@ -40,13 +40,19 @@ namespace Tourplaner_Frontend.Commands
 
         public async void  Execute(object? parameter)
         {
-            FolderBrowserDialog tmp = new FolderBrowserDialog();
+            FolderBrowserDialog folderdialog = new FolderBrowserDialog();
          
             try
             {
-                if (tmp.ShowDialog() == DialogResult.OK)
+                if (folderdialog.ShowDialog() == DialogResult.OK)
                 {
-                    PdfWriter.CreatePdfReport(tmp.SelectedPath, _mainviewModel.SelectedTour);
+                    Tour tmp = _mainviewModel.SelectedTour;
+                    _mainviewModel.SelectedTour = null;
+                    _mainviewModel.UpdateImage();
+                    await PdfWriter.CreatePdfReport(folderdialog.SelectedPath, tmp);
+                    _mainviewModel.SelectedTour = tmp;
+                    _mainviewModel.UpdateImage();
+
                 }
               
             }

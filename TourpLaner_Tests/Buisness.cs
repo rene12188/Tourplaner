@@ -163,7 +163,7 @@ namespace Tourplaner_Tests
 
             try
             {
-                int returnval = PdfWriter.CreatePdfReport(@"U:\tmp", Tour1);
+                int returnval = PdfWriter.CreatePdfReport(@"U:\tmp", Tour1).Result;
             }
             catch (Exception e)
             {
@@ -172,15 +172,15 @@ namespace Tourplaner_Tests
 
             
 
-            Assert.AreEqual(typeof(DirectoryNotFoundException), ex_returnval.GetType());
+            Assert.AreEqual(typeof(AggregateException), ex_returnval.GetType());
         }
 
         [TearDown]
          public void Teardown()
          {
-            File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test.jpg"); 
-            File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg");
-            File.Delete(@"C:\tmp\Report.pdf");
+            //File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\test.jpg"); 
+           // File.Delete(@"E:\Programming\C#\SWE2\Tourplaner_Buisness\Images\ASD.jpg");
+           // File.Delete(@"C:\tmp\Report.pdf");
         }
     }
 }

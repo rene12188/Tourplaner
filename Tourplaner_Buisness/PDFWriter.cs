@@ -27,7 +27,7 @@ namespace Tourplaner_Buisness
         /// <returns>
         ///   <para>No Returnvalue, but a Directory not Found Exception may be thrown</para>
         /// </returns>
-        public static int  CreatePdfReport(string path, Tour selectedTour)
+        public static async Task<int> CreatePdfReport(string path, Tour selectedTour)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Tourplaner_Buisness
 
                 PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
 
-                graphics.DrawString(selectedTour.Name, font, PdfBrushes.Black, new PointF(10, 10));
+                graphics.DrawString(selectedTour.Name, font, PdfBrushes.Black, new PointF(0, 0));
 
                 PdfGrid pdfGrid = new PdfGrid();
                 //Create a DataTable
@@ -71,11 +71,12 @@ namespace Tourplaner_Buisness
                 pdfGrid.DataSource = dataTable;
 
                 //Load the image from the disk
+                PdfPage page2 = document.Pages.Add();
                 FileStream imageFileStream = File.Open(selectedTour.Image, FileMode.Open);
                 PdfBitmap image = new PdfBitmap(imageFileStream);
-                graphics.DrawImage(image, 0, 0);
+                graphics.DrawImage(image, 0 , 40);
                 //Draw grid to the page of PDF document
-                pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 40));
+                pdfGrid.Draw(page2, new Syncfusion.Drawing.PointF(10, 40));
 
                 document.Save(fs);
 
@@ -84,7 +85,7 @@ namespace Tourplaner_Buisness
             }
             catch (Exception e)
             {
-                throw e;
+                throw;
             }
 
             return 0;

@@ -9,13 +9,5 @@ namespace Tourplaner_Tests
         {
         }
 
-
-        [Test]
-        public void test1()
-        {
-            //MainViewModel tmp = new MainViewModel(); 
-            Assert.Pass();
-        }
-     
     }
 }

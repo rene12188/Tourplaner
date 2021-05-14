@@ -27,5 +27,12 @@ namespace Tourplaner_Tests
             Assert.AreEqual(Tour1.Name, Tour1.ToString() , "Some useful error message");
         }
 
+        [Test]
+        public void ConfigLoader_Test()
+        {
+            string config = CFGManager.ReadSetting("Host");
+            Assert.AreEqual(config, "localhost", "Some useful error message");
+
+        }
     }
 }
